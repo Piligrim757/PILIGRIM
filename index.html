@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>PILIGRIM - Главная | Свечение вкладок</title>
+    <title>PILIGRIM - Цветные вкладки и кнопки</title>
     <link rel="icon" href="logo.ico" type="image/x-icon">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
@@ -174,31 +174,68 @@
             box-shadow: 0 0 25px rgba(0, 255, 100, 0.9);
         }
 
+        /* ========== ИЗМЕНЕНИЯ: КНОПКИ ПОД 3в1 (plus-features) получают ТАКИЕ ЖЕ ЦВЕТА + СВЕЧЕНИЯ ========== */
         .plus-features {
             display: flex;
             justify-content: center;
-            gap: 2rem;
+            gap: 1.8rem;
             flex-wrap: wrap;
-            margin-top: 0.5rem;
+            margin-top: 0.8rem;
         }
+        /* Базовые стили для мини-кнопок */
         .plus-item {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
             padding: 0.7rem 1.8rem;
-            border-radius: 50px;
-            font-size: 1.1rem;
-            font-weight: 500;
+            border-radius: 60px;
+            font-size: 1.05rem;
+            font-weight: 600;
             color: #fff;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            transition: all 0.3s;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            backdrop-filter: blur(4px);
+            letter-spacing: 0.5px;
+            border: 1px solid rgba(255,255,240,0.3);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
         }
         .plus-item:hover {
-            transform: scale(1.05);
-            background: rgba(255, 255, 255, 0.2);
-            border-color: rgba(156, 39, 176, 0.6);
+            transform: translateY(-3px) scale(1.02);
+            border-color: rgba(255,255,210,0.7);
+        }
+        
+        /* Индивидуальные цвета кнопок — в точности как у карточек вкладок */
+        /* Контент-машина (сине-бирюзовый) */
+        .plus-item[data-plus="machine"] {
+            background: radial-gradient(circle at 10% 20%, #0e3a5c, #04293a);
+            box-shadow: 0 0 12px rgba(0, 180, 255, 0.4), 0 4px 12px rgba(0,0,0,0.3);
+            border-color: rgba(0, 200, 255, 0.4);
+        }
+        .plus-item[data-plus="machine"]:hover {
+            box-shadow: 0 0 22px rgba(0, 210, 255, 0.8), 0 8px 18px black;
+            background: radial-gradient(circle at 10% 20%, #136f9e, #043e58);
+        }
+        
+        /* Автопостинг (фиолетово-пурпурный) */
+        .plus-item[data-plus="autoposting"] {
+            background: radial-gradient(circle at 90% 10%, #5a2a6e, #2c103f);
+            box-shadow: 0 0 12px rgba(186, 85, 211, 0.5), 0 4px 12px rgba(0,0,0,0.3);
+            border-color: rgba(200, 100, 220, 0.5);
+        }
+        .plus-item[data-plus="autoposting"]:hover {
+            box-shadow: 0 0 22px rgba(218, 112, 214, 0.9), 0 8px 18px black;
+            background: radial-gradient(circle at 90% 10%, #78419b, #401c59);
+        }
+        
+        /* AI Помощники (изумрудный) */
+        .plus-item[data-plus="ai"] {
+            background: radial-gradient(circle at 30% 80%, #1f5e44, #0a2a1a);
+            box-shadow: 0 0 12px rgba(50, 220, 120, 0.5), 0 4px 12px rgba(0,0,0,0.3);
+            border-color: rgba(80, 255, 140, 0.5);
+        }
+        .plus-item[data-plus="ai"]:hover {
+            box-shadow: 0 0 22px rgba(100, 255, 150, 0.9), 0 8px 18px black;
+            background: radial-gradient(circle at 30% 80%, #338f66, #104d31);
         }
 
-        /* ========== ОСНОВНЫЕ ИЗМЕНЕНИЯ: РАЗНЫЕ ФОНЫ + СВЕЧЕНИЯ ========== */
+        /* Вкладки (карточки) с их уникальными фонами и свечениями */
         .features-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -206,7 +243,6 @@
             margin: 3rem 0;
         }
         
-        /* Базовая стилизация карточек */
         .feature-card {
             padding: 2rem;
             border-radius: 28px;
@@ -215,24 +251,19 @@
             cursor: pointer;
             border: 1px solid rgba(255,255,255,0.25);
             backdrop-filter: blur(2px);
-            box-shadow: 0 10px 25px -5px rgba(0,0,0,0.5);
             position: relative;
         }
         .feature-card:hover {
             transform: translateY(-8px) scale(1.01);
-            box-shadow: 0 25px 35px -12px rgba(0,0,0,0.6);
             border-color: rgba(255,255,240,0.5);
         }
-        /* Активная карточка — яркое свечение и усиление */
         .feature-card.active-card {
             border: 2px solid rgba(255, 245, 200, 0.9);
             transform: scale(1.02);
             box-shadow: 0 0 0 3px rgba(255,215,0,0.5), 0 20px 35px -10px black;
         }
         
-        /* УНИКАЛЬНЫЕ ФОНЫ + ИНДИВИДУАЛЬНОЕ СВЕЧЕНИЕ ДЛЯ КАЖДОЙ ВКЛАДКИ */
-        
-        /* 1. Контент-машина — сине-бирюзовый градиент + голубое свечение */
+        /* Контент-машина карточка */
         .feature-card[data-desc="machine"] {
             background: radial-gradient(circle at 10% 20%, #0e3a5c, #04293a);
             box-shadow: 0 8px 20px rgba(0, 180, 255, 0.2), 0 0 12px rgba(0, 200, 255, 0.3);
@@ -245,7 +276,7 @@
             border-color: #7fd4ff;
         }
         
-        /* 2. Автопостинг — насыщенный фиолетово-пурпурный + маджента свечение */
+        /* Автопостинг карточка */
         .feature-card[data-desc="autoposting"] {
             background: radial-gradient(circle at 90% 10%, #5a2a6e, #2c103f);
             box-shadow: 0 8px 20px rgba(156, 39, 176, 0.3), 0 0 12px rgba(186, 85, 211, 0.4);
@@ -258,7 +289,7 @@
             border-color: #e9a0ff;
         }
         
-        /* 3. AI Помощники — изумрудно-зеленый + изумрудное свечение */
+        /* AI Помощники карточка */
         .feature-card[data-desc="ai"] {
             background: radial-gradient(circle at 30% 80%, #1f5e44, #0a2a1a);
             box-shadow: 0 8px 20px rgba(0, 200, 100, 0.25), 0 0 12px rgba(80, 255, 140, 0.4);
@@ -271,7 +302,6 @@
             border-color: #8effb2;
         }
         
-        /* иконки и текст внутри карточек */
         .feature-icon {
             font-size: 3.2rem;
             margin-bottom: 1rem;
@@ -283,8 +313,6 @@
             margin-bottom: 0.8rem;
             font-size: 1.4rem;
             font-weight: 600;
-            letter-spacing: 0.5px;
-            text-shadow: 0 1px 2px rgba(0,0,0,0.3);
         }
         .feature-card p {
             color: #e0e0e0;
@@ -293,7 +321,7 @@
             opacity: 0.9;
         }
 
-        /* Панель описания (изначально скрыта, появляется только после клика) */
+        /* Панель описания (изначально скрыта) */
         .description-panel {
             background: linear-gradient(115deg, #1a1a2e, #16213e);
             border-radius: 28px;
@@ -308,14 +336,8 @@
             display: block;
         }
         @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
         .description-panel h3 {
             color: #e9c0ff;
@@ -365,9 +387,6 @@
             margin: 3rem 0 2rem 0;
             text-align: center;
         }
-        .video-title-wrapper {
-            margin-bottom: 1rem;
-        }
         .video-container {
             position: relative;
             width: 100%;
@@ -400,42 +419,17 @@
         }
 
         @media (max-width: 768px) {
-            .nav-menu {
-                display: none;
-            }
-            .logo {
-                font-size: 1.6rem;
-            }
-            .logo-img {
-                height: 50px;
-            }
-            .plus-item {
-                font-size: 0.9rem;
-                padding: 0.5rem 1rem;
-            }
-            .neon-yellow {
-                font-size: 2rem;
-            }
-            .neon-purple {
-                font-size: 2rem;
-            }
-            .neon-video-title {
-                font-size: 1.5rem;
-            }
-            .video-container {
-                max-width: 95%;
-                padding-bottom: 55%;
-            }
-            .three-in-one {
-                font-size: 1.3rem;
-                padding: 0.3rem 1.2rem;
-            }
-            .feature-card h3 {
-                font-size: 1.2rem;
-            }
-            .description-panel {
-                padding: 1.5rem;
-            }
+            .nav-menu { display: none; }
+            .logo { font-size: 1.6rem; }
+            .logo-img { height: 50px; }
+            .plus-item { font-size: 0.85rem; padding: 0.5rem 1.2rem; }
+            .neon-yellow { font-size: 2rem; }
+            .neon-purple { font-size: 2rem; }
+            .neon-video-title { font-size: 1.5rem; }
+            .video-container { max-width: 95%; padding-bottom: 55%; }
+            .three-in-one { font-size: 1.3rem; padding: 0.3rem 1.2rem; }
+            .feature-card h3 { font-size: 1.2rem; }
+            .description-panel { padding: 1.5rem; }
         }
     </style>
 </head>
@@ -464,14 +458,15 @@
                 <div class="hero-badge">
                     <div class="three-in-one">⚡ 3в1 ⚡</div>
                 </div>
+                <!-- ТРИ МИНИ-КНОПКИ, окрашенные в те же цвета, что и вкладки (плюс свечение) -->
                 <div class="plus-features">
-                    <div class="plus-item">🚗 Контент-машина</div>
-                    <div class="plus-item">📝 Автопостинг</div>
-                    <div class="plus-item">💎 AI Помощники</div>
+                    <div class="plus-item" data-plus="machine">🚗 Контент-машина</div>
+                    <div class="plus-item" data-plus="autoposting">📝 Автопостинг</div>
+                    <div class="plus-item" data-plus="ai">💎 AI Помощники</div>
                 </div>
             </div>
 
-            <!-- ТРИ ВКЛАДКИ с РАЗНЫМИ ЦВЕТАМИ ФОНА + ИНДИВИДУАЛЬНЫМ СВЕЧЕНИЕМ -->
+            <!-- ОСНОВНЫЕ ТРИ ВКЛАДКИ (большие карточки) -->
             <div class="features-grid">
                 <div class="feature-card" data-desc="machine">
                     <div class="feature-icon">🚗</div>
@@ -490,7 +485,7 @@
                 </div>
             </div>
 
-            <!-- ПАНЕЛЬ ОПИСАНИЯ: изначально скрыта (нет класса show), появится только при клике на вкладку -->
+            <!-- ПАНЕЛЬ ОПИСАНИЯ (изначально скрыта) -->
             <div id="descriptionPanel" class="description-panel">
                 <div id="machineDesc">
                     <h3>⚡ Контент-машина</h3>
@@ -537,7 +532,6 @@
                 <p style="margin-top: 1rem; color: #aaa;">| Для Windows |</p>
             </div>
 
-            <!-- ВИДЕО СЕКЦИЯ -->
             <div class="video-section">
                 <div class="video-title-wrapper">
                     <h4 class="neon-video-title">🎬 ПРЕЗЕНТАЦИЯ</h4>
@@ -561,34 +555,46 @@
 
     <script>
         // ----------------------------
-        // РАБОТА С ВКЛАДКАМИ: 
-        // - Изначально панель описания скрыта (нет show)
-        // - При клике на карточку показываем панель и нужное описание + добавляем свечение активной вкладке
+        // 1) Логика для больших вкладок (карточек) и мини-кнопок (plus-features)
+        //    - При клике на большую карточку или мини-кнопку открывается соответствующее описание
+        //    - Панель изначально скрыта, показывается только после нажатия.
+        //    - Синхронизация активного состояния: если клик по мини-кнопке – активируем соответствующую карточку и наоборот
         // ----------------------------
         const cards = document.querySelectorAll('.feature-card');
+        const plusItems = document.querySelectorAll('.plus-item');
         const machineDesc = document.getElementById('machineDesc');
         const autopostingDesc = document.getElementById('autopostingDesc');
         const aiDesc = document.getElementById('aiDesc');
         const panel = document.getElementById('descriptionPanel');
         
-        // Функция активации вкладки (открывает описание, подсвечивает карточку)
-        function activateTab(descType, clickedCard) {
-            // 1. Убираем активный класс у всех карточек (снимаем свечение)
-            cards.forEach(c => c.classList.remove('active-card'));
-            // 2. Добавляем активный класс выбранной карточке (появится усиленное свечение)
-            clickedCard.classList.add('active-card');
+        // Функция активации вкладки по типу (machine, autoposting, ai) и опционально элементу, который вызвал (для синхронизации)
+        function activateTab(descType, triggeredElement = null) {
+            // Находим карточку, которая соответствует типу
+            let targetCard = null;
+            cards.forEach(card => {
+                if (card.getAttribute('data-desc') === descType) {
+                    targetCard = card;
+                }
+            });
             
-            // 3. Показываем панель описания, если она была скрыта
+            // Убираем активный класс у всех карточек
+            cards.forEach(c => c.classList.remove('active-card'));
+            // Если карточка найдена, добавляем ей активный класс (свечение)
+            if (targetCard) {
+                targetCard.classList.add('active-card');
+            }
+            
+            // Показываем панель, если она скрыта
             if (!panel.classList.contains('show')) {
                 panel.classList.add('show');
             }
             
-            // 4. Скрываем все блоки с описанием
+            // Скрываем все блоки описания
             machineDesc.style.display = 'none';
             autopostingDesc.style.display = 'none';
             aiDesc.style.display = 'none';
             
-            // 5. Отображаем нужный контент в зависимости от типа
+            // Показываем нужный блок
             if (descType === 'machine') {
                 machineDesc.style.display = 'block';
             } else if (descType === 'autoposting') {
@@ -598,7 +604,7 @@
             }
         }
         
-        // Назначаем обработчики кликов на каждую карточку
+        // Обработчики для больших карточек
         cards.forEach(card => {
             card.addEventListener('click', (e) => {
                 e.stopPropagation();
@@ -607,21 +613,25 @@
             });
         });
         
-        // ВАЖНО: изначально панель описания скрыта (нет класса .show) и никакой контент не отображается.
-        // Это уже обеспечено HTML: у description-panel нет класса show.
-        // Однако чтобы быть уверенными, что при загрузке не показывается содержимое, 
-        // дополнительно скроем все desc блоки и удостоверимся, что панель скрыта.
-        // Также убираем случайные активные классы, если есть.
+        // Обработчики для мини-кнопок (plus-features) - они теперь стилизованы в те же цвета, что и вкладки
+        plusItems.forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                let type = '';
+                if (btn.getAttribute('data-plus') === 'machine') type = 'machine';
+                else if (btn.getAttribute('data-plus') === 'autoposting') type = 'autoposting';
+                else if (btn.getAttribute('data-plus') === 'ai') type = 'ai';
+                if (type) activateTab(type, btn);
+            });
+        });
+        
+        // Инициализация: панель скрыта, никакой активный класс на карточках не висит, все описания скрыты
         window.addEventListener('DOMContentLoaded', () => {
-            // Убираем активный класс у всех карточек, чтобы изначально не было свечения выбранной
             cards.forEach(c => c.classList.remove('active-card'));
-            // Убедимся, что панель не видна
             panel.classList.remove('show');
-            // Все описания скрыты (в CSS display:none, но подстраховка)
             machineDesc.style.display = 'none';
             autopostingDesc.style.display = 'none';
             aiDesc.style.display = 'none';
-            // Дополнительно: если по какой-то причине какой-то из блоков оказался виден, скрываем
         });
         
         // ========== СИСТЕМА ОТСЛЕЖИВАНИЯ СКАЧИВАНИЙ (goatcounter) ==========
@@ -651,7 +661,6 @@
         if (downloadBtn) {
             downloadBtn.addEventListener('click', function() {
                 trackDownload('piligrim_app.exe');
-                // Ссылка на демо-файл, в реальном проекте заменить на актуальную ссылку на установщик
                 const fileUrl = 'https://github.com'; 
                 const fileName = 'Piligrim.exe';
                 downloadFile(fileUrl, fileName);
@@ -659,7 +668,6 @@
             });
         }
         
-        // Отслеживание просмотра главной страницы
         window.addEventListener('load', function() {
             fetch(`https://${GOAT_SITE}.goatcounter.com/count`, {
                 method: 'POST',
@@ -672,7 +680,6 @@
         });
     </script>
     
-    <!-- Скрипт goatcounter для аналитики -->
     <script data-goatcounter=`https://${GOAT_SITE}.goatcounter.com/count` 
             async src="//gc.zgo.at/count.js"></script>
 </body>
