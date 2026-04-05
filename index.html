@@ -88,7 +88,7 @@
             padding: 2rem 1rem;
         }
         
-        /* Hero секция - синий фон (потом замените на фото) */
+        /* Hero секция - синий фон */
         .hero {
             text-align: center;
             padding: 3rem 2rem;
@@ -128,13 +128,23 @@
             background-clip: unset;
         }
         
-        /* Контейнер для заголовка с гибкой версткой */
+        /* Стиль для неонового фиолетового текста "ПРЕЗЕНТАЦИЯ" */
+        .neon-video-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            font-weight: 900;
+            color: #ce93d8;
+            text-shadow: 0 0 5px #aa00ff, 0 0 10px #9c27b0, 0 0 20px #9c27b0, 0 0 30px #7b1fa2;
+            letter-spacing: 2px;
+            background: none;
+            display: inline-block;
+        }
+        
         .hero-title {
             margin-bottom: 1rem;
             line-height: 1.2;
         }
         
-        /* жирный текст + блок 3в1 */
         .hero p {
             font-size: 1.1rem;
             opacity: 0.9;
@@ -148,7 +158,6 @@
             text-shadow: 0 0 4px rgba(0,0,0,0.3);
         }
         
-        /* Красивый стиль для "3в1" */
         .hero-badge {
             margin: 0.75rem 0 1.2rem 0;
         }
@@ -172,7 +181,6 @@
             box-shadow: 0 0 25px rgba(255, 200, 0, 0.9);
         }
         
-        /* Красивый блок с плюсами */
         .plus-features {
             display: flex;
             justify-content: center;
@@ -200,7 +208,7 @@
             margin: 0 0.3rem;
         }
         
-        /* Вкладки - дизайн как был */
+        /* Вкладки */
         .features-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -239,7 +247,7 @@
             font-size: 0.9rem;
         }
         
-        /* Описание под вкладками (появляется при нажатии) */
+        /* Описание под вкладками */
         .description-panel {
             background: #1e1e1e;
             border-radius: 20px;
@@ -298,24 +306,26 @@
             background: linear-gradient(135deg, #33ff33, #00dd00, #00aa00);
         }
         
+        /* Видео секция: уменьшенный размер окна */
         .video-section {
             margin: 3rem 0 2rem 0;
             text-align: center;
         }
-        .video-title {
-            font-size: 1.5rem;
+        .video-title-wrapper {
             margin-bottom: 1rem;
-            color: #ce93d8;
-            font-family: 'Playfair Display', serif;
         }
+        /* Уменьшенный контейнер видео: максимум 800px ширина, не на всю ширину */
         .video-container {
             position: relative;
-            padding-bottom: 56.25%;
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto;
+            padding-bottom: 45%; /* 16:9 пропорция при ширине 800px (450px высота) */
             height: 0;
             overflow: hidden;
-            border-radius: 20px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
-            border: 2px solid rgba(156, 39, 176, 0.5);
+            border-radius: 24px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+            border: 2px solid rgba(156, 39, 176, 0.6);
             background: #000;
         }
         .video-container iframe {
@@ -324,7 +334,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            border-radius: 18px;
+            border-radius: 20px;
         }
         
         footer {
@@ -370,6 +380,13 @@
                 padding: 0.3rem 1.2rem;
                 letter-spacing: 2px;
             }
+            .neon-video-title {
+                font-size: 1.5rem;
+            }
+            .video-container {
+                max-width: 95%;
+                padding-bottom: 55%;
+            }
         }
     </style>
 </head>
@@ -390,15 +407,13 @@
 
     <div class="main-content">
         <div class="container">
-            <!-- Hero секция с обновленными неоновыми текстами -->
+            <!-- Hero секция -->
             <div class="hero">
                 <div class="hero-title">
                     <span class="neon-yellow">ДОБРО ПОЖАЛОВАТЬ В</span>
                     <span class="neon-purple">PILIGRIM</span>
                 </div>
-                <!-- фраза сделана жирной через <strong> -->
                 <p><strong>Ваш надёжный партнёр в мире цифровых решений</strong></p>
-                <!-- КРАСИВЫЙ БЛОК 3в1 -->
                 <div class="hero-badge">
                     <div class="three-in-one">⚡ 3в1 ⚡</div>
                 </div>
@@ -409,10 +424,10 @@
                 </div>
             </div>
 
-            <!-- ТРИ ВКЛАДКИ (переименованные) -->
+            <!-- ТРИ ВКЛАДКИ (обновленные эмодзи) -->
             <div class="features-grid">
                 <div class="feature-card" data-desc="machine">
-                    <div class="feature-icon">🚗</div>
+                    <div class="feature-icon">⚙️🧠</div>   <!-- интересный символ: механизм + мозг для контент-машины -->
                     <h3>Контент-машина</h3>
                     <p>Автоматизация контента</p>
                 </div>
@@ -422,16 +437,16 @@
                     <p>Публикации в соцсетях</p>
                 </div>
                 <div class="feature-card" data-desc="ai">
-                    <div class="feature-icon">🤖</div>
+                    <div class="feature-icon">🧠✨</div>   <!-- более умный и футуристичный символ для AI помощников -->
                     <h3>AI Помощники</h3>
                     <p>Нейросети для задач</p>
                 </div>
             </div>
 
-            <!-- Панель для описания (появляется при нажатии) -->
+            <!-- Панель для описания -->
             <div id="descriptionPanel" class="description-panel">
                 <div id="machineDesc">
-                    <h3>🚗 Контент-машина</h3>
+                    <h3>⚙️ Контент-машина — интеллектуальный генератор</h3>
                     <p>Мощный инструмент для автоматического создания контента:</p>
                     <ul>
                         <li>Генерация уникальных статей и постов</li>
@@ -443,7 +458,7 @@
                     <p>Экономьте до 30 часов в неделю на создании контента!</p>
                 </div>
                 <div id="autopostingDesc" style="display: none;">
-                    <h3>📝 Автопостинг</h3>
+                    <h3>📝 Автопостинг — полный контроль соцсетей</h3>
                     <p>Полная автоматизация ведения социальных сетей:</p>
                     <ul>
                         <li>Публикация постов по расписанию</li>
@@ -455,7 +470,7 @@
                     <p>Ведите соцсети без ручного труда!</p>
                 </div>
                 <div id="aiDesc" style="display: none;">
-                    <h3>🤖 AI Помощники</h3>
+                    <h3>🧠 AI Помощники — ваш нейросетевой оркестр</h3>
                     <p>Искусственный интеллект для любых задач:</p>
                     <ul>
                         <li>GPT-4 для общения и генерации текстов</li>
@@ -475,9 +490,11 @@
                 <p style="margin-top: 1rem; color: #aaa;">Версия 1.0.0 | Бесплатно | Для Windows/Mac/Linux</p>
             </div>
 
-            <!-- ВИДЕО В КОНЦЕ -->
+            <!-- ВИДЕО С НЕОНОВЫМ ЗАГОЛОВКОМ (фиолетовый) И УМЕНЬШЕННЫМ РАЗМЕРОМ -->
             <div class="video-section">
-                <h2 class="video-title">🎬 ПРЕЗЕНТАЦИЯ</h2>
+                <div class="video-title-wrapper">
+                    <h2 class="neon-video-title">🎬 ПРЕЗЕНТАЦИЯ</h2>
+                </div>
                 <div class="video-container">
                     <iframe 
                         src="https://drive.google.com/file/d/1rfszEzRKhvfF6IVDgGEKbE4mwmvILkva/preview"
