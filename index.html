@@ -3,146 +3,210 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Контент Машина</title>
-    
-    <!-- Bootstrap 5 -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    
+    <title>Ваш сайт</title>
     <style>
-        body { 
-            font-family: Arial, sans-serif; 
-            background-color: #f8f9fa; 
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
-        .hero { 
-            background-color: #343a40; 
-            color: white; 
-            padding: 100px 20px; 
-            text-align: center; 
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
         }
-        .features { 
-            padding: 80px 20px; 
-        }
-        .feature { 
-            margin-bottom: 40px; 
-        }
-        .video-section { 
-            padding: 80px 20px; 
-            background-color: #ffffff;
-            text-align: center; 
-        }
-        .video-container {
-            position: relative;
-            padding-bottom: 56.25%; /* Соотношение 16:9 */
-            height: 0;
-            overflow: hidden;
-            max-width: 100%;
-            background: #000;
-            border-radius: 12px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-        }
-        .video-container iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
+        
+        .container {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            max-width: 800px;
             width: 100%;
-            height: 100%;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            animation: fadeIn 0.5s ease-in;
         }
-        .download-btn { 
-            margin-top: 25px; 
-            padding: 12px 40px;
-            font-size: 1.1rem;
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
-        .counter { 
-            font-size: 26px; 
-            font-weight: bold; 
-            color: #007bff; 
+        
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+            font-size: 2.5em;
+        }
+        
+        .content {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+        
+        .download-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            font-size: 18px;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+            margin: 20px 0;
+        }
+        
+        .download-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+        
+        .download-btn:active {
+            transform: translateY(0);
+        }
+        
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+        
+        .feature {
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            text-align: center;
+        }
+        
+        .feature h3 {
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+        
+        footer {
+            margin-top: 40px;
+            text-align: center;
+            color: #999;
+            font-size: 14px;
+        }
+        
+        @media (max-width: 600px) {
+            .container {
+                padding: 20px;
+            }
+            
+            h1 {
+                font-size: 1.8em;
+            }
         }
     </style>
 </head>
 <body>
-
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="container">
-            <h1 class="display-4 fw-bold">Контент Машина</h1>
-            <p class="lead mt-3">Автопостинг + нейропомощник — всё в одной программе</p>
-            
-            <button class="btn btn-primary btn-lg download-btn" onclick="download()">
-                Скачать бесплатно
-            </button>
-            
-            <p class="mt-4 mb-0">Скачиваний: <span id="downloadCount" class="counter">0</span></p>
+    <div class="container">
+        <h1>🚀 Добро пожаловать!</h1>
+        <div class="content">
+            <p>Это ваш обновлённый сайт. Статистика скачиваний собирается через GoatCounter.</p>
+            <p>Количество скачиваний НЕ отображается на сайте.</p>
         </div>
-    </section>
-
-    <!-- Features Section -->
-    <section class="features container">
-        <div class="row text-center">
-            <div class="col-md-4 feature">
-                <h4>Автопостинг</h4>
-                <p>Публикуй посты в соцсетях автоматически без лишних действий</p>
+        
+        <button class="download-btn" id="downloadBtn">
+            📥 Скачать файл
+        </button>
+        
+        <div class="features">
+            <div class="feature">
+                <h3>⚡ Быстро</h3>
+                <p>Мгновенная загрузка</p>
             </div>
-            <div class="col-md-4 feature">
-                <h4>Нейропомощник</h4>
-                <p>Генерируй уникальный контент и посты за секунды</p>
+            <div class="feature">
+                <h3>🔒 Безопасно</h3>
+                <p>Ваши данные в надежде</p>
             </div>
-            <div class="col-md-4 feature">
-                <h4>Планировщик</h4>
-                <p>Удобно планируй публикации и следи за расписанием</p>
+            <div class="feature">
+                <h3>📊 Аналитика</h3>
+                <p>Сбор статистики</p>
             </div>
         </div>
-    </section>
+        
+        <footer>
+            <p>© 2024 Ваш сайт. Все права защищены.</p>
+        </footer>
+    </div>
 
-    <!-- Video Section -->
-    <section class="video-section">
-        <div class="container">
-            <h2 class="mb-3">Как это работает</h2>
-            <p class="lead mb-5">Смотри короткое видео с демонстрацией возможностей программы</p>
-            
-            <!-- Исправленный блок видео (самый надёжный способ для Google Drive) -->
-            <div class="video-container">
-                <iframe 
-                    src="https://drive.google.com/file/d/1rfszEzRKhvfF6IVDgGEKbE4mwmvILkva/preview" 
-                    frameborder="0" 
-                    allow="autoplay; encrypted-media" 
-                    allowfullscreen>
-                </iframe>
-            </div>
-            
-            <p class="mt-4 text-muted small">
-                Если видео не загружается — убедись, что в Google Drive стоит доступ «Любой пользователь с ссылкой может просматривать»
-            </p>
-        </div>
-    </section>
-
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-    
+    <!-- GoatCounter - сбор статистики (скрытый) -->
     <script>
-        // Функция скачивания
-        function download() {
-            window.location.href = 'https://yadi.sk/d/ТВОЙ_ФАЙЛ'; // ← замени на свою реальную ссылку
-            
-            // Обновление счётчика скачиваний
-            fetch('https://api.countapi.xyz/hit/piligrim757/piligrim-download')
-                .then(res => res.json())
-                .then(res => {
-                    document.getElementById('downloadCount').textContent = res.value;
-                })
-                .catch(err => console.log('Счётчик недоступен'));
-        }
-
-        // Инициализация счётчика при загрузке страницы
-        window.addEventListener('load', () => {
-            fetch('https://api.countapi.xyz/get/piligrim757/piligrim-download')
-                .then(res => res.json())
-                .then(res => {
-                    document.getElementById('downloadCount').textContent = res.value;
-                })
-                .catch(err => {
-                    document.getElementById('downloadCount').textContent = '—';
+        // Инициализация GoatCounter
+        window.goatcounter = {
+            // Настройка путей — убираем отображение, но оставляем сбор
+            path: function(p) {
+                // Возвращаем null для страниц, которые не нужно отслеживать
+                // (оставляем пустым, чтобы всё отслеживалось, но не показывалось)
+                return p;
+            }
+        };
+        
+        // Функция отправки события скачивания в GoatCounter
+        function trackDownload(fileName) {
+            // Используем событие GoatCounter
+            if (window.goatcounter && window.goatcounter.count) {
+                window.goatcounter.count({
+                    path: '/download/' + fileName,
+                    event: true,
+                    title: 'Скачивание файла: ' + fileName
                 });
+            }
+            
+            // Дополнительно отправляем через fetch API (для надёжности)
+            const siteCode = 'ВАШ_КОД_САЙТА'; // Замените на ваш код (без .goatcounter.com)
+            fetch(`https://${siteCode}.goatcounter.com/count`, {
+                method: 'POST',
+                mode: 'no-cors',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    hits: [{
+                        path: '/download/' + fileName,
+                        event: true,
+                        title: 'Скачивание файла: ' + fileName
+                    }]
+                })
+            }).catch(e => console.log('GoatCounter error:', e));
+        }
+        
+        // Обработка скачивания
+        document.getElementById('downloadBtn').addEventListener('click', () => {
+            const fileName = 'example_file.zip';
+            
+            // Отправляем событие скачивания
+            trackDownload(fileName);
+            
+            // Создаем и скачиваем тестовый файл
+            const link = document.createElement('a');
+            link.href = 'data:text/plain,Пример содержимого файла для скачивания';
+            link.download = fileName;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            
+            // Уведомление (опционально)
+            alert('Скачивание началось! Спасибо!');
         });
     </script>
+    
+    <!-- Подключение GoatCounter JS (асинхронно) -->
+    <script data-goatcounter="https://piligrim757.goatcounter.com/count"
+            async src="//gc.zgo.at/count.js"></script>
 </body>
 </html>
