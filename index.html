@@ -6,21 +6,20 @@
     <title>PILIGRIM - Главная</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
-        /* Стили с фиолетовой гаммой */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
+        
         body {
-            background: linear-gradient(135deg, #1a0b2e 0%, #2d1b4e 50%, #1a0b2e 100%);
+            background: #0a0a0a;
             font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             min-height: 100vh;
         }
         
         .navbar {
-            background: rgba(26, 11, 46, 0.95);
-            backdrop-filter: blur(10px);
+            background: #000000;
             padding: 1.2rem;
             position: sticky;
             top: 0;
@@ -66,25 +65,31 @@
             color: #ce93d8;
             text-shadow: 0 0 10px rgba(206, 147, 216, 0.5);
         }
+        
+        .main-content {
+            background: #2a2a2a;
+            min-height: calc(100vh - 80px);
+        }
         .container {
             max-width: 1200px;
-            margin: 2rem auto;
-            padding: 0 1rem;
+            margin: 0 auto;
+            padding: 2rem 1rem;
         }
+        
+        /* Hero секция - синий фон (потом замените на фото) */
         .hero {
             text-align: center;
-            padding: 4rem 2rem;
-            background: linear-gradient(135deg, rgba(106, 27, 154, 0.8), rgba(74, 20, 140, 0.9));
+            padding: 3rem 2rem;
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
             border-radius: 30px;
             color: white;
-            margin-bottom: 3rem;
-            backdrop-filter: blur(10px);
+            margin-bottom: 2rem;
             border: 1px solid rgba(156, 39, 176, 0.3);
             box-shadow: 0 20px 40px rgba(0,0,0,0.3);
         }
         .hero h1 {
             font-family: 'Playfair Display', serif;
-            font-size: 3.5rem;
+            font-size: 3rem;
             margin-bottom: 1rem;
             background: linear-gradient(135deg, #fff, #e1bee7);
             -webkit-background-clip: text;
@@ -92,17 +97,144 @@
             color: transparent;
         }
         .hero p {
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             opacity: 0.9;
+            color: #ddd;
+            margin-bottom: 1.5rem;
+        }
+        
+        /* Красивый блок с плюсами */
+        .plus-features {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            margin-top: 1rem;
+        }
+        .plus-item {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 0.7rem 1.8rem;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: #fff;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s;
+        }
+        .plus-item:hover {
+            transform: scale(1.05);
+            background: rgba(255, 255, 255, 0.2);
+            border-color: rgba(156, 39, 176, 0.6);
+        }
+        .plus-item span {
+            margin: 0 0.3rem;
+        }
+        
+        /* Вкладки - дизайн как был */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+        .feature-card {
+            background: #1e1e1e;
+            padding: 2rem;
+            border-radius: 20px;
+            text-align: center;
+            transition: all 0.3s;
+            border: 1px solid rgba(156, 39, 176, 0.3);
+            cursor: pointer;
+        }
+        .feature-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(156, 39, 176, 0.8);
+            box-shadow: 0 20px 40px rgba(156, 39, 176, 0.2);
+        }
+        .feature-card.active-card {
+            border-color: #9c27b0;
+            box-shadow: 0 0 20px rgba(156, 39, 176, 0.3);
+        }
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        .feature-card h3 {
+            color: #ce93d8;
+            margin-bottom: 0.8rem;
+            font-size: 1.3rem;
+        }
+        .feature-card p {
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+        
+        /* Описание под вкладками (появляется при нажатии) */
+        .description-panel {
+            background: #1e1e1e;
+            border-radius: 20px;
+            padding: 2rem;
+            margin: 1rem 0 2rem 0;
+            border: 1px solid rgba(156, 39, 176, 0.3);
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+        .description-panel.show {
+            display: block;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .description-panel h3 {
+            color: #ce93d8;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        .description-panel p {
+            color: #ccc;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+        .description-panel ul {
+            color: #ccc;
+            padding-left: 1.5rem;
+        }
+        .description-panel li {
+            margin: 0.5rem 0;
+        }
+        
+        .download-section {
+            text-align: center;
+            margin: 2rem 0;
+        }
+        .download-btn {
+            background: linear-gradient(135deg, #9c27b0, #6a1b9a);
+            color: white;
+            border: none;
+            padding: 1.2rem 3.5rem;
+            font-size: 1.3rem;
+            font-weight: bold;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 5px 20px rgba(156, 39, 176, 0.4);
+            font-family: 'Poppins', sans-serif;
+        }
+        .download-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(156, 39, 176, 0.6);
+            background: linear-gradient(135deg, #ab47bc, #7b1fa2);
         }
         
         .video-section {
-            margin: 3rem 0;
+            margin: 3rem 0 2rem 0;
             text-align: center;
         }
         .video-title {
-            font-size: 1.8rem;
-            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
             color: #ce93d8;
             font-family: 'Playfair Display', serif;
         }
@@ -125,68 +257,15 @@
             border-radius: 18px;
         }
         
-        .download-section {
-            text-align: center;
-            margin: 3rem 0;
-        }
-        .download-btn {
-            background: linear-gradient(135deg, #9c27b0, #6a1b9a);
-            color: white;
-            border: none;
-            padding: 1.2rem 3.5rem;
-            font-size: 1.3rem;
-            font-weight: bold;
-            border-radius: 50px;
-            cursor: pointer;
-            transition: all 0.3s;
-            box-shadow: 0 5px 20px rgba(156, 39, 176, 0.4);
-            font-family: 'Poppins', sans-serif;
-        }
-        .download-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 30px rgba(156, 39, 176, 0.6);
-            background: linear-gradient(135deg, #ab47bc, #7b1fa2);
-        }
-        .features {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin: 3rem 0;
-        }
-        .feature-card {
-            background: rgba(46, 21, 76, 0.8);
-            backdrop-filter: blur(10px);
-            padding: 2rem;
-            border-radius: 20px;
-            text-align: center;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-            transition: all 0.3s;
-            border: 1px solid rgba(156, 39, 176, 0.3);
-        }
-        .feature-card:hover {
-            transform: translateY(-8px);
-            border-color: rgba(156, 39, 176, 0.8);
-            box-shadow: 0 20px 40px rgba(156, 39, 176, 0.2);
-        }
-        .feature-icon {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-        }
-        .feature-card h3 {
-            color: #ce93d8;
-            margin-bottom: 0.8rem;
-        }
-        .feature-card p {
-            color: #e1bee7;
-        }
         footer {
-            background: rgba(26, 11, 46, 0.95);
+            background: #000000;
             color: #ce93d8;
             text-align: center;
             padding: 2rem;
             margin-top: 3rem;
             border-top: 1px solid rgba(156, 39, 176, 0.3);
         }
+        
         @media (max-width: 768px) {
             .nav-menu {
                 display: none;
@@ -197,8 +276,9 @@
             .logo {
                 font-size: 1.6rem;
             }
-            .video-title {
-                font-size: 1.3rem;
+            .plus-item {
+                font-size: 0.9rem;
+                padding: 0.5rem 1rem;
             }
         }
     </style>
@@ -215,48 +295,97 @@
         </div>
     </nav>
 
-    <div class="container">
-        <div class="hero">
-            <h1>Добро пожаловать в PILIGRIM</h1>
-            <p>Ваш надёжный партнёр в мире цифровых решений</p>
-        </div>
-
-        <!-- ВИДЕО СЕКЦИЯ - ИСПРАВЛЕННАЯ ССЫЛКА -->
-        <div class="video-section">
-            <h2 class="video-title">🎬 Наше презентационное видео</h2>
-            <div class="video-container">
-                <iframe 
-                    src="https://drive.google.com/file/d/1rfszEzRKhvfF6IVDgGEKbE4mwmvILkva/preview"
-                    frameborder="0"
-                    allow="autoplay; encrypted-media; gyroscope; picture-in-picture"
-                    allowfullscreen>
-                </iframe>
+    <div class="main-content">
+        <div class="container">
+            <!-- Hero секция (синий фон, потом замените на фото) -->
+            <div class="hero">
+                <h1>Добро пожаловать в PILIGRIM</h1>
+                <p>Ваш надёжный партнёр в мире цифровых решений</p>
+                <div class="plus-features">
+                    <div class="plus-item">🚗 + Машина</div>
+                    <div class="plus-item">📝 + Автопостинг</div>
+                    <div class="plus-item">🤖 + AI Помощники</div>
+                </div>
             </div>
-            <p style="margin-top: 1rem; color: #ce93d8;">Узнайте больше о наших возможностях</p>
-        </div>
 
-        <div class="download-section">
-            <button class="download-btn" id="downloadButton">
-                📥 Скачать приложение
-            </button>
-            <p style="margin-top: 1rem; color: #ce93d8;">Версия 1.0.0 | Бесплатно | Для Windows/Mac/Linux</p>
-        </div>
+            <!-- ТРИ ВКЛАДКИ (переименованные) -->
+            <div class="features-grid">
+                <div class="feature-card" data-desc="machine">
+                    <div class="feature-icon">🚗</div>
+                    <h3>Контент-машина</h3>
+                    <p>Автоматизация контента</p>
+                </div>
+                <div class="feature-card" data-desc="autoposting">
+                    <div class="feature-icon">📝</div>
+                    <h3>Автопостинг</h3>
+                    <p>Публикации в соцсетях</p>
+                </div>
+                <div class="feature-card" data-desc="ai">
+                    <div class="feature-icon">🤖</div>
+                    <h3>AI Помощники</h3>
+                    <p>Нейросети для задач</p>
+                </div>
+            </div>
 
-        <div class="features">
-            <div class="feature-card">
-                <div class="feature-icon">🚀</div>
-                <h3>Высокая скорость</h3>
-                <p>Мгновенная обработка данных</p>
+            <!-- Панель для описания (появляется при нажатии) -->
+            <div id="descriptionPanel" class="description-panel">
+                <div id="machineDesc">
+                    <h3>🚗 Контент-машина</h3>
+                    <p>Мощный инструмент для автоматического создания контента:</p>
+                    <ul>
+                        <li>Генерация уникальных статей и постов</li>
+                        <li>Автоматический рерайт текстов</li>
+                        <li>Подбор изображений по теме</li>
+                        <li>Создание видео из текста</li>
+                        <li>Планирование контент-стратегии</li>
+                    </ul>
+                    <p>Экономьте до 30 часов в неделю на создании контента!</p>
+                </div>
+                <div id="autopostingDesc" style="display: none;">
+                    <h3>📝 Автопостинг</h3>
+                    <p>Полная автоматизация ведения социальных сетей:</p>
+                    <ul>
+                        <li>Публикация постов по расписанию</li>
+                        <li>Кросспостинг во все соцсети сразу</li>
+                        <li>Автоматический подбор хештегов</li>
+                        <li>Аналитика эффективности</li>
+                        <li>Поддержка VK, Telegram, Instagram, Facebook, Twitter</li>
+                    </ul>
+                    <p>Ведите соцсети без ручного труда!</p>
+                </div>
+                <div id="aiDesc" style="display: none;">
+                    <h3>🤖 AI Помощники</h3>
+                    <p>Искусственный интеллект для любых задач:</p>
+                    <ul>
+                        <li>GPT-4 для общения и генерации текстов</li>
+                        <li>Midjourney для создания изображений</li>
+                        <li>Анализ данных и создание отчётов</li>
+                        <li>Автоматический перевод на 100+ языков</li>
+                        <li>Голосовой ассистент с распознаванием речи</li>
+                    </ul>
+                    <p>Все нейросети в одном окне!</p>
+                </div>
             </div>
-            <div class="feature-card">
-                <div class="feature-icon">🔒</div>
-                <h3>Безопасность</h3>
-                <p>Ваши данные под защитой</p>
+
+            <div class="download-section">
+                <button class="download-btn" id="downloadButton">
+                    📥 Скачать приложение
+                </button>
+                <p style="margin-top: 1rem; color: #aaa;">Версия 1.0.0 | Бесплатно | Для Windows/Mac/Linux</p>
             </div>
-            <div class="feature-card">
-                <div class="feature-icon">💡</div>
-                <h3>Инновации</h3>
-                <p>Современные технологии</p>
+
+            <!-- ВИДЕО В КОНЦЕ -->
+            <div class="video-section">
+                <h2 class="video-title">🎬 Наше презентационное видео</h2>
+                <div class="video-container">
+                    <iframe 
+                        src="https://drive.google.com/file/d/1rfszEzRKhvfF6IVDgGEKbE4mwmvILkva/preview"
+                        frameborder="0"
+                        allow="autoplay; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen>
+                    </iframe>
+                </div>
+                <p style="margin-top: 1rem; color: #aaa;">Узнайте больше о наших возможностях</p>
             </div>
         </div>
     </div>
@@ -266,10 +395,46 @@
         <p style="margin-top: 0.5rem; font-size: 0.9rem;">Контакт: info@piligrim.com</p>
     </footer>
 
-    <!-- ========== СКРЫТАЯ СТАТИСТИКА GOATCOUNTER ========== -->
     <script>
-        // НАСТРОЙКА: замените 'piligrim-stats' на ваш код из GoatCounter
-        const GOAT_SITE = 'piligrim757';  // <-- СЮДА ВАШ КОД
+        // Переключение описаний при нажатии на вкладки
+        const cards = document.querySelectorAll('.feature-card');
+        const machineDesc = document.getElementById('machineDesc');
+        const autopostingDesc = document.getElementById('autopostingDesc');
+        const aiDesc = document.getElementById('aiDesc');
+        const panel = document.getElementById('descriptionPanel');
+        
+        cards.forEach(card => {
+            card.addEventListener('click', () => {
+                const descType = card.getAttribute('data-desc');
+                
+                // Убираем активный класс у всех карточек
+                cards.forEach(c => c.classList.remove('active-card'));
+                // Добавляем активный класс нажатой
+                card.classList.add('active-card');
+                
+                // Показываем панель
+                panel.classList.add('show');
+                
+                // Скрываем все описания
+                machineDesc.style.display = 'none';
+                autopostingDesc.style.display = 'none';
+                aiDesc.style.display = 'none';
+                
+                // Показываем нужное
+                if (descType === 'machine') {
+                    machineDesc.style.display = 'block';
+                } else if (descType === 'autoposting') {
+                    autopostingDesc.style.display = 'block';
+                } else if (descType === 'ai') {
+                    aiDesc.style.display = 'block';
+                }
+            });
+        });
+    </script>
+
+    <!-- СТАТИСТИКА GOATCOUNTER -->
+    <script>
+        const GOAT_SITE = 'piligrim-stats';  // Замените на ваш код
         
         function trackDownload(fileName) {
             fetch(`https://${GOAT_SITE}.goatcounter.com/count`, {
@@ -280,10 +445,8 @@
                     hits: [{ path: '/download/' + fileName, event: true, title: 'Скачивание: ' + fileName }]
                 })
             }).catch(e => console.log('Статистика:', e));
-            console.log('📊 Скачивание:', fileName);
         }
         
-        // Отслеживание скачивания
         const downloadBtn = document.getElementById('downloadButton');
         if (downloadBtn) {
             downloadBtn.addEventListener('click', function() {
@@ -292,7 +455,6 @@
             });
         }
         
-        // Отслеживаем просмотр страницы
         window.addEventListener('load', function() {
             fetch(`https://${GOAT_SITE}.goatcounter.com/count`, {
                 method: 'POST',
@@ -302,23 +464,6 @@
                     hits: [{ path: '/page_view', event: true, title: 'Просмотр главной страницы' }]
                 })
             });
-            console.log('📊 Страница загружена');
-        });
-        
-        // Время на странице
-        let startTime = Date.now();
-        window.addEventListener('beforeunload', function() {
-            const timeSpent = Math.floor((Date.now() - startTime) / 1000);
-            if (timeSpent > 5) {
-                fetch(`https://${GOAT_SITE}.goatcounter.com/count`, {
-                    method: 'POST',
-                    mode: 'no-cors',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                        hits: [{ path: '/time_spent', event: true, title: `Время: ${timeSpent}с` }]
-                    })
-                });
-            }
         });
     </script>
     
