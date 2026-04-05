@@ -6,21 +6,21 @@
     <title>PILIGRIM - Главная</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
-        /* Стили с фиолетовой гаммой */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
+        
         body {
-            background: linear-gradient(135deg, #1a0b2e 0%, #2d1b4e 50%, #1a0b2e 100%);
+            background: #0a0a0a;
             font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             min-height: 100vh;
         }
         
+        /* Верхний черный фон */
         .navbar {
-            background: rgba(26, 11, 46, 0.95);
-            backdrop-filter: blur(10px);
+            background: #000000;
             padding: 1.2rem;
             position: sticky;
             top: 0;
@@ -66,25 +66,30 @@
             color: #ce93d8;
             text-shadow: 0 0 10px rgba(206, 147, 216, 0.5);
         }
+        
+        /* Сероватый фон основного поля */
+        .main-content {
+            background: #2a2a2a;
+            min-height: calc(100vh - 80px);
+        }
         .container {
             max-width: 1200px;
-            margin: 2rem auto;
-            padding: 0 1rem;
+            margin: 0 auto;
+            padding: 2rem 1rem;
         }
         .hero {
             text-align: center;
-            padding: 4rem 2rem;
-            background: linear-gradient(135deg, rgba(106, 27, 154, 0.8), rgba(74, 20, 140, 0.9));
+            padding: 3rem 2rem;
+            background: linear-gradient(135deg, #1a1a1a, #252525);
             border-radius: 30px;
             color: white;
-            margin-bottom: 3rem;
-            backdrop-filter: blur(10px);
+            margin-bottom: 2rem;
             border: 1px solid rgba(156, 39, 176, 0.3);
             box-shadow: 0 20px 40px rgba(0,0,0,0.3);
         }
         .hero h1 {
             font-family: 'Playfair Display', serif;
-            font-size: 3.5rem;
+            font-size: 3rem;
             margin-bottom: 1rem;
             background: linear-gradient(135deg, #fff, #e1bee7);
             -webkit-background-clip: text;
@@ -92,37 +97,97 @@
             color: transparent;
         }
         .hero p {
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             opacity: 0.9;
+            color: #ccc;
         }
         
-        .video-section {
-            margin: 3rem 0;
-            text-align: center;
+        /* Список возможностей под hero */
+        .features-list {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 1.5rem;
+            flex-wrap: wrap;
         }
-        .video-title {
-            font-size: 1.8rem;
-            margin-bottom: 1.5rem;
+        .feature-tag {
+            background: rgba(156, 39, 176, 0.2);
+            border: 1px solid rgba(156, 39, 176, 0.5);
+            padding: 0.5rem 1.2rem;
+            border-radius: 50px;
+            font-size: 1rem;
             color: #ce93d8;
-            font-family: 'Playfair Display', serif;
         }
-        .video-container {
-            position: relative;
-            padding-bottom: 56.25%;
-            height: 0;
-            overflow: hidden;
+        
+        /* Вкладки */
+        .tabs-section {
+            margin: 2rem 0;
+        }
+        .tabs-header {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 2rem;
+        }
+        .tab-btn {
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(156, 39, 176, 0.5);
+            padding: 0.8rem 2rem;
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s;
+            color: #e1bee7;
+            font-family: 'Poppins', sans-serif;
+        }
+        .tab-btn:hover {
+            background: rgba(156, 39, 176, 0.3);
+            transform: translateY(-2px);
+        }
+        .tab-btn.active {
+            background: linear-gradient(135deg, #9c27b0, #6a1b9a);
+            color: white;
+            border-color: #9c27b0;
+            box-shadow: 0 5px 15px rgba(156, 39, 176, 0.3);
+        }
+        
+        /* Контент вкладок */
+        .tab-content {
+            background: #1e1e1e;
             border-radius: 20px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
-            border: 2px solid rgba(156, 39, 176, 0.5);
-            background: #000;
+            padding: 2rem;
+            border: 1px solid rgba(156, 39, 176, 0.3);
+            transition: all 0.3s;
         }
-        .video-container iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border-radius: 18px;
+        .tab-pane {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+        .tab-pane.active-pane {
+            display: block;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .tab-pane h3 {
+            color: #ce93d8;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        .tab-pane p {
+            color: #ccc;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+        .tab-pane ul {
+            color: #ccc;
+            padding-left: 1.5rem;
+        }
+        .tab-pane li {
+            margin: 0.5rem 0;
         }
         
         .download-section {
@@ -147,19 +212,48 @@
             box-shadow: 0 10px 30px rgba(156, 39, 176, 0.6);
             background: linear-gradient(135deg, #ab47bc, #7b1fa2);
         }
-        .features {
+        
+        /* Видео внизу */
+        .video-section {
+            margin: 3rem 0;
+            text-align: center;
+        }
+        .video-title {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #ce93d8;
+            font-family: 'Playfair Display', serif;
+        }
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+            border: 2px solid rgba(156, 39, 176, 0.5);
+            background: #000;
+        }
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 18px;
+        }
+        
+        .features-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 2rem;
             margin: 3rem 0;
         }
         .feature-card {
-            background: rgba(46, 21, 76, 0.8);
-            backdrop-filter: blur(10px);
+            background: #1e1e1e;
             padding: 2rem;
             border-radius: 20px;
             text-align: center;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
             transition: all 0.3s;
             border: 1px solid rgba(156, 39, 176, 0.3);
         }
@@ -177,16 +271,18 @@
             margin-bottom: 0.8rem;
         }
         .feature-card p {
-            color: #e1bee7;
+            color: #aaa;
         }
+        
         footer {
-            background: rgba(26, 11, 46, 0.95);
+            background: #000000;
             color: #ce93d8;
             text-align: center;
             padding: 2rem;
             margin-top: 3rem;
             border-top: 1px solid rgba(156, 39, 176, 0.3);
         }
+        
         @media (max-width: 768px) {
             .nav-menu {
                 display: none;
@@ -197,8 +293,9 @@
             .logo {
                 font-size: 1.6rem;
             }
-            .video-title {
-                font-size: 1.3rem;
+            .tab-btn {
+                padding: 0.5rem 1rem;
+                font-size: 0.8rem;
             }
         }
     </style>
@@ -215,48 +312,104 @@
         </div>
     </nav>
 
-    <div class="container">
-        <div class="hero">
-            <h1>Добро пожаловать в PILIGRIM</h1>
-            <p>Ваш надёжный партнёр в мире цифровых решений</p>
-        </div>
-
-        <!-- ВИДЕО СЕКЦИЯ - ИСПРАВЛЕННАЯ ССЫЛКА -->
-        <div class="video-section">
-            <h2 class="video-title">🎬 Наше презентационное видео</h2>
-            <div class="video-container">
-                <iframe 
-                    src="https://drive.google.com/file/d/1rfszEzRKhvfF6IVDgGEKbE4mwmvILkva/preview"
-                    frameborder="0"
-                    allow="autoplay; encrypted-media; gyroscope; picture-in-picture"
-                    allowfullscreen>
-                </iframe>
+    <div class="main-content">
+        <div class="container">
+            <div class="hero">
+                <h1>Добро пожаловать в PILIGRIM</h1>
+                <div class="features-list">
+                    <span class="feature-tag">🚗 Машина</span>
+                    <span class="feature-tag">📝 Автопостинг</span>
+                    <span class="feature-tag">🤖 AI Помощники</span>
+                </div>
             </div>
-            <p style="margin-top: 1rem; color: #ce93d8;">Узнайте больше о наших возможностях</p>
-        </div>
 
-        <div class="download-section">
-            <button class="download-btn" id="downloadButton">
-                📥 Скачать приложение
-            </button>
-            <p style="margin-top: 1rem; color: #ce93d8;">Версия 1.0.0 | Бесплатно | Для Windows/Mac/Linux</p>
-        </div>
+            <!-- ВКЛАДКИ -->
+            <div class="tabs-section">
+                <div class="tabs-header">
+                    <button class="tab-btn active" data-tab="tab1">🚗 Машина</button>
+                    <button class="tab-btn" data-tab="tab2">📝 Автопостинг</button>
+                    <button class="tab-btn" data-tab="tab3">🤖 AI Помощники</button>
+                </div>
+                
+                <div class="tab-content">
+                    <div class="tab-pane active-pane" id="tab1">
+                        <h3>🚗 Управление автомобилем</h3>
+                        <p>Система PILIGRIM позволяет управлять автомобилем удалённо. Вы можете:</p>
+                        <ul>
+                            <li>Отслеживать местоположение в реальном времени</li>
+                            <li>Получать уведомления о состоянии авто</li>
+                            <li>Управлять климатом и зарядкой (для электромобилей)</li>
+                            <li>Просматривать историю поездок и расход топлива</li>
+                            <li>Находить ближайшие заправки и парковки</li>
+                        </ul>
+                        <p style="margin-top: 1rem;">Интеграция с популярными автопроизводителями и системами мониторинга.</p>
+                    </div>
+                    
+                    <div class="tab-pane" id="tab2">
+                        <h3>📝 Автопостинг в соцсети</h3>
+                        <p>Автоматическое создание и публикация контента в социальных сетях:</p>
+                        <ul>
+                            <li>Планирование постов на неделю вперёд</li>
+                            <li>Автоматический репост из RSS-лент и новостей</li>
+                            <li>Поддержка VK, Telegram, Instagram, Facebook, Twitter</li>
+                            <li>Умный подбор хештегов по теме</li>
+                            <li>Аналитика эффективности постов</li>
+                        </ul>
+                        <p style="margin-top: 1rem;">Экономьте до 20 часов в неделю на ведении соцсетей!</p>
+                    </div>
+                    
+                    <div class="tab-pane" id="tab3">
+                        <h3>🤖 AI Помощники</h3>
+                        <p>Искусственный интеллект для решения любых задач:</p>
+                        <ul>
+                            <li>Генерация текстов и статей на любую тему</li>
+                            <li>Создание изображений по описанию (нейросеть)</li>
+                            <li>Анализ данных и создание отчётов</li>
+                            <li>Автоматический перевод на 100+ языков</li>
+                            <li>Голосовой ассистент с распознаванием речи</li>
+                        </ul>
+                        <p style="margin-top: 1rem;">Доступ к GPT-4, Claude, Midjourney и другим нейросетям в одном окне.</p>
+                    </div>
+                </div>
+            </div>
 
-        <div class="features">
-            <div class="feature-card">
-                <div class="feature-icon">🚀</div>
-                <h3>Высокая скорость</h3>
-                <p>Мгновенная обработка данных</p>
+            <div class="download-section">
+                <button class="download-btn" id="downloadButton">
+                    📥 Скачать приложение
+                </button>
+                <p style="margin-top: 1rem; color: #aaa;">Версия 1.0.0 | Бесплатно | Для Windows/Mac/Linux</p>
             </div>
-            <div class="feature-card">
-                <div class="feature-icon">🔒</div>
-                <h3>Безопасность</h3>
-                <p>Ваши данные под защитой</p>
+
+            <!-- ВИДЕО ВНИЗУ -->
+            <div class="video-section">
+                <h2 class="video-title">🎬 Наше презентационное видео</h2>
+                <div class="video-container">
+                    <iframe 
+                        src="https://drive.google.com/file/d/1rfszEzRKhvfF6IVDgGEKbE4mwmvILkva/preview"
+                        frameborder="0"
+                        allow="autoplay; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen>
+                    </iframe>
+                </div>
+                <p style="margin-top: 1rem; color: #aaa;">Узнайте больше о наших возможностях</p>
             </div>
-            <div class="feature-card">
-                <div class="feature-icon">💡</div>
-                <h3>Инновации</h3>
-                <p>Современные технологии</p>
+
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🚀</div>
+                    <h3>Высокая скорость</h3>
+                    <p>Мгновенная обработка данных</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔒</div>
+                    <h3>Безопасность</h3>
+                    <p>Ваши данные под защитой</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">💡</div>
+                    <h3>Инновации</h3>
+                    <p>Современные технологии</p>
+                </div>
             </div>
         </div>
     </div>
@@ -266,10 +419,32 @@
         <p style="margin-top: 0.5rem; font-size: 0.9rem;">Контакт: info@piligrim.com</p>
     </footer>
 
-    <!-- ========== СКРЫТАЯ СТАТИСТИКА GOATCOUNTER ========== -->
+    <!-- СКРИПТ ДЛЯ ВКЛАДОК -->
     <script>
-        // НАСТРОЙКА: замените 'piligrim-stats' на ваш код из GoatCounter
-        const GOAT_SITE = 'piligrim757';  // <-- СЮДА ВАШ КОД
+        // Переключение вкладок
+        const tabBtns = document.querySelectorAll('.tab-btn');
+        const tabPanes = document.querySelectorAll('.tab-pane');
+        
+        tabBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const tabId = btn.getAttribute('data-tab');
+                
+                // Убираем активный класс у всех кнопок
+                tabBtns.forEach(b => b.classList.remove('active'));
+                // Добавляем активный класс нажатой кнопке
+                btn.classList.add('active');
+                
+                // Скрываем все панели
+                tabPanes.forEach(pane => pane.classList.remove('active-pane'));
+                // Показываем нужную панель
+                document.getElementById(tabId).classList.add('active-pane');
+            });
+        });
+    </script>
+
+    <!-- ========== СТАТИСТИКА GOATCOUNTER ========== -->
+    <script>
+        const GOAT_SITE = 'piligrim-stats';  // Замените на ваш код
         
         function trackDownload(fileName) {
             fetch(`https://${GOAT_SITE}.goatcounter.com/count`, {
@@ -280,7 +455,6 @@
                     hits: [{ path: '/download/' + fileName, event: true, title: 'Скачивание: ' + fileName }]
                 })
             }).catch(e => console.log('Статистика:', e));
-            console.log('📊 Скачивание:', fileName);
         }
         
         // Отслеживание скачивания
@@ -292,7 +466,7 @@
             });
         }
         
-        // Отслеживаем просмотр страницы
+        // Отслеживание просмотра страницы
         window.addEventListener('load', function() {
             fetch(`https://${GOAT_SITE}.goatcounter.com/count`, {
                 method: 'POST',
@@ -302,23 +476,6 @@
                     hits: [{ path: '/page_view', event: true, title: 'Просмотр главной страницы' }]
                 })
             });
-            console.log('📊 Страница загружена');
-        });
-        
-        // Время на странице
-        let startTime = Date.now();
-        window.addEventListener('beforeunload', function() {
-            const timeSpent = Math.floor((Date.now() - startTime) / 1000);
-            if (timeSpent > 5) {
-                fetch(`https://${GOAT_SITE}.goatcounter.com/count`, {
-                    method: 'POST',
-                    mode: 'no-cors',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                        hits: [{ path: '/time_spent', event: true, title: `Время: ${timeSpent}с` }]
-                    })
-                });
-            }
         });
     </script>
     
