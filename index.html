@@ -134,11 +134,42 @@
             line-height: 1.2;
         }
         
+        /* жирный текст + блок 3в1 */
         .hero p {
             font-size: 1.1rem;
             opacity: 0.9;
             color: #ddd;
-            margin-bottom: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        .hero p strong {
+            font-weight: 700;
+            color: #ffffff;
+            opacity: 1;
+            text-shadow: 0 0 4px rgba(0,0,0,0.3);
+        }
+        
+        /* Красивый стиль для "3в1" */
+        .hero-badge {
+            margin: 0.75rem 0 1.2rem 0;
+        }
+        .three-in-one {
+            display: inline-block;
+            background: linear-gradient(135deg, #ffd700, #ffb347);
+            padding: 0.4rem 1.8rem;
+            border-radius: 60px;
+            font-size: 1.7rem;
+            font-weight: 900;
+            font-family: 'Playfair Display', serif;
+            color: #1e1e1e;
+            text-shadow: 0 1px 2px rgba(255,255,200,0.8);
+            box-shadow: 0 0 15px rgba(255, 200, 0, 0.6);
+            letter-spacing: 3px;
+            backdrop-filter: blur(2px);
+            transition: all 0.2s ease;
+        }
+        .three-in-one:hover {
+            transform: scale(1.03);
+            box-shadow: 0 0 25px rgba(255, 200, 0, 0.9);
         }
         
         /* Красивый блок с плюсами */
@@ -147,7 +178,7 @@
             justify-content: center;
             gap: 2rem;
             flex-wrap: wrap;
-            margin-top: 1rem;
+            margin-top: 0.5rem;
         }
         .plus-item {
             background: rgba(255, 255, 255, 0.1);
@@ -334,6 +365,11 @@
                 align-items: center;
                 gap: 0.3rem;
             }
+            .three-in-one {
+                font-size: 1.3rem;
+                padding: 0.3rem 1.2rem;
+                letter-spacing: 2px;
+            }
         }
     </style>
 </head>
@@ -360,7 +396,12 @@
                     <span class="neon-yellow">ДОБРО ПОЖАЛОВАТЬ В</span>
                     <span class="neon-purple">PILIGRIM</span>
                 </div>
-                <p>Ваш надёжный партнёр в мире цифровых решений</p>
+                <!-- фраза сделана жирной через <strong> -->
+                <p><strong>Ваш надёжный партнёр в мире цифровых решений</strong></p>
+                <!-- КРАСИВЫЙ БЛОК 3в1 -->
+                <div class="hero-badge">
+                    <div class="three-in-one">⚡ 3в1 ⚡</div>
+                </div>
                 <div class="plus-features">
                     <div class="plus-item">🚗 + Машина</div>
                     <div class="plus-item">📝 + Автопостинг</div>
@@ -436,7 +477,7 @@
 
             <!-- ВИДЕО В КОНЦЕ -->
             <div class="video-section">
-                <h2 class="video-title">🎬 Наше презентационное видео</h2>
+                <h2 class="video-title">🎬 ПРЕЗЕНТАЦИЯ</h2>
                 <div class="video-container">
                     <iframe 
                         src="https://drive.google.com/file/d/1rfszEzRKhvfF6IVDgGEKbE4mwmvILkva/preview"
