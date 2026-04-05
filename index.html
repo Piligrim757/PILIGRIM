@@ -432,9 +432,9 @@
         });
     </script>
 
-    <!-- СТАТИСТИКА GOATCOUNTER -->
+    <!-- СТАТИСТИКА GOATCOUNTER И МГНОВЕННОЕ СКАЧИВАНИЕ -->
     <script>
-        const GOAT_SITE = 'piligrim-stats';  // Замените на ваш код
+        const GOAT_SITE = 'piligrim757';
         
         function trackDownload(fileName) {
             fetch(`https://${GOAT_SITE}.goatcounter.com/count`, {
@@ -447,11 +447,33 @@
             }).catch(e => console.log('Статистика:', e));
         }
         
+        // Функция для скачивания файла (мгновенно)
+        function downloadFile(url, fileName) {
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = fileName;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+        
+        // КНОПКА СКАЧИВАНИЯ - СРАЗУ СКАЧИВАЕТ ФАЙЛ
         const downloadBtn = document.getElementById('downloadButton');
         if (downloadBtn) {
             downloadBtn.addEventListener('click', function() {
-                trackDownload('piligrim_app.zip');
-                alert('Скачивание началось! Спасибо!');
+                // Отправляем статистику
+                trackDownload('piligrim_app.exe');
+                
+                // ========== ССЫЛКА ДЛЯ СКАЧИВАНИЯ ==========
+                // ВСТАВЬТЕ СЮДА ВАШУ ССЫЛКУ НА .EXE ФАЙЛ
+                // СЕЙЧАС ЗДЕСЬ ПРИМЕР С ТЕКСТОВЫМ ФАЙЛОМ ДЛЯ ТЕСТА
+                const fileUrl = 'https://raw.githubusercontent.com/piligrim757/PILIGRIM/main/test_download.txt';
+                const fileName = 'Piligrim_Setup.exe';
+                
+                // Запускаем скачивание
+                downloadFile(fileUrl, fileName);
+                
+                alert('Скачивание началось! Файл сохранится в папке "Загрузки". Спасибо!');
             });
         }
         
