@@ -87,15 +87,41 @@
             border: 1px solid rgba(156, 39, 176, 0.3);
             box-shadow: 0 20px 40px rgba(0,0,0,0.3);
         }
-        .hero h1 {
+        
+        /* Стили для неоновых слов в заголовке */
+        .neon-yellow {
             font-family: 'Playfair Display', serif;
             font-size: 3rem;
-            margin-bottom: 1rem;
-            background: linear-gradient(135deg, #fff, #e1bee7);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
+            font-weight: 900;
+            display: inline-block;
+            color: #ffff00;
+            text-shadow: 0 0 5px #ffeb3b, 0 0 10px #ffeb3b, 0 0 20px #ffc107, 0 0 30px #ffb300, 0 0 40px #ff9800;
+            letter-spacing: 1px;
+            background: none;
+            -webkit-background-clip: unset;
+            background-clip: unset;
+            text-transform: uppercase;
         }
+        
+        .neon-purple {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            font-weight: 900;
+            display: inline-block;
+            color: #ce93d8;
+            text-shadow: 0 0 5px #aa00ff, 0 0 10px #9c27b0, 0 0 20px #9c27b0, 0 0 30px #7b1fa2, 0 0 40px #6a1b9a;
+            letter-spacing: 2px;
+            background: none;
+            -webkit-background-clip: unset;
+            background-clip: unset;
+        }
+        
+        /* Контейнер для заголовка с гибкой версткой */
+        .hero-title {
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+        
         .hero p {
             font-size: 1.1rem;
             opacity: 0.9;
@@ -280,6 +306,18 @@
                 font-size: 0.9rem;
                 padding: 0.5rem 1rem;
             }
+            .neon-yellow {
+                font-size: 2rem;
+            }
+            .neon-purple {
+                font-size: 2rem;
+            }
+            .hero-title {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 0.3rem;
+            }
         }
     </style>
 </head>
@@ -297,9 +335,12 @@
 
     <div class="main-content">
         <div class="container">
-            <!-- Hero секция (синий фон, потом замените на фото) -->
+            <!-- Hero секция с обновленными неоновыми текстами -->
             <div class="hero">
-                <h1>Добро пожаловать в PILIGRIM</h1>
+                <div class="hero-title">
+                    <span class="neon-yellow">ДОБРО ПОЖАЛОВАТЬ В</span>
+                    <span class="neon-purple">PILIGRIM</span>
+                </div>
                 <p>Ваш надёжный партнёр в мире цифровых решений</p>
                 <div class="plus-features">
                     <div class="plus-item">🚗 + Машина</div>
