@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>PILIGRIM - Главная | Цветные вкладки</title>
+    <title>PILIGRIM - Главная | Свечение вкладок</title>
     <link rel="icon" href="logo.ico" type="image/x-icon">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
@@ -198,7 +198,7 @@
             border-color: rgba(156, 39, 176, 0.6);
         }
 
-        /* ========== ОСНОВНЫЕ ИЗМЕНЕНИЯ: РАЗНЫЕ ФОНЫ ДЛЯ КАРТОЧЕК ========== */
+        /* ========== ОСНОВНЫЕ ИЗМЕНЕНИЯ: РАЗНЫЕ ФОНЫ + СВЕЧЕНИЯ ========== */
         .features-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -206,7 +206,7 @@
             margin: 3rem 0;
         }
         
-        /* Базовая стилизация карточек (тени, рамки, анимация) */
+        /* Базовая стилизация карточек */
         .feature-card {
             padding: 2rem;
             border-radius: 28px;
@@ -216,35 +216,61 @@
             border: 1px solid rgba(255,255,255,0.25);
             backdrop-filter: blur(2px);
             box-shadow: 0 10px 25px -5px rgba(0,0,0,0.5);
+            position: relative;
         }
         .feature-card:hover {
             transform: translateY(-8px) scale(1.01);
             box-shadow: 0 25px 35px -12px rgba(0,0,0,0.6);
             border-color: rgba(255,255,240,0.5);
         }
+        /* Активная карточка — яркое свечение и усиление */
         .feature-card.active-card {
-            border: 2px solid white;
-            box-shadow: 0 0 0 3px rgba(255,215,0,0.6), 0 20px 35px -10px black;
-            transform: scale(1.01);
+            border: 2px solid rgba(255, 245, 200, 0.9);
+            transform: scale(1.02);
+            box-shadow: 0 0 0 3px rgba(255,215,0,0.5), 0 20px 35px -10px black;
         }
         
-        /* УНИКАЛЬНЫЕ ФОНЫ ДЛЯ ТРЁХ ВКЛАДОК */
-        /* Карточка "Контент-машина" — глубокий сине-бирюзовый градиент */
+        /* УНИКАЛЬНЫЕ ФОНЫ + ИНДИВИДУАЛЬНОЕ СВЕЧЕНИЕ ДЛЯ КАЖДОЙ ВКЛАДКИ */
+        
+        /* 1. Контент-машина — сине-бирюзовый градиент + голубое свечение */
         .feature-card[data-desc="machine"] {
-            background: linear-gradient(145deg, #0b2f4e, #0a4c6e);
             background: radial-gradient(circle at 10% 20%, #0e3a5c, #04293a);
+            box-shadow: 0 8px 20px rgba(0, 180, 255, 0.2), 0 0 12px rgba(0, 200, 255, 0.3);
         }
-        /* Карточка "Автопостинг" — насыщенный фиолетово-пурпурный */
+        .feature-card[data-desc="machine"]:hover {
+            box-shadow: 0 15px 30px rgba(0, 200, 255, 0.4), 0 0 20px rgba(0, 210, 255, 0.6);
+        }
+        .feature-card[data-desc="machine"].active-card {
+            box-shadow: 0 0 20px #00ccff, 0 0 35px #0099ff, 0 10px 25px black;
+            border-color: #7fd4ff;
+        }
+        
+        /* 2. Автопостинг — насыщенный фиолетово-пурпурный + маджента свечение */
         .feature-card[data-desc="autoposting"] {
-            background: linear-gradient(135deg, #3c1e4a, #2c0e37);
             background: radial-gradient(circle at 90% 10%, #5a2a6e, #2c103f);
+            box-shadow: 0 8px 20px rgba(156, 39, 176, 0.3), 0 0 12px rgba(186, 85, 211, 0.4);
         }
-        /* Карточка "AI Помощники" — тёмно-изумрудный с золотистым отливом */
+        .feature-card[data-desc="autoposting"]:hover {
+            box-shadow: 0 15px 30px rgba(186, 85, 211, 0.5), 0 0 22px rgba(218, 112, 214, 0.7);
+        }
+        .feature-card[data-desc="autoposting"].active-card {
+            box-shadow: 0 0 20px #da70d6, 0 0 35px #ba55d3, 0 10px 25px black;
+            border-color: #e9a0ff;
+        }
+        
+        /* 3. AI Помощники — изумрудно-зеленый + изумрудное свечение */
         .feature-card[data-desc="ai"] {
-            background: linear-gradient(125deg, #0f3b2c, #0a2a1f);
             background: radial-gradient(circle at 30% 80%, #1f5e44, #0a2a1a);
+            box-shadow: 0 8px 20px rgba(0, 200, 100, 0.25), 0 0 12px rgba(80, 255, 140, 0.4);
         }
-
+        .feature-card[data-desc="ai"]:hover {
+            box-shadow: 0 15px 30px rgba(50, 220, 120, 0.45), 0 0 22px rgba(100, 255, 150, 0.6);
+        }
+        .feature-card[data-desc="ai"].active-card {
+            box-shadow: 0 0 20px #3eff9e, 0 0 35px #1fbf6e, 0 10px 25px black;
+            border-color: #8effb2;
+        }
+        
         /* иконки и текст внутри карточек */
         .feature-icon {
             font-size: 3.2rem;
@@ -267,24 +293,29 @@
             opacity: 0.9;
         }
 
-        /* Панель описания (единый стиль, но фон универсальный, контент меняется) */
+        /* Панель описания (изначально скрыта, появляется только после клика) */
         .description-panel {
-            background: #1e1e1e;
             background: linear-gradient(115deg, #1a1a2e, #16213e);
             border-radius: 28px;
             padding: 2rem;
             margin: 1rem 0 2rem 0;
             border: 1px solid rgba(156, 39, 176, 0.6);
             display: none;
-            animation: fadeIn 0.5s ease;
+            animation: fadeInUp 0.5s ease forwards;
             box-shadow: 0 15px 30px -15px black;
         }
         .description-panel.show {
             display: block;
         }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(12px); }
-            to { opacity: 1; transform: translateY(0); }
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
         .description-panel h3 {
             color: #e9c0ff;
@@ -413,7 +444,6 @@
         <div class="nav-container">
             <a href="#" class="logo">✨ PILIGRIM ✨</a>
             <div class="center-logo">
-                <!-- логотип png, если есть, но он необязателен, оставляем для демонстрации -->
                 <img src="logo.png" alt="PILIGRIM Logo" class="logo-img" onerror="this.style.display='none'">
             </div>
             <ul class="nav-menu">
@@ -441,7 +471,7 @@
                 </div>
             </div>
 
-            <!-- ТРИ ВКЛАДКИ с РАЗНЫМИ ЦВЕТАМИ ФОНА: синий/бирюзовый, фиолетовый, зелёный/изумрудный -->
+            <!-- ТРИ ВКЛАДКИ с РАЗНЫМИ ЦВЕТАМИ ФОНА + ИНДИВИДУАЛЬНЫМ СВЕЧЕНИЕМ -->
             <div class="features-grid">
                 <div class="feature-card" data-desc="machine">
                     <div class="feature-icon">🚗</div>
@@ -460,6 +490,7 @@
                 </div>
             </div>
 
+            <!-- ПАНЕЛЬ ОПИСАНИЯ: изначально скрыта (нет класса show), появится только при клике на вкладку -->
             <div id="descriptionPanel" class="description-panel">
                 <div id="machineDesc">
                     <h3>⚡ Контент-машина</h3>
@@ -506,7 +537,7 @@
                 <p style="margin-top: 1rem; color: #aaa;">| Для Windows |</p>
             </div>
 
-            <!-- ВИДЕО - неоновый фиолетовый заголовок -->
+            <!-- ВИДЕО СЕКЦИЯ -->
             <div class="video-section">
                 <div class="video-title-wrapper">
                     <h4 class="neon-video-title">🎬 ПРЕЗЕНТАЦИЯ</h4>
@@ -529,29 +560,35 @@
     </footer>
 
     <script>
-        // Обработка вкладок с анимацией и переключением описаний
+        // ----------------------------
+        // РАБОТА С ВКЛАДКАМИ: 
+        // - Изначально панель описания скрыта (нет show)
+        // - При клике на карточку показываем панель и нужное описание + добавляем свечение активной вкладке
+        // ----------------------------
         const cards = document.querySelectorAll('.feature-card');
         const machineDesc = document.getElementById('machineDesc');
         const autopostingDesc = document.getElementById('autopostingDesc');
         const aiDesc = document.getElementById('aiDesc');
         const panel = document.getElementById('descriptionPanel');
         
-        // Функция для открытия нужного описания и активации стиля активной карточки
+        // Функция активации вкладки (открывает описание, подсвечивает карточку)
         function activateTab(descType, clickedCard) {
-            // Убираем активный класс у всех карточек
+            // 1. Убираем активный класс у всех карточек (снимаем свечение)
             cards.forEach(c => c.classList.remove('active-card'));
-            // Добавляем активный класс выбранной карточке
+            // 2. Добавляем активный класс выбранной карточке (появится усиленное свечение)
             clickedCard.classList.add('active-card');
             
-            // Показываем панель
-            panel.classList.add('show');
+            // 3. Показываем панель описания, если она была скрыта
+            if (!panel.classList.contains('show')) {
+                panel.classList.add('show');
+            }
             
-            // Скрываем все блоки описания
+            // 4. Скрываем все блоки с описанием
             machineDesc.style.display = 'none';
             autopostingDesc.style.display = 'none';
             aiDesc.style.display = 'none';
             
-            // Отображаем нужный блок
+            // 5. Отображаем нужный контент в зависимости от типа
             if (descType === 'machine') {
                 machineDesc.style.display = 'block';
             } else if (descType === 'autoposting') {
@@ -561,25 +598,33 @@
             }
         }
         
-        // Добавляем обработчики для каждой карточки
+        // Назначаем обработчики кликов на каждую карточку
         cards.forEach(card => {
-            card.addEventListener('click', () => {
+            card.addEventListener('click', (e) => {
+                e.stopPropagation();
                 const descType = card.getAttribute('data-desc');
                 activateTab(descType, card);
             });
         });
         
-        // Дополнительно: при загрузке можно показать первую вкладку (Контент-машина) по умолчанию
-        // Создаём эмуляцию клика по первой карточке, чтобы был виден контент по умолчанию
-        const defaultCard = document.querySelector('.feature-card[data-desc="machine"]');
-        if (defaultCard && !document.querySelector('.feature-card.active-card')) {
-            // Небольшая задержка для аккуратного старта
-            setTimeout(() => {
-                activateTab('machine', defaultCard);
-            }, 100);
-        }
+        // ВАЖНО: изначально панель описания скрыта (нет класса .show) и никакой контент не отображается.
+        // Это уже обеспечено HTML: у description-panel нет класса show.
+        // Однако чтобы быть уверенными, что при загрузке не показывается содержимое, 
+        // дополнительно скроем все desc блоки и удостоверимся, что панель скрыта.
+        // Также убираем случайные активные классы, если есть.
+        window.addEventListener('DOMContentLoaded', () => {
+            // Убираем активный класс у всех карточек, чтобы изначально не было свечения выбранной
+            cards.forEach(c => c.classList.remove('active-card'));
+            // Убедимся, что панель не видна
+            panel.classList.remove('show');
+            // Все описания скрыты (в CSS display:none, но подстраховка)
+            machineDesc.style.display = 'none';
+            autopostingDesc.style.display = 'none';
+            aiDesc.style.display = 'none';
+            // Дополнительно: если по какой-то причине какой-то из блоков оказался виден, скрываем
+        });
         
-        // ========== СИСТЕМА ОТСЛЕЖИВАНИЯ СКАЧИВАНИЙ (goatcounter, сохранена оригинальная логика) ==========
+        // ========== СИСТЕМА ОТСЛЕЖИВАНИЯ СКАЧИВАНИЙ (goatcounter) ==========
         const GOAT_SITE = 'piligrim757';
         
         function trackDownload(fileName) {
@@ -606,9 +651,7 @@
         if (downloadBtn) {
             downloadBtn.addEventListener('click', function() {
                 trackDownload('piligrim_app.exe');
-                // Используем реальный URL, но так как github.com — это демо-ссылка, оставим оригинальный URL (github.com)
-                // но важно: при реальном использовании сюда ставится прямая ссылка на файл.
-                // Оставляем 'https://github.com' как в оригинале, но для функционала - если есть реальный файл - поменять.
+                // Ссылка на демо-файл, в реальном проекте заменить на актуальную ссылку на установщик
                 const fileUrl = 'https://github.com'; 
                 const fileName = 'Piligrim.exe';
                 downloadFile(fileUrl, fileName);
