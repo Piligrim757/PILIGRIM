@@ -88,7 +88,7 @@
             padding: 2rem 1rem;
         }
         
-        /* Hero секция - синий фон */
+        /* Hero секция */
         .hero {
             text-align: center;
             padding: 3rem 2rem;
@@ -100,7 +100,6 @@
             box-shadow: 0 20px 40px rgba(0,0,0,0.3);
         }
         
-        /* Стили для неоновых слов в заголовке */
         .neon-yellow {
             font-family: 'Playfair Display', serif;
             font-size: 3rem;
@@ -110,8 +109,6 @@
             text-shadow: 0 0 5px #ffeb3b, 0 0 10px #ffeb3b, 0 0 20px #ffc107, 0 0 30px #ffb300, 0 0 40px #ff9800;
             letter-spacing: 1px;
             background: none;
-            -webkit-background-clip: unset;
-            background-clip: unset;
             text-transform: uppercase;
         }
         
@@ -124,11 +121,8 @@
             text-shadow: 0 0 5px #aa00ff, 0 0 10px #9c27b0, 0 0 20px #9c27b0, 0 0 30px #7b1fa2, 0 0 40px #6a1b9a;
             letter-spacing: 2px;
             background: none;
-            -webkit-background-clip: unset;
-            background-clip: unset;
         }
         
-        /* Стиль для неонового фиолетового текста "ПРЕЗЕНТАЦИЯ" */
         .neon-video-title {
             font-family: 'Playfair Display', serif;
             font-size: 2rem;
@@ -154,7 +148,6 @@
         .hero p strong {
             font-weight: 700;
             color: #ffffff;
-            opacity: 1;
             text-shadow: 0 0 4px rgba(0,0,0,0.3);
         }
         
@@ -204,9 +197,6 @@
             background: rgba(255, 255, 255, 0.2);
             border-color: rgba(156, 39, 176, 0.6);
         }
-        .plus-item span {
-            margin: 0 0.3rem;
-        }
         
         /* Вкладки */
         .features-grid {
@@ -236,6 +226,7 @@
         .feature-icon {
             font-size: 3rem;
             margin-bottom: 1rem;
+            display: inline-block;
         }
         .feature-card h3 {
             color: #ce93d8;
@@ -247,7 +238,6 @@
             font-size: 0.9rem;
         }
         
-        /* Описание под вкладками */
         .description-panel {
             background: #1e1e1e;
             border-radius: 20px;
@@ -298,7 +288,6 @@
             transition: all 0.3s;
             box-shadow: 0 0 15px rgba(0, 255, 0, 0.5), 0 5px 20px rgba(0, 255, 0, 0.3);
             font-family: 'Poppins', sans-serif;
-            text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
         }
         .download-btn:hover {
             transform: translateY(-3px);
@@ -306,7 +295,6 @@
             background: linear-gradient(135deg, #33ff33, #00dd00, #00aa00);
         }
         
-        /* Видео секция: уменьшенный размер окна */
         .video-section {
             margin: 3rem 0 2rem 0;
             text-align: center;
@@ -314,13 +302,12 @@
         .video-title-wrapper {
             margin-bottom: 1rem;
         }
-        /* Уменьшенный контейнер видео: максимум 800px ширина, не на всю ширину */
         .video-container {
             position: relative;
             width: 100%;
             max-width: 800px;
             margin: 0 auto;
-            padding-bottom: 45%; /* 16:9 пропорция при ширине 800px (450px высота) */
+            padding-bottom: 45%;
             height: 0;
             overflow: hidden;
             border-radius: 24px;
@@ -350,9 +337,6 @@
             .nav-menu {
                 display: none;
             }
-            .hero h1 {
-                font-size: 2rem;
-            }
             .logo {
                 font-size: 1.6rem;
             }
@@ -369,23 +353,16 @@
             .neon-purple {
                 font-size: 2rem;
             }
-            .hero-title {
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                gap: 0.3rem;
-            }
-            .three-in-one {
-                font-size: 1.3rem;
-                padding: 0.3rem 1.2rem;
-                letter-spacing: 2px;
-            }
             .neon-video-title {
                 font-size: 1.5rem;
             }
             .video-container {
                 max-width: 95%;
                 padding-bottom: 55%;
+            }
+            .three-in-one {
+                font-size: 1.3rem;
+                padding: 0.3rem 1.2rem;
             }
         }
     </style>
@@ -407,7 +384,6 @@
 
     <div class="main-content">
         <div class="container">
-            <!-- Hero секция -->
             <div class="hero">
                 <div class="hero-title">
                     <span class="neon-yellow">ДОБРО ПОЖАЛОВАТЬ В</span>
@@ -424,10 +400,10 @@
                 </div>
             </div>
 
-            <!-- ТРИ ВКЛАДКИ (обновленные эмодзи) -->
+            <!-- ТРИ ВКЛАДКИ - простые и понятные цветные эмодзи, без квадратиков -->
             <div class="features-grid">
                 <div class="feature-card" data-desc="machine">
-                    <div class="feature-icon">⚙️🧠</div>   <!-- интересный символ: механизм + мозг для контент-машины -->
+                    <div class="feature-icon">⚡</div>
                     <h3>Контент-машина</h3>
                     <p>Автоматизация контента</p>
                 </div>
@@ -437,16 +413,15 @@
                     <p>Публикации в соцсетях</p>
                 </div>
                 <div class="feature-card" data-desc="ai">
-                    <div class="feature-icon">🧠✨</div>   <!-- более умный и футуристичный символ для AI помощников -->
+                    <div class="feature-icon">💎</div>
                     <h3>AI Помощники</h3>
                     <p>Нейросети для задач</p>
                 </div>
             </div>
 
-            <!-- Панель для описания -->
             <div id="descriptionPanel" class="description-panel">
                 <div id="machineDesc">
-                    <h3>⚙️ Контент-машина — интеллектуальный генератор</h3>
+                    <h3>⚡ Контент-машина</h3>
                     <p>Мощный инструмент для автоматического создания контента:</p>
                     <ul>
                         <li>Генерация уникальных статей и постов</li>
@@ -458,7 +433,7 @@
                     <p>Экономьте до 30 часов в неделю на создании контента!</p>
                 </div>
                 <div id="autopostingDesc" style="display: none;">
-                    <h3>📝 Автопостинг — полный контроль соцсетей</h3>
+                    <h3>📝 Автопостинг</h3>
                     <p>Полная автоматизация ведения социальных сетей:</p>
                     <ul>
                         <li>Публикация постов по расписанию</li>
@@ -470,7 +445,7 @@
                     <p>Ведите соцсети без ручного труда!</p>
                 </div>
                 <div id="aiDesc" style="display: none;">
-                    <h3>🧠 AI Помощники — ваш нейросетевой оркестр</h3>
+                    <h3>💎 AI Помощники</h3>
                     <p>Искусственный интеллект для любых задач:</p>
                     <ul>
                         <li>GPT-4 для общения и генерации текстов</li>
@@ -490,7 +465,7 @@
                 <p style="margin-top: 1rem; color: #aaa;">Версия 1.0.0 | Бесплатно | Для Windows/Mac/Linux</p>
             </div>
 
-            <!-- ВИДЕО С НЕОНОВЫМ ЗАГОЛОВКОМ (фиолетовый) И УМЕНЬШЕННЫМ РАЗМЕРОМ -->
+            <!-- ВИДЕО - неоновый фиолетовый заголовок -->
             <div class="video-section">
                 <div class="video-title-wrapper">
                     <h2 class="neon-video-title">🎬 ПРЕЗЕНТАЦИЯ</h2>
@@ -514,7 +489,6 @@
     </footer>
 
     <script>
-        // Переключение описаний при нажатии на вкладки
         const cards = document.querySelectorAll('.feature-card');
         const machineDesc = document.getElementById('machineDesc');
         const autopostingDesc = document.getElementById('autopostingDesc');
@@ -524,33 +498,19 @@
         cards.forEach(card => {
             card.addEventListener('click', () => {
                 const descType = card.getAttribute('data-desc');
-                
-                // Убираем активный класс у всех карточек
                 cards.forEach(c => c.classList.remove('active-card'));
-                // Добавляем активный класс нажатой
                 card.classList.add('active-card');
-                
-                // Показываем панель
                 panel.classList.add('show');
-                
-                // Скрываем все описания
                 machineDesc.style.display = 'none';
                 autopostingDesc.style.display = 'none';
                 aiDesc.style.display = 'none';
-                
-                // Показываем нужное
-                if (descType === 'machine') {
-                    machineDesc.style.display = 'block';
-                } else if (descType === 'autoposting') {
-                    autopostingDesc.style.display = 'block';
-                } else if (descType === 'ai') {
-                    aiDesc.style.display = 'block';
-                }
+                if (descType === 'machine') machineDesc.style.display = 'block';
+                else if (descType === 'autoposting') autopostingDesc.style.display = 'block';
+                else if (descType === 'ai') aiDesc.style.display = 'block';
             });
         });
     </script>
 
-    <!-- СТАТИСТИКА GOATCOUNTER И МГНОВЕННОЕ СКАЧИВАНИЕ -->
     <script>
         const GOAT_SITE = 'piligrim757';
         
@@ -565,7 +525,6 @@
             }).catch(e => console.log('Статистика:', e));
         }
         
-        // Функция для скачивания файла (мгновенно)
         function downloadFile(url, fileName) {
             const link = document.createElement('a');
             link.href = url;
@@ -575,22 +534,13 @@
             document.body.removeChild(link);
         }
         
-        // КНОПКА СКАЧИВАНИЯ - СРАЗУ СКАЧИВАЕТ ФАЙЛ
         const downloadBtn = document.getElementById('downloadButton');
         if (downloadBtn) {
             downloadBtn.addEventListener('click', function() {
-                // Отправляем статистику
                 trackDownload('piligrim_app.exe');
-                
-                // ========== ССЫЛКА ДЛЯ СКАЧИВАНИЯ ==========
-                // ВСТАВЬТЕ СЮДА ВАШУ ССЫЛКУ НА .EXE ФАЙЛ
-                // СЕЙЧАС ЗДЕСЬ ПРИМЕР С ТЕКСТОВЫМ ФАЙЛОМ ДЛЯ ТЕСТА
                 const fileUrl = 'https://github.com';
                 const fileName = 'Piligrim.exe';
-                
-                // Запускаем скачивание
                 downloadFile(fileUrl, fileName);
-                
                 alert('Скачивание началось! Файл сохранится в папке "Загрузки". Спасибо!');
             });
         }
