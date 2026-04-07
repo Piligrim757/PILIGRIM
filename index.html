@@ -259,22 +259,26 @@
             line-height: 1.2;
         }
 
+        /* Увеличенный шрифт для слогана */
         .hero p {
-            font-size: 1.1rem;
-            opacity: 0.9;
-            color: #ddd;
+            font-size: 1.4rem;
+            opacity: 0.95;
+            color: #f0f0f0;
             margin-bottom: 1rem;
+            font-weight: 500;
+            letter-spacing: 0.5px;
         }
         .hero p strong {
-            font-weight: 700;
+            font-weight: 800;
             color: #ffffff;
-            text-shadow: 0 0 4px rgba(0,0,0,0.3);
+            text-shadow: 0 0 8px rgba(0,0,0,0.5);
         }
         /* Неоновый зеленый для текста "Ваш надёжный партнёр..." */
         .hero .partner-text {
             color: #39ff14;
             text-shadow: 0 0 5px #00ff00, 0 0 10px #00cc00, 0 0 20px #009900;
-            font-weight: 600;
+            font-weight: 700;
+            font-size: inherit;
         }
 
         .hero-badge {
@@ -382,17 +386,32 @@
             box-shadow: 0 0 0 3px rgba(255,215,0,0.5), 0 20px 35px -10px black;
         }
         
+        /* НЕОНОВЫЕ ОБВОДКИ ДЛЯ КАРТОЧЕК */
         .feature-card[data-desc="machine"] {
             background: radial-gradient(circle at 10% 20%, #0e3a5c, #04293a);
-            box-shadow: 0 8px 20px rgba(0, 180, 255, 0.2), 0 0 12px rgba(0, 200, 255, 0.3);
+            box-shadow: 0 8px 20px rgba(0, 180, 255, 0.2), 0 0 0 2px #39ff14, 0 0 0 4px rgba(57, 255, 20, 0.6);
+            /* Зеленая неоновая обводка */
         }
+        .feature-card[data-desc="machine"]:hover {
+            box-shadow: 0 12px 28px rgba(0, 200, 255, 0.3), 0 0 0 3px #39ff14, 0 0 0 6px rgba(57, 255, 20, 0.8);
+        }
+        
         .feature-card[data-desc="autoposting"] {
             background: radial-gradient(circle at 90% 10%, #5a2a6e, #2c103f);
-            box-shadow: 0 8px 20px rgba(156, 39, 176, 0.3), 0 0 12px rgba(186, 85, 211, 0.4);
+            box-shadow: 0 8px 20px rgba(156, 39, 176, 0.3), 0 0 0 2px #FFD700, 0 0 0 4px rgba(255, 215, 0, 0.6);
+            /* Желтая неоновая обводка */
         }
+        .feature-card[data-desc="autoposting"]:hover {
+            box-shadow: 0 12px 28px rgba(186, 85, 211, 0.4), 0 0 0 3px #FFD700, 0 0 0 6px rgba(255, 215, 0, 0.8);
+        }
+        
         .feature-card[data-desc="ai"] {
             background: radial-gradient(circle at 30% 80%, #1f5e44, #0a2a1a);
-            box-shadow: 0 8px 20px rgba(0, 200, 100, 0.25), 0 0 12px rgba(80, 255, 140, 0.4);
+            box-shadow: 0 8px 20px rgba(0, 200, 100, 0.25), 0 0 0 2px #00BFFF, 0 0 0 4px rgba(0, 191, 255, 0.6);
+            /* Синяя неоновая обводка */
+        }
+        .feature-card[data-desc="ai"]:hover {
+            box-shadow: 0 12px 28px rgba(80, 255, 140, 0.4), 0 0 0 3px #00BFFF, 0 0 0 6px rgba(0, 191, 255, 0.8);
         }
         
         .feature-icon {
@@ -414,7 +433,7 @@
             opacity: 0.9;
         }
 
-        /* Модальное окно */
+        /* Модальное окно с прокруткой и меньшими размерами */
         .modal {
             display: none;
             position: fixed;
@@ -422,7 +441,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.8);
+            background-color: rgba(0, 0, 0, 0.85);
             z-index: 1000;
             justify-content: center;
             align-items: center;
@@ -434,63 +453,81 @@
         }
         .modal-content {
             width: 90%;
-            max-width: 550px;
+            max-width: 500px;
+            max-height: 85vh;
             border-radius: 28px;
             padding: 0;
             position: relative;
             color: #fff;
             animation: slideIn 0.3s ease;
-            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5);
+            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.6);
             border: 1px solid rgba(255,255,255,0.2);
             overflow: hidden;
+            display: flex;
+            flex-direction: column;
         }
         .modal-header-img {
             width: 100%;
             height: auto;
-            display: block;
+            max-height: 140px;
             object-fit: cover;
+            display: block;
             border-bottom: 2px solid rgba(255,255,255,0.2);
+            flex-shrink: 0;
         }
         .modal-inner {
-            padding: 1.8rem 2rem 2rem 2rem;
+            padding: 1.5rem 1.8rem 1.8rem 1.8rem;
+            overflow-y: auto;
+            flex: 1;
+            scrollbar-width: thin;
+            scrollbar-color: rgba(255,255,200,0.5) rgba(0,0,0,0.3);
+        }
+        .modal-inner::-webkit-scrollbar {
+            width: 5px;
+        }
+        .modal-inner::-webkit-scrollbar-track {
+            background: rgba(0,0,0,0.3);
+            border-radius: 10px;
+        }
+        .modal-inner::-webkit-scrollbar-thumb {
+            background: rgba(255,215,0,0.6);
+            border-radius: 10px;
         }
         .modal-content[data-modal-bg="machine"] {
             background: radial-gradient(circle at 10% 20%, #0e3a5c, #04293a);
-            border-top: none;
         }
         .modal-content[data-modal-bg="autoposting"] {
             background: radial-gradient(circle at 90% 10%, #5a2a6e, #2c103f);
-            border-top: none;
         }
         .modal-content[data-modal-bg="ai"] {
             background: radial-gradient(circle at 30% 80%, #1f5e44, #0a2a1a);
-            border-top: none;
         }
         .close-modal {
             position: absolute;
-            top: 15px;
-            right: 20px;
+            top: 12px;
+            right: 16px;
             font-size: 2rem;
             cursor: pointer;
             color: rgba(255,255,255,0.9);
             transition: all 0.2s;
             line-height: 1;
-            z-index: 10;
-            background: rgba(0,0,0,0.4);
-            width: 32px;
-            height: 32px;
+            z-index: 20;
+            background: rgba(0,0,0,0.5);
+            width: 34px;
+            height: 34px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
+            backdrop-filter: blur(2px);
         }
         .close-modal:hover {
             color: #fff;
             transform: scale(1.1);
-            background: rgba(0,0,0,0.7);
+            background: rgba(0,0,0,0.8);
         }
         .modal-content h3 {
-            font-size: 1.8rem;
+            font-size: 1.6rem;
             margin-bottom: 1rem;
             border-left: 5px solid currentColor;
             padding-left: 1rem;
@@ -501,6 +538,7 @@
             line-height: 1.6;
             margin-bottom: 1rem;
             color: #f0f0f0;
+            font-size: 0.95rem;
         }
         .modal-content ul {
             padding-left: 1.5rem;
@@ -509,13 +547,14 @@
         .modal-content li {
             margin: 0.5rem 0;
             color: #f0f0f0;
+            font-size: 0.92rem;
         }
-        /* Неоновый зеленый для footer текстов в модалках */
-        .modal-footer-green {
-            color: #39ff14;
-            text-shadow: 0 0 5px #00ff00, 0 0 8px #00cc00;
-            font-weight: 600;
-            margin-top: 0.5rem;
+        /* Неоновый синий для фразы "Все нейросети в одном окне!" */
+        .modal-footer-blue {
+            color: #00BFFF;
+            text-shadow: 0 0 5px #0099ff, 0 0 10px #0066cc, 0 0 15px #003399;
+            font-weight: 700;
+            margin-top: 0.8rem;
             font-size: 1rem;
         }
         @keyframes fadeIn {
@@ -622,7 +661,7 @@
                 margin-top: 5px;
             }
             .hero p {
-                font-size: 0.9rem;
+                font-size: 1.1rem;
             }
             .three-in-one {
                 font-size: 1.1rem;
@@ -650,7 +689,7 @@
                 font-size: 1.4rem;
             }
             .modal-content p, .modal-content li {
-                font-size: 0.9rem;
+                font-size: 0.85rem;
             }
             
             .video-container {
@@ -672,6 +711,10 @@
                 display: flex;
                 flex-direction: column;
                 align-items: center;
+            }
+            .modal-content {
+                max-width: 94%;
+                max-height: 80vh;
             }
         }
     </style>
@@ -713,7 +756,7 @@
                     <span class="neon-yellow">ДОБРО ПОЖАЛОВАТЬ В</span>
                     <span class="neon-purple">PILIGRIM</span>
                 </div>
-                <p><strong class="partner-text">Ваш надёжный партнёр в мире цифровых решений</strong></p>
+                <p><strong class="partner-text">✨ Ваш надёжный партнёр в мире цифровых решений ✨</strong></p>
                 <div class="hero-badge">
                     <div class="three-in-one">⚡ 3в1 ⚡</div>
                 </div>
@@ -800,7 +843,7 @@
         closeBurger.addEventListener('click', closeMobileMenu);
         menuOverlay.addEventListener('click', closeMobileMenu);
         
-        // Модальное окно с изображениями-шапками
+        // Модальное окно с изображениями-шапками и прокруткой
         const modal = document.getElementById('infoModal');
         const modalContentDiv = document.getElementById('modalContent');
         const modalBody = document.getElementById('modalBody');
@@ -843,7 +886,7 @@
                     'Автоматический перевод на 100+ языков',
                     'Голосовой ассистент с распознаванием речи'
                 ],
-                footer: 'Все нейросети в одном окне!',
+                footer: 'Все нейросети в одном окне!',  // будет неоновый синий
                 headerImage: 'shapka4.png'
             }
         };
@@ -856,7 +899,9 @@
             data.list.forEach(item => { listHtml += `<li>${item}</li>`; });
             listHtml += '</ul>';
             
-            // Изображение-шапка с обработкой ошибки (если файл не найден, просто не показываем)
+            const footerClass = (type === 'ai') ? 'modal-footer-blue' : 'modal-footer-green';
+            const footerText = data.footer;
+            
             const headerImgHtml = `<img class="modal-header-img" src="${data.headerImage}" alt="header" onerror="this.style.display='none'">`;
             
             const fullHtml = `
@@ -865,7 +910,7 @@
                     <h3>${data.title}</h3>
                     <p>${data.intro}</p>
                     ${listHtml}
-                    <p class="modal-footer-green">${data.footer}</p>
+                    <p class="${footerClass}">${footerText}</p>
                 </div>
             `;
             modalBody.innerHTML = fullHtml;
