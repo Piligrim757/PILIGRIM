@@ -183,7 +183,7 @@
         .hero {
             text-align: center;
             padding: 3rem 2rem;
-            background: url('shapka2.png') center/cover no-repeat;
+            background: url('shapka3.png') center/cover no-repeat;
             border-radius: 30px;
             color: white;
             margin-bottom: 2rem;
@@ -240,6 +240,19 @@
             background: none;
             display: inline-block;
         }
+        
+        /* Неоновый зеленый текст */
+        .neon-green {
+            color: #39ff14;
+            text-shadow: 0 0 5px #00ff00, 0 0 10px #00cc00, 0 0 20px #009900, 0 0 30px #006600;
+            font-weight: 600;
+        }
+        
+        .neon-green-bold {
+            color: #39ff14;
+            text-shadow: 0 0 5px #00ff00, 0 0 10px #00cc00, 0 0 20px #009900;
+            font-weight: 700;
+        }
 
         .hero-title {
             margin-bottom: 1rem;
@@ -256,6 +269,12 @@
             font-weight: 700;
             color: #ffffff;
             text-shadow: 0 0 4px rgba(0,0,0,0.3);
+        }
+        /* Неоновый зеленый для текста "Ваш надёжный партнёр..." */
+        .hero .partner-text {
+            color: #39ff14;
+            text-shadow: 0 0 5px #00ff00, 0 0 10px #00cc00, 0 0 20px #009900;
+            font-weight: 600;
         }
 
         .hero-badge {
@@ -417,24 +436,35 @@
             width: 90%;
             max-width: 550px;
             border-radius: 28px;
-            padding: 2rem;
+            padding: 0;
             position: relative;
             color: #fff;
             animation: slideIn 0.3s ease;
             box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5);
             border: 1px solid rgba(255,255,255,0.2);
+            overflow: hidden;
+        }
+        .modal-header-img {
+            width: 100%;
+            height: auto;
+            display: block;
+            object-fit: cover;
+            border-bottom: 2px solid rgba(255,255,255,0.2);
+        }
+        .modal-inner {
+            padding: 1.8rem 2rem 2rem 2rem;
         }
         .modal-content[data-modal-bg="machine"] {
             background: radial-gradient(circle at 10% 20%, #0e3a5c, #04293a);
-            border-top: 4px solid #00ccff;
+            border-top: none;
         }
         .modal-content[data-modal-bg="autoposting"] {
             background: radial-gradient(circle at 90% 10%, #5a2a6e, #2c103f);
-            border-top: 4px solid #da70d6;
+            border-top: none;
         }
         .modal-content[data-modal-bg="ai"] {
             background: radial-gradient(circle at 30% 80%, #1f5e44, #0a2a1a);
-            border-top: 4px solid #3eff9e;
+            border-top: none;
         }
         .close-modal {
             position: absolute;
@@ -442,19 +472,30 @@
             right: 20px;
             font-size: 2rem;
             cursor: pointer;
-            color: rgba(255,255,255,0.7);
+            color: rgba(255,255,255,0.9);
             transition: all 0.2s;
             line-height: 1;
+            z-index: 10;
+            background: rgba(0,0,0,0.4);
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
         .close-modal:hover {
             color: #fff;
             transform: scale(1.1);
+            background: rgba(0,0,0,0.7);
         }
         .modal-content h3 {
             font-size: 1.8rem;
             margin-bottom: 1rem;
             border-left: 5px solid currentColor;
             padding-left: 1rem;
+            color: #ffff00;
+            text-shadow: 0 0 5px #ffeb3b, 0 0 10px #ffc107, 0 0 15px #ff9800;
         }
         .modal-content p {
             line-height: 1.6;
@@ -467,6 +508,15 @@
         }
         .modal-content li {
             margin: 0.5rem 0;
+            color: #f0f0f0;
+        }
+        /* Неоновый зеленый для footer текстов в модалках */
+        .modal-footer-green {
+            color: #39ff14;
+            text-shadow: 0 0 5px #00ff00, 0 0 8px #00cc00;
+            font-weight: 600;
+            margin-top: 0.5rem;
+            font-size: 1rem;
         }
         @keyframes fadeIn {
             from { opacity: 0; }
@@ -537,11 +587,9 @@
 
         /* Адаптация под телефон */
         @media (max-width: 768px) {
-            /* Прячем десктопное меню */
             .nav-menu {
                 display: none;
             }
-            /* Показываем бургер */
             .burger {
                 display: block;
             }
@@ -595,9 +643,8 @@
                 font-size: 1.1rem;
             }
             
-            .modal-content {
-                padding: 1.5rem;
-                width: 95%;
+            .modal-inner {
+                padding: 1.2rem;
             }
             .modal-content h3 {
                 font-size: 1.4rem;
@@ -635,17 +682,15 @@
             <a href="#" class="logo">
                 <span class="star-icon">✨</span>
                 <span class="logo-text">PILIGRIM</span>
-				<span class="star-icon">✨</span>
+                <span class="star-icon">✨</span>
             </a>
             <div class="center-logo">
                 <img src="logo.png" alt="PILIGRIM Logo" class="logo-img" onerror="this.style.display='none'">
             </div>
-            <!-- Десктопное меню -->
             <ul class="nav-menu">
                 <li><a href="#">Главная</a></li>
                 <li><a href="#">Контакты</a></li>
             </ul>
-            <!-- Бургер-кнопка для телефона -->
             <div class="burger" id="burgerBtn">
                 <div></div>
                 <div></div>
@@ -654,7 +699,6 @@
         </div>
     </nav>
     
-    <!-- Мобильное выезжающее меню -->
     <ul class="mobile-menu" id="mobileMenu">
         <div class="close-burger" id="closeBurger">&times;</div>
         <li><a href="#">Главная</a></li>
@@ -669,7 +713,7 @@
                     <span class="neon-yellow">ДОБРО ПОЖАЛОВАТЬ В</span>
                     <span class="neon-purple">PILIGRIM</span>
                 </div>
-                <p><strong>Ваш надёжный партнёр в мире цифровых решений</strong></p>
+                <p><strong class="partner-text">Ваш надёжный партнёр в мире цифровых решений</strong></p>
                 <div class="hero-badge">
                     <div class="three-in-one">⚡ 3в1 ⚡</div>
                 </div>
@@ -726,7 +770,6 @@
         <p>&copy; 2026 PILIGRIM. Все права защищены.</p>
     </footer>
 
-    <!-- Модальное окно -->
     <div id="infoModal" class="modal">
         <div id="modalContent" class="modal-content">
             <span class="close-modal">&times;</span>
@@ -735,7 +778,7 @@
     </div>
 
     <script>
-        // ----- Бургер-меню для телефона -----
+        // Бургер-меню
         const burgerBtn = document.getElementById('burgerBtn');
         const mobileMenu = document.getElementById('mobileMenu');
         const menuOverlay = document.getElementById('menuOverlay');
@@ -757,7 +800,7 @@
         closeBurger.addEventListener('click', closeMobileMenu);
         menuOverlay.addEventListener('click', closeMobileMenu);
         
-        // ----- Модальное окно -----
+        // Модальное окно с изображениями-шапками
         const modal = document.getElementById('infoModal');
         const modalContentDiv = document.getElementById('modalContent');
         const modalBody = document.getElementById('modalBody');
@@ -765,7 +808,7 @@
 
         const modalData = {
             machine: {
-                title: '⚡ Контент-машина',
+                title: '✍️→🏭 Контент-завод',
                 intro: 'Мощный инструмент для автоматического создания контента:',
                 list: [
                     'Генерация уникальных статей и постов',
@@ -774,7 +817,8 @@
                     'Создание видео из текста',
                     'Планирование контент-стратегии'
                 ],
-                footer: 'Экономьте до 30 часов в неделю на создании контента!'
+                footer: 'Экономьте до 30 часов в неделю на создании контента!',
+                headerImage: 'shapka.png'
             },
             autoposting: {
                 title: '📝 Автопостинг',
@@ -786,10 +830,11 @@
                     'Аналитика эффективности',
                     'Поддержка VK, Telegram, Instagram, Facebook, Twitter'
                 ],
-                footer: 'Ведите соцсети без ручного труда!'
+                footer: 'Ведите соцсети без ручного труда!',
+                headerImage: 'shapka3.png'
             },
             ai: {
-                title: '💎 AI Помощники',
+                title: '🤖💡 AI Помощники',
                 intro: 'Искусственный интеллект для любых задач:',
                 list: [
                     'GPT-4 для общения и генерации текстов',
@@ -798,7 +843,8 @@
                     'Автоматический перевод на 100+ языков',
                     'Голосовой ассистент с распознаванием речи'
                 ],
-                footer: 'Все нейросети в одном окне!'
+                footer: 'Все нейросети в одном окне!',
+                headerImage: 'shapka4.png'
             }
         };
 
@@ -810,11 +856,17 @@
             data.list.forEach(item => { listHtml += `<li>${item}</li>`; });
             listHtml += '</ul>';
             
+            // Изображение-шапка с обработкой ошибки (если файл не найден, просто не показываем)
+            const headerImgHtml = `<img class="modal-header-img" src="${data.headerImage}" alt="header" onerror="this.style.display='none'">`;
+            
             const fullHtml = `
-                <h3>${data.title}</h3>
-                <p>${data.intro}</p>
-                ${listHtml}
-                <p>${data.footer}</p>
+                ${headerImgHtml}
+                <div class="modal-inner">
+                    <h3>${data.title}</h3>
+                    <p>${data.intro}</p>
+                    ${listHtml}
+                    <p class="modal-footer-green">${data.footer}</p>
+                </div>
             `;
             modalBody.innerHTML = fullHtml;
             modalContentDiv.setAttribute('data-modal-bg', type);
@@ -835,7 +887,7 @@
             if (e.key === 'Escape' && modal.classList.contains('show')) closeModal();
         });
 
-        // ----- Обработчики карточек и кнопок -----
+        // Карточки и плюсы
         const cards = document.querySelectorAll('.feature-card');
         const plusItems = document.querySelectorAll('.plus-item');
 
@@ -874,7 +926,7 @@
             cards.forEach(c => c.classList.remove('active-card'));
         });
 
-        // ----- Статистика скачиваний -----
+        // Статистика скачиваний
         const GOAT_SITE = 'piligrim757';
         
         function trackDownload(fileName) {
@@ -920,7 +972,7 @@
         });
     </script>
     
-    <script data-goatcounter=`https://${GOAT_SITE}.goatcounter.com/count` 
+    <script data-goatcounter="https://piligrim757.goatcounter.com/count" 
             async src="//gc.zgo.at/count.js"></script>
 </body>
 </html>
