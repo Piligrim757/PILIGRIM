@@ -21,7 +21,7 @@
 
         .navbar {
             background: #000000;
-            padding: 1.2rem;
+            padding: 1rem 1.2rem;
             position: sticky;
             top: 0;
             z-index: 100;
@@ -37,7 +37,7 @@
         }
         .logo {
             font-family: 'Playfair Display', serif;
-            font-size: 2.2rem;
+            font-size: 2rem;
             font-weight: 900;
             background: linear-gradient(135deg, #9c27b0, #e040fb, #ce93d8);
             -webkit-background-clip: text;
@@ -47,10 +47,27 @@
             text-shadow: 0 0 20px rgba(156, 39, 176, 0.5);
             letter-spacing: 2px;
             transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+        /* Звездочка теперь всегда желтая, не зависит от градиента */
+        .star-icon {
+            background: none;
+            -webkit-background-clip: unset;
+            background-clip: unset;
+            color: #FFD700;
+            text-shadow: 0 0 5px #FFA500, 0 0 10px #FF8C00;
+            font-size: 2rem;
+        }
+        .logo-text {
+            background: linear-gradient(135deg, #9c27b0, #e040fb, #ce93d8);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
         }
         .logo:hover {
             transform: scale(1.05);
-            text-shadow: 0 0 30px rgba(156, 39, 176, 0.8);
         }
         .center-logo {
             position: absolute;
@@ -58,7 +75,7 @@
             transform: translateX(-50%);
         }
         .logo-img {
-            height: 80px;
+            height: 60px;
             width: auto;
             display: block;
         }
@@ -108,7 +125,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.4);
+            background: rgba(0, 0, 0, 0.5);
             border-radius: 30px;
             z-index: 1;
         }
@@ -119,7 +136,7 @@
 
         .neon-yellow {
             font-family: 'Playfair Display', serif;
-            font-size: 3rem;
+            font-size: 2.8rem;
             font-weight: 900;
             display: inline-block;
             color: #ffff00;
@@ -131,7 +148,7 @@
 
         .neon-purple {
             font-family: 'Playfair Display', serif;
-            font-size: 3rem;
+            font-size: 2.8rem;
             font-weight: 900;
             display: inline-block;
             color: #ce93d8;
@@ -176,7 +193,7 @@
             background: linear-gradient(135deg, #00c853, #00a86b);
             padding: 0.4rem 1.8rem;
             border-radius: 60px;
-            font-size: 1.7rem;
+            font-size: 1.5rem;
             font-weight: 900;
             font-family: 'Playfair Display', serif;
             color: #1e1e1e;
@@ -191,19 +208,17 @@
             box-shadow: 0 0 25px rgba(0, 255, 100, 0.9);
         }
 
-        /* ========== ИЗМЕНЕНИЯ: КНОПКИ ПОД 3в1 (plus-features) получают ТАКИЕ ЖЕ ЦВЕТА + СВЕЧЕНИЯ ========== */
         .plus-features {
             display: flex;
             justify-content: center;
-            gap: 1.8rem;
+            gap: 1rem;
             flex-wrap: wrap;
             margin-top: 0.8rem;
         }
-        /* Базовые стили для мини-кнопок */
         .plus-item {
-            padding: 0.7rem 1.8rem;
+            padding: 0.6rem 1.2rem;
             border-radius: 60px;
-            font-size: 1.05rem;
+            font-size: 0.95rem;
             font-weight: 600;
             color: #fff;
             transition: all 0.3s ease;
@@ -218,8 +233,7 @@
             border-color: rgba(255,255,210,0.7);
         }
         
-        /* Индивидуальные цвета кнопок — в точности как у карточек вкладок */
-        /* Контент-завод (сине-бирюзовый) */
+        /* Индивидуальные цвета кнопок */
         .plus-item[data-plus="machine"] {
             background: radial-gradient(circle at 10% 20%, #0e3a5c, #04293a);
             box-shadow: 0 0 12px rgba(0, 180, 255, 0.4), 0 4px 12px rgba(0,0,0,0.3);
@@ -230,7 +244,6 @@
             background: radial-gradient(circle at 10% 20%, #136f9e, #043e58);
         }
         
-        /* Автопостинг (фиолетово-пурпурный) */
         .plus-item[data-plus="autoposting"] {
             background: radial-gradient(circle at 90% 10%, #5a2a6e, #2c103f);
             box-shadow: 0 0 12px rgba(186, 85, 211, 0.5), 0 4px 12px rgba(0,0,0,0.3);
@@ -241,7 +254,6 @@
             background: radial-gradient(circle at 90% 10%, #78419b, #401c59);
         }
         
-        /* AI Помощники (изумрудный) */
         .plus-item[data-plus="ai"] {
             background: radial-gradient(circle at 30% 80%, #1f5e44, #0a2a1a);
             box-shadow: 0 0 12px rgba(50, 220, 120, 0.5), 0 4px 12px rgba(0,0,0,0.3);
@@ -252,16 +264,16 @@
             background: radial-gradient(circle at 30% 80%, #338f66, #104d31);
         }
 
-        /* Вкладки (карточки) с их уникальными фонами и свечениями */
+        /* Вкладки (карточки) */
         .features-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin: 3rem 0;
+            gap: 1.5rem;
+            margin: 2rem 0;
         }
         
         .feature-card {
-            padding: 2rem;
+            padding: 1.5rem;
             border-radius: 28px;
             text-align: center;
             transition: all 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
@@ -280,101 +292,119 @@
             box-shadow: 0 0 0 3px rgba(255,215,0,0.5), 0 20px 35px -10px black;
         }
         
-        /* Контент-завод карточка */
         .feature-card[data-desc="machine"] {
             background: radial-gradient(circle at 10% 20%, #0e3a5c, #04293a);
             box-shadow: 0 8px 20px rgba(0, 180, 255, 0.2), 0 0 12px rgba(0, 200, 255, 0.3);
         }
-        .feature-card[data-desc="machine"]:hover {
-            box-shadow: 0 15px 30px rgba(0, 200, 255, 0.4), 0 0 20px rgba(0, 210, 255, 0.6);
-        }
-        .feature-card[data-desc="machine"].active-card {
-            box-shadow: 0 0 20px #00ccff, 0 0 35px #0099ff, 0 10px 25px black;
-            border-color: #7fd4ff;
-        }
-        
-        /* Автопостинг карточка */
         .feature-card[data-desc="autoposting"] {
             background: radial-gradient(circle at 90% 10%, #5a2a6e, #2c103f);
             box-shadow: 0 8px 20px rgba(156, 39, 176, 0.3), 0 0 12px rgba(186, 85, 211, 0.4);
         }
-        .feature-card[data-desc="autoposting"]:hover {
-            box-shadow: 0 15px 30px rgba(186, 85, 211, 0.5), 0 0 22px rgba(218, 112, 214, 0.7);
-        }
-        .feature-card[data-desc="autoposting"].active-card {
-            box-shadow: 0 0 20px #da70d6, 0 0 35px #ba55d3, 0 10px 25px black;
-            border-color: #e9a0ff;
-        }
-        
-        /* AI Помощники карточка */
         .feature-card[data-desc="ai"] {
             background: radial-gradient(circle at 30% 80%, #1f5e44, #0a2a1a);
             box-shadow: 0 8px 20px rgba(0, 200, 100, 0.25), 0 0 12px rgba(80, 255, 140, 0.4);
         }
-        .feature-card[data-desc="ai"]:hover {
-            box-shadow: 0 15px 30px rgba(50, 220, 120, 0.45), 0 0 22px rgba(100, 255, 150, 0.6);
-        }
-        .feature-card[data-desc="ai"].active-card {
-            box-shadow: 0 0 20px #3eff9e, 0 0 35px #1fbf6e, 0 10px 25px black;
-            border-color: #8effb2;
-        }
         
         .feature-icon {
-            font-size: 3.2rem;
+            font-size: 2.8rem;
             margin-bottom: 1rem;
             display: inline-block;
             filter: drop-shadow(0 4px 6px rgba(0,0,0,0.3));
         }
         .feature-card h3 {
             color: #f3e5f5;
-            margin-bottom: 0.8rem;
-            font-size: 1.4rem;
+            margin-bottom: 0.5rem;
+            font-size: 1.3rem;
             font-weight: 600;
         }
         .feature-card p {
             color: #e0e0e0;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             font-weight: 400;
             opacity: 0.9;
         }
 
-        /* Панель описания (изначально скрыта) */
-        .description-panel {
-            background: linear-gradient(115deg, #1a1a2e, #16213e);
+        /* МОДАЛЬНОЕ ОКНО (всплывающее) */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            backdrop-filter: blur(5px);
+            animation: fadeIn 0.3s ease;
+        }
+        .modal.show {
+            display: flex;
+        }
+        .modal-content {
+            width: 90%;
+            max-width: 550px;
             border-radius: 28px;
             padding: 2rem;
-            margin: 1rem 0 2rem 0;
-            border: 1px solid rgba(156, 39, 176, 0.6);
-            display: none;
-            animation: fadeInUp 0.5s ease forwards;
-            box-shadow: 0 15px 30px -15px black;
+            position: relative;
+            color: #fff;
+            animation: slideIn 0.3s ease;
+            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5);
+            border: 1px solid rgba(255,255,255,0.2);
         }
-        .description-panel.show {
-            display: block;
+        /* Динамические фоны для модального окна */
+        .modal-content[data-modal-bg="machine"] {
+            background: radial-gradient(circle at 10% 20%, #0e3a5c, #04293a);
+            border-top: 4px solid #00ccff;
         }
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+        .modal-content[data-modal-bg="autoposting"] {
+            background: radial-gradient(circle at 90% 10%, #5a2a6e, #2c103f);
+            border-top: 4px solid #da70d6;
         }
-        .description-panel h3 {
-            color: #e9c0ff;
-            font-size: 1.6rem;
+        .modal-content[data-modal-bg="ai"] {
+            background: radial-gradient(circle at 30% 80%, #1f5e44, #0a2a1a);
+            border-top: 4px solid #3eff9e;
+        }
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 2rem;
+            cursor: pointer;
+            color: rgba(255,255,255,0.7);
+            transition: all 0.2s;
+            line-height: 1;
+        }
+        .close-modal:hover {
+            color: #fff;
+            transform: scale(1.1);
+        }
+        .modal-content h3 {
+            font-size: 1.8rem;
             margin-bottom: 1rem;
-            border-left: 5px solid #ce93d8;
+            border-left: 5px solid currentColor;
             padding-left: 1rem;
         }
-        .description-panel p {
-            color: #dddddd;
+        .modal-content p {
             line-height: 1.6;
             margin-bottom: 1rem;
+            color: #f0f0f0;
         }
-        .description-panel ul {
-            color: #ccc;
+        .modal-content ul {
             padding-left: 1.5rem;
             margin: 1rem 0;
         }
-        .description-panel li {
+        .modal-content li {
             margin: 0.5rem 0;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes slideIn {
+            from { transform: translateY(-30px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
         }
 
         .download-section {
@@ -385,8 +415,8 @@
             background: linear-gradient(135deg, #00ff00, #00cc00, #009900);
             color: #ffffff;
             border: none;
-            padding: 1.2rem 3.5rem;
-            font-size: 1.3rem;
+            padding: 1rem 2.5rem;
+            font-size: 1.2rem;
             font-weight: bold;
             border-radius: 50px;
             cursor: pointer;
@@ -401,7 +431,7 @@
         }
 
         .video-section {
-            margin: 3rem 0 2rem 0;
+            margin: 2rem 0 1rem 0;
             text-align: center;
         }
         .video-container {
@@ -430,30 +460,52 @@
             background: #000000;
             color: #ce93d8;
             text-align: center;
-            padding: 2rem;
-            margin-top: 3rem;
+            padding: 1.5rem;
+            margin-top: 2rem;
             border-top: 1px solid rgba(156, 39, 176, 0.3);
         }
 
+        /* Адаптация под телефон */
         @media (max-width: 768px) {
             .nav-menu { display: none; }
-            .logo { font-size: 1.6rem; }
-            .logo-img { height: 50px; }
-            .plus-item { font-size: 0.85rem; padding: 0.5rem 1.2rem; }
-            .neon-yellow { font-size: 2rem; }
-            .neon-purple { font-size: 2rem; }
-            .neon-video-title { font-size: 1.5rem; }
-            .video-container { max-width: 95%; padding-bottom: 55%; }
-            .three-in-one { font-size: 1.3rem; padding: 0.3rem 1.2rem; }
-            .feature-card h3 { font-size: 1.2rem; }
-            .description-panel { padding: 1.5rem; }
+            .logo { font-size: 1.4rem; }
+            .star-icon { font-size: 1.4rem; }
+            .logo-img { height: 40px; }
+            .center-logo { position: static; transform: none; margin-left: auto; margin-right: 0; }
+            .nav-container { justify-content: space-between; }
+            
+            .hero { padding: 2rem 1rem; }
+            .neon-yellow { font-size: 1.6rem; display: block; }
+            .neon-purple { font-size: 1.8rem; display: block; margin-top: 5px; }
+            .hero p { font-size: 0.9rem; }
+            .three-in-one { font-size: 1.1rem; padding: 0.2rem 1rem; }
+            .plus-item { font-size: 0.75rem; padding: 0.4rem 0.8rem; }
+            
+            .feature-card { padding: 1.2rem; }
+            .feature-icon { font-size: 2rem; }
+            .feature-card h3 { font-size: 1.1rem; }
+            
+            .modal-content { padding: 1.5rem; width: 95%; }
+            .modal-content h3 { font-size: 1.4rem; }
+            .modal-content p, .modal-content li { font-size: 0.9rem; }
+            
+            .video-container { padding-bottom: 56%; }
+            .download-btn { padding: 0.8rem 1.8rem; font-size: 1rem; }
+            .neon-video-title { font-size: 1.3rem; }
+        }
+        @media (max-width: 480px) {
+            .features-grid { gap: 1rem; }
+            .hero-title { display: flex; flex-direction: column; align-items: center; }
         }
     </style>
 </head>
 <body>
     <nav class="navbar">
         <div class="nav-container">
-            <a href="#" class="logo">✨ PILIGRIM ✨</a>
+            <a href="#" class="logo">
+                <span class="star-icon">✨</span>
+                <span class="logo-text">PILIGRIM</span>
+            </a>
             <div class="center-logo">
                 <img src="logo.png" alt="PILIGRIM Logo" class="logo-img" onerror="this.style.display='none'">
             </div>
@@ -475,20 +527,18 @@
                 <div class="hero-badge">
                     <div class="three-in-one">⚡ 3в1 ⚡</div>
                 </div>
-                <!-- ТРИ МИНИ-КНОПКИ, окрашенные в те же цвета, что и вкладки (плюс свечение) -->
                 <div class="plus-features">
-                    <div class="plus-item" data-plus="machine">✍️→🏭 Контент-завод</div>
+                    <div class="plus-item" data-plus="machine">🚗 Контент-машина</div>
                     <div class="plus-item" data-plus="autoposting">📝 Автопостинг</div>
-                    <div class="plus-item" data-plus="ai">🤖💡 AI Помощники</div>
+                    <div class="plus-item" data-plus="ai">💎 AI Помощники</div>
                 </div>
             </div>
 
-            <!-- ОСНОВНЫЕ ТРИ ВКЛАДКИ (большие карточки) -->
             <div class="features-grid">
                 <div class="feature-card" data-desc="machine">
-                    <div class="feature-icon">✍️→🏭</div>
-                    <h3>Контент-завод</h3>
-                    <p>Создание  и автоматизация контента</p>
+                    <div class="feature-icon">🚗</div>
+                    <h3>Контент-машина</h3>
+                    <p>Создание и автоматизация контента</p>
                 </div>
                 <div class="feature-card" data-desc="autoposting">
                     <div class="feature-icon">📝</div>
@@ -496,49 +546,9 @@
                     <p>Автопубликации в соцсетях</p>
                 </div>
                 <div class="feature-card" data-desc="ai">
-                    <div class="feature-icon">🤖💡</div>
+                    <div class="feature-icon">💎</div>
                     <h3>AI Помощники</h3>
                     <p>Нейропомщники для любых задач</p>
-                </div>
-            </div>
-
-            <!-- ПАНЕЛЬ ОПИСАНИЯ (изначально скрыта) -->
-            <div id="descriptionPanel" class="description-panel">
-                <div id="machineDesc">
-                    <h3>⚡ Контент-завод</h3>
-                    <p>Мощный инструмент для автоматического создания контента:</p>
-                    <ul>
-                        <li>Генерация уникальных статей и постов</li>
-                        <li>Автоматический рерайт текстов</li>
-                        <li>Подбор изображений по теме</li>
-                        <li>Создание видео из текста</li>
-                        <li>Планирование контент-стратегии</li>
-                    </ul>
-                    <p>Экономьте до 30 часов в неделю на создании контента!</p>
-                </div>
-                <div id="autopostingDesc" style="display: none;">
-                    <h3>📝 Автопостинг</h3>
-                    <p>Полная автоматизация ведения социальных сетей:</p>
-                    <ul>
-                        <li>Автопубликация постов по расписанию</li>
-                        <li>Кросспостинг во все соцсети сразу</li>
-                        <li>Автоматический подбор хештегов</li>
-                        <li>Аналитика эффективности</li>
-                        <li>Поддержка VK, Telegram, Instagram, Facebook, Twitter</li>
-                    </ul>
-                    <p>Ведите соцсети без ручного труда!</p>
-                </div>
-                <div id="aiDesc" style="display: none;">
-                    <h3>💎 AI Помощники</h3>
-                    <p>Искусственный интеллект для любых задач:</p>
-                    <ul>
-                        <li>GPT-4 для общения и генерации текстов</li>
-                        <li>Midjourney для создания изображений</li>
-                        <li>Анализ данных и создание отчётов</li>
-                        <li>Автоматический перевод на 100+ языков</li>
-                        <li>Голосовой ассистент с распознаванием речи</li>
-                    </ul>
-                    <p>Все нейросети в одном окне!</p>
                 </div>
             </div>
 
@@ -570,67 +580,128 @@
         <p>&copy; 2026 PILIGRIM. Все права защищены.</p>
     </footer>
 
+    <!-- МОДАЛЬНОЕ ОКНО (всплывающее) -->
+    <div id="infoModal" class="modal">
+        <div id="modalContent" class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div id="modalBody">
+                <!-- Содержимое будет подставлено динамически -->
+            </div>
+        </div>
+    </div>
+
     <script>
-        // ----------------------------
-        // 1) Логика для больших вкладок (карточек) и мини-кнопок (plus-features)
-        //    - При клике на большую карточку или мини-кнопку открывается соответствующее описание
-        //    - Панель изначально скрыта, показывается только после нажатия.
-        //    - Синхронизация активного состояния: если клик по мини-кнопке – активируем соответствующую карточку и наоборот
-        // ----------------------------
+        // ----- Модальное окно и динамический контент -----
+        const modal = document.getElementById('infoModal');
+        const modalContentDiv = document.getElementById('modalContent');
+        const modalBody = document.getElementById('modalBody');
+        const closeModalBtn = document.querySelector('.close-modal');
+
+        // Данные для отображения в модалке
+        const modalData = {
+            machine: {
+                title: '⚡ Контент-машина',
+                list: [
+                    'Генерация уникальных статей и постов',
+                    'Автоматический рерайт текстов',
+                    'Подбор изображений по теме',
+                    'Создание видео из текста',
+                    'Планирование контент-стратегии'
+                ],
+                footer: 'Экономьте до 30 часов в неделю на создании контента!'
+            },
+            autoposting: {
+                title: '📝 Автопостинг',
+                list: [
+                    'Автопубликация постов по расписанию',
+                    'Кросспостинг во все соцсети сразу',
+                    'Автоматический подбор хештегов',
+                    'Аналитика эффективности',
+                    'Поддержка VK, Telegram, Instagram, Facebook, Twitter'
+                ],
+                footer: 'Ведите соцсети без ручного труда!'
+            },
+            ai: {
+                title: '💎 AI Помощники',
+                list: [
+                    'GPT-4 для общения и генерации текстов',
+                    'Midjourney для создания изображений',
+                    'Анализ данных и создание отчётов',
+                    'Автоматический перевод на 100+ языков',
+                    'Голосовой ассистент с распознаванием речи'
+                ],
+                footer: 'Все нейросети в одном окне!'
+            }
+        };
+
+        function openModal(type) {
+            const data = modalData[type];
+            if (!data) return;
+            
+            // Генерируем HTML
+            let listHtml = '<ul>';
+            data.list.forEach(item => { listHtml += `<li>${item}</li>`; });
+            listHtml += '</ul>';
+            
+            const fullHtml = `
+                <h3>${data.title}</h3>
+                <p>${type === 'machine' ? 'Мощный инструмент для автоматического создания контента:' : 
+                    (type === 'autoposting' ? 'Полная автоматизация ведения социальных сетей:' : 'Искусственный интеллект для любых задач:')}</p>
+                ${listHtml}
+                <p>${data.footer}</p>
+            `;
+            modalBody.innerHTML = fullHtml;
+            
+            // Устанавливаем соответствующий фон для модального окна
+            modalContentDiv.setAttribute('data-modal-bg', type);
+            
+            // Показываем модальное окно
+            modal.classList.add('show');
+            document.body.style.overflow = 'hidden'; // запрещаем скролл фона
+        }
+
+        function closeModal() {
+            modal.classList.remove('show');
+            document.body.style.overflow = '';
+        }
+
+        // Закрытие по крестику
+        closeModalBtn.addEventListener('click', closeModal);
+        // Закрытие по клику вне контента
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) closeModal();
+        });
+        // Закрытие по Escape
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && modal.classList.contains('show')) closeModal();
+        });
+
+        // ----- Обработчики для карточек и мини-кнопок -----
         const cards = document.querySelectorAll('.feature-card');
         const plusItems = document.querySelectorAll('.plus-item');
-        const machineDesc = document.getElementById('machineDesc');
-        const autopostingDesc = document.getElementById('autopostingDesc');
-        const aiDesc = document.getElementById('aiDesc');
-        const panel = document.getElementById('descriptionPanel');
-        
-        // Функция активации вкладки по типу (machine, autoposting, ai) и опционально элементу, который вызвал (для синхронизации)
-        function activateTab(descType, triggeredElement = null) {
-            // Находим карточку, которая соответствует типу
-            let targetCard = null;
+
+        // Функция активации активного класса на карточках (подсветка)
+        function setActiveCard(type) {
             cards.forEach(card => {
-                if (card.getAttribute('data-desc') === descType) {
-                    targetCard = card;
+                if (card.getAttribute('data-desc') === type) {
+                    card.classList.add('active-card');
+                } else {
+                    card.classList.remove('active-card');
                 }
             });
-            
-            // Убираем активный класс у всех карточек
-            cards.forEach(c => c.classList.remove('active-card'));
-            // Если карточка найдена, добавляем ей активный класс (свечение)
-            if (targetCard) {
-                targetCard.classList.add('active-card');
-            }
-            
-            // Показываем панель, если она скрыта
-            if (!panel.classList.contains('show')) {
-                panel.classList.add('show');
-            }
-            
-            // Скрываем все блоки описания
-            machineDesc.style.display = 'none';
-            autopostingDesc.style.display = 'none';
-            aiDesc.style.display = 'none';
-            
-            // Показываем нужный блок
-            if (descType === 'machine') {
-                machineDesc.style.display = 'block';
-            } else if (descType === 'autoposting') {
-                autopostingDesc.style.display = 'block';
-            } else if (descType === 'ai') {
-                aiDesc.style.display = 'block';
-            }
         }
-        
-        // Обработчики для больших карточек
+
+        // Обработка клика по карточке
         cards.forEach(card => {
             card.addEventListener('click', (e) => {
                 e.stopPropagation();
-                const descType = card.getAttribute('data-desc');
-                activateTab(descType, card);
+                const type = card.getAttribute('data-desc');
+                setActiveCard(type);
+                openModal(type);
             });
         });
-        
-        // Обработчики для мини-кнопок (plus-features) - они теперь стилизованы в те же цвета, что и вкладки
+
+        // Обработка клика по мини-кнопкам
         plusItems.forEach(btn => {
             btn.addEventListener('click', (e) => {
                 e.stopPropagation();
@@ -638,20 +709,19 @@
                 if (btn.getAttribute('data-plus') === 'machine') type = 'machine';
                 else if (btn.getAttribute('data-plus') === 'autoposting') type = 'autoposting';
                 else if (btn.getAttribute('data-plus') === 'ai') type = 'ai';
-                if (type) activateTab(type, btn);
+                if (type) {
+                    setActiveCard(type);
+                    openModal(type);
+                }
             });
         });
-        
-        // Инициализация: панель скрыта, никакой активный класс на карточках не висит, все описания скрыты
+
+        // Сброс активного класса при загрузке (нет выделенных карточек)
         window.addEventListener('DOMContentLoaded', () => {
             cards.forEach(c => c.classList.remove('active-card'));
-            panel.classList.remove('show');
-            machineDesc.style.display = 'none';
-            autopostingDesc.style.display = 'none';
-            aiDesc.style.display = 'none';
         });
-        
-        // ========== СИСТЕМА ОТСЛЕЖИВАНИЯ СКАЧИВАНИЙ (goatcounter) ==========
+
+        // ----- Система отслеживания скачиваний (goatcounter) -----
         const GOAT_SITE = 'piligrim757';
         
         function trackDownload(fileName) {
