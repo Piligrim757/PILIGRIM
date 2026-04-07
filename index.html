@@ -88,16 +88,33 @@
             padding: 2rem 1rem;
         }
 
-        /* Hero секция */
+        /* Hero секция - теперь с фоновым изображением */
         .hero {
             text-align: center;
             padding: 3rem 2rem;
-            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            background: url('shapka.png') center/cover no-repeat;
             border-radius: 30px;
             color: white;
             margin-bottom: 2rem;
             border: 1px solid rgba(156, 39, 176, 0.3);
             box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            position: relative;
+        }
+        /* Затемнение для лучшей читаемости текста поверх изображения */
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.4);
+            border-radius: 30px;
+            z-index: 1;
+        }
+        .hero > * {
+            position: relative;
+            z-index: 2;
         }
 
         .neon-yellow {
@@ -202,7 +219,7 @@
         }
         
         /* Индивидуальные цвета кнопок — в точности как у карточек вкладок */
-        /* Контент-машина (сине-бирюзовый) */
+        /* Контент-завод (сине-бирюзовый) */
         .plus-item[data-plus="machine"] {
             background: radial-gradient(circle at 10% 20%, #0e3a5c, #04293a);
             box-shadow: 0 0 12px rgba(0, 180, 255, 0.4), 0 4px 12px rgba(0,0,0,0.3);
@@ -263,7 +280,7 @@
             box-shadow: 0 0 0 3px rgba(255,215,0,0.5), 0 20px 35px -10px black;
         }
         
-        /* Контент-машина карточка */
+        /* Контент-завод карточка */
         .feature-card[data-desc="machine"] {
             background: radial-gradient(circle at 10% 20%, #0e3a5c, #04293a);
             box-shadow: 0 8px 20px rgba(0, 180, 255, 0.2), 0 0 12px rgba(0, 200, 255, 0.3);
@@ -460,17 +477,17 @@
                 </div>
                 <!-- ТРИ МИНИ-КНОПКИ, окрашенные в те же цвета, что и вкладки (плюс свечение) -->
                 <div class="plus-features">
-                    <div class="plus-item" data-plus="machine">🚗 Контент-машина</div>
+                    <div class="plus-item" data-plus="machine">✍️→🏭 Контент-завод</div>
                     <div class="plus-item" data-plus="autoposting">📝 Автопостинг</div>
-                    <div class="plus-item" data-plus="ai">💎 AI Помощники</div>
+                    <div class="plus-item" data-plus="ai">🤖💡 AI Помощники</div>
                 </div>
             </div>
 
             <!-- ОСНОВНЫЕ ТРИ ВКЛАДКИ (большие карточки) -->
             <div class="features-grid">
                 <div class="feature-card" data-desc="machine">
-                    <div class="feature-icon">🚗</div>
-                    <h3>Контент-машина</h3>
+                    <div class="feature-icon">✍️→🏭</div>
+                    <h3>Контент-завод</h3>
                     <p>Создание  и автоматизация контента</p>
                 </div>
                 <div class="feature-card" data-desc="autoposting">
@@ -479,7 +496,7 @@
                     <p>Автопубликации в соцсетях</p>
                 </div>
                 <div class="feature-card" data-desc="ai">
-                    <div class="feature-icon">💎</div>
+                    <div class="feature-icon">🤖💡</div>
                     <h3>AI Помощники</h3>
                     <p>Нейропомщники для любых задач</p>
                 </div>
@@ -488,7 +505,7 @@
             <!-- ПАНЕЛЬ ОПИСАНИЯ (изначально скрыта) -->
             <div id="descriptionPanel" class="description-panel">
                 <div id="machineDesc">
-                    <h3>⚡ Контент-машина</h3>
+                    <h3>⚡ Контент-завод</h3>
                     <p>Мощный инструмент для автоматического создания контента:</p>
                     <ul>
                         <li>Генерация уникальных статей и постов</li>
@@ -661,7 +678,7 @@
         if (downloadBtn) {
             downloadBtn.addEventListener('click', function() {
                 trackDownload('piligrim_app.exe');
-                const fileUrl = 'https://github.com'; 
+                const fileUrl = 'https://github.com/Piligrim757/PILIGRIM/releases/download/v1.0.0/2020.exe'; 
                 const fileName = 'Piligrim.exe';
                 downloadFile(fileUrl, fileName);
                 alert('Скачивание началось! Файл сохранится в папке "Загрузки". Спасибо за интерес к PILIGRIM!');
