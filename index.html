@@ -85,13 +85,7 @@
             list-style: none;
             gap: 2rem;
         }
-        .nav-menu a {
-            color: #e1bee7;
-            text-decoration: none;
-            transition: all 0.3s;
-            font-weight: 500;
-        }
-        /* Кнопка контакты желтая и выпуклая */
+        /* Убрали пункт "Главная" — удалён из разметки, стили остались для контактов */
         .nav-menu a.contact-link {
             background: linear-gradient(145deg, #FFD700, #FFA500);
             color: #1e1e1e;
@@ -101,6 +95,7 @@
             text-shadow: 0 1px 2px rgba(255,255,200,0.8);
             box-shadow: 0 8px 18px rgba(255, 215, 0, 0.4), inset 0 1px 0 rgba(255,255,200,0.6);
             transition: all 0.2s ease;
+            text-decoration: none;
         }
         .nav-menu a.contact-link:hover {
             transform: translateY(-2px);
@@ -144,13 +139,7 @@
         .mobile-menu li {
             margin: 1.5rem 0;
         }
-        .mobile-menu a {
-            color: #ce93d8;
-            text-decoration: none;
-            font-size: 1.3rem;
-            font-weight: 500;
-            transition: 0.2s;
-        }
+        /* в мобильном меню также нет пункта Главная */
         .mobile-menu a.contact-link-mobile {
             background: linear-gradient(145deg, #FFD700, #FFA500);
             display: inline-block;
@@ -158,6 +147,7 @@
             border-radius: 40px;
             color: #1e1e1e;
             font-weight: 800;
+            text-decoration: none;
         }
         .mobile-menu a:hover {
             color: #fff;
@@ -196,7 +186,7 @@
             padding: 2rem 1rem;
         }
 
-        /* Герой блок: широкая обводка + выпуклый эффект (box-shadow + transform) */
+        /* Герой блок */
         .hero {
             text-align: center;
             padding: 3rem 2rem;
@@ -260,7 +250,6 @@
             display: inline-block;
         }
         
-        /* Герой текст уменьшенный */
         .hero p {
             font-size: 1.4rem;
             opacity: 0.95;
@@ -397,7 +386,6 @@
             font-size: 1.3rem;
             font-weight: 600;
         }
-        /* Неоновые цвета для описаний карточек */
         .feature-card[data-desc="machine"] p {
             color: #39ff14;
             text-shadow: 0 0 3px #00ff00, 0 0 5px #00cc00;
@@ -414,7 +402,7 @@
             font-weight: 500;
         }
 
-        /* Модальные окна с широкой обводкой и центрированным заголовком без черты */
+        /* МОДАЛЬНЫЕ ОКНА — ШИРЕ, ФОН СЕРЫЙ, КНОПКИ ПО ПРАВОМУ КРАЮ, РОВНЫЕ */
         .modal {
             display: none;
             position: fixed;
@@ -422,11 +410,11 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.85);
+            background-color: rgba(30, 30, 40, 0.92); /* сероватый фон вместо черного */
             z-index: 1000;
             justify-content: center;
             align-items: center;
-            backdrop-filter: blur(5px);
+            backdrop-filter: blur(6px);
             animation: fadeIn 0.3s ease;
         }
         .modal.show {
@@ -434,7 +422,7 @@
         }
         .modal-content {
             width: 90%;
-            max-width: 600px;
+            max-width: 780px;  /* сделали шире, чтобы кнопки не сжимались */
             max-height: 85vh;
             border-radius: 32px;
             padding: 0;
@@ -447,6 +435,7 @@
             flex-direction: column;
             border-width: 3px;
             border-style: solid;
+            background: #2a2a2a;  /* основной фон окна — серый/темно-серый, как у вкладок */
         }
         .modal-header-img {
             width: 100%;
@@ -458,11 +447,12 @@
             flex-shrink: 0;
         }
         .modal-inner {
-            padding: 1.8rem 1.8rem 2rem;
+            padding: 1.8rem 2rem 2rem;
             overflow-y: auto;
             flex: 1;
             scrollbar-width: thin;
             text-align: center;
+            background: #2a2a2a; /* единый серый фон как у карточек */
         }
         .modal-inner h3 {
             font-size: 1.8rem;
@@ -531,22 +521,22 @@
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
         @keyframes slideIn { from { transform: translateY(-30px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
 
-        /* Контактное модальное окно */
+        /* КОНТАКТНОЕ МОДАЛЬНОЕ ОКНО — шире, кнопки ровные справа, убрали жирность белых ссылок */
         .contacts-container {
             display: flex;
             flex-direction: column;
-            gap: 1.5rem;
-            margin: 1rem 0;
+            gap: 1rem;
+            margin: 1rem 0 0.5rem;
         }
         .contact-row {
             display: flex;
             align-items: center;
             justify-content: space-between;
             flex-wrap: wrap;
-            background: rgba(0,0,0,0.4);
-            padding: 0.8rem 1rem;
+            background: rgba(0,0,0,0.35);
+            padding: 0.7rem 1.2rem;
             border-radius: 60px;
-            gap: 10px;
+            gap: 12px;
         }
         .contact-info {
             display: flex;
@@ -560,26 +550,29 @@
             text-align: center;
         }
         .contact-label {
-            font-weight: 700;
-            font-size: 1.1rem;
+            font-weight: 600; /* чуть уменьшили жирность, но оставили различимым */
+            font-size: 1rem;
         }
         .contact-value {
-            font-weight: 700;
-            color: white;
+            font-weight: 400;  /* убрали жирный шрифт, теперь обычный */
+            color: #f5f5f5;
             word-break: break-all;
+            font-size: 0.9rem;
         }
         .contact-btn {
             background: #39ff14;
             border: none;
             padding: 0.4rem 1.2rem;
             border-radius: 40px;
-            font-weight: 800;
+            font-weight: 700;
             color: #1e1e1e;
             cursor: pointer;
             transition: 0.2s;
             text-decoration: none;
             display: inline-block;
             box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+            text-align: center;
+            min-width: 110px;
         }
         .contact-btn:hover {
             background: #5eff3a;
@@ -587,11 +580,20 @@
         }
         .subheading-green {
             color: #39ff14;
-            font-size: 1.1rem;
-            font-weight: 700;
+            font-size: 1rem;
+            font-weight: 600;
             text-align: center;
-            margin: 1rem 0 0.5rem;
+            margin: 0.5rem 0 1rem 0;
             text-shadow: 0 0 3px #00ff00;
+        }
+        /* Новая структура: надпись перенесена под черту */
+        .contacts-divider {
+            margin: 1rem 0 0.5rem;
+            border-top: 1px solid rgba(255,255,255,0.25);
+        }
+        .contacts-footer-note {
+            margin-top: 0.75rem;
+            text-align: center;
         }
         .neon-yellow-text {
             color: #FFD700;
@@ -673,7 +675,8 @@
             .neon-yellow, .neon-purple { font-size: 1.5rem; display: block; }
             .modal-inner h3 { font-size: 1.4rem; }
             .contact-row { flex-direction: column; align-items: flex-start; }
-            .contact-btn { align-self: flex-end; }
+            .contact-btn { align-self: flex-end; width: auto; min-width: 100px; }
+            .modal-content { max-width: 95%; }
         }
     </style>
 </head>
@@ -683,13 +686,13 @@
             <a href="#" class="logo"><span class="star-icon">✨</span><span class="logo-text">PILIGRIM</span><span class="star-icon">✨</span></a>
             <div class="center-logo"><img src="logo.png" alt="PILIGRIM Logo" class="logo-img" onerror="this.style.display='none'"></div>
             <ul class="nav-menu">
-                <li><a href="#">Главная</a></li>
+                <!-- Пункт "Главная" полностью убран -->
                 <li><a href="#" class="contact-link" id="contactsNavBtn">📞 Контакты</a></li>
             </ul>
             <div class="burger" id="burgerBtn"><div></div><div></div><div></div></div>
         </div>
     </nav>
-    <ul class="mobile-menu" id="mobileMenu"><div class="close-burger" id="closeBurger">&times;</div><li><a href="#">Главная</a></li><li><a href="#" id="mobileContactsBtn" class="contact-link-mobile">📞 Контакты</a></li></ul>
+    <ul class="mobile-menu" id="mobileMenu"><div class="close-burger" id="closeBurger">&times;</div><li><a href="#" id="mobileContactsBtn" class="contact-link-mobile">📞 Контакты</a></li></ul>
     <div class="menu-overlay" id="menuOverlay"></div>
 
     <div class="main-content">
@@ -709,7 +712,7 @@
                 <div class="feature-card" data-desc="autoposting"><div class="feature-icon">📝</div><h3>Автопостинг</h3><p>Автопубликации в соцсетях</p></div>
                 <div class="feature-card" data-desc="ai"><div class="feature-icon">🤖💡</div><h3>AI Помощники</h3><p>Нейропомщники для любых задач</p></div>
             </div>
-            <div class="download-section"><button class="download-btn" id="downloadButton">📥 Скачать приложение</button><p style="margin-top: 1rem; color: #aaa;">| Для Windows |</p></div>
+            <div class="download-section"><button class="download-btn" id="downloadButton">📥 Скачать программу</button><p style="margin-top: 1rem; color: #aaa;">| Для Windows |</p></div>
             <div class="video-section"><div class="video-title-wrapper"><h4 class="neon-video-title">🎬 ПРЕЗЕНТАЦИЯ</h4></div>
                 <div class="video-container"><iframe src="https://drive.google.com/file/d/1rfszEzRKhvfF6IVDgGEKbE4mwmvILkva/preview" frameborder="0" allow="autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
                 <p style="margin-top: 1rem; color: #aaa;">Узнайте больше о наших возможностях</p>
@@ -719,7 +722,7 @@
     <footer><p>&copy; 2026 PILIGRIM. Все права защищены.</p></footer>
 
     <div id="infoModal" class="modal"><div id="modalContent" class="modal-content"><span class="close-modal">&times;</span><div id="modalBody"></div></div></div>
-    <div id="contactsModal" class="modal"><div id="contactsModalContent" class="modal-content" style="max-width: 650px;"><span class="close-modal" id="closeContactsModal">&times;</span><div id="contactsBody" class="modal-inner"></div></div></div>
+    <div id="contactsModal" class="modal"><div id="contactsModalContent" class="modal-content" style="max-width: 780px;"><span class="close-modal" id="closeContactsModal">&times;</span><div id="contactsBody" class="modal-inner"></div></div></div>
 
     <script>
         // Burger logic
@@ -728,7 +731,7 @@
         function closeMobileMenu(){mobileMenu.classList.remove('active');menuOverlay.classList.remove('active');document.body.style.overflow='';}
         burgerBtn.addEventListener('click',openMobileMenu); closeBurger.addEventListener('click',closeMobileMenu); menuOverlay.addEventListener('click',closeMobileMenu);
 
-        // Modal data with footer placed right after title
+        // Modal data
         const modalData={
             machine:{title:'✍️→🏭 Контент-завод', footer:'Экономьте до 30 часов в неделю на создании контента!', footerClass:'modal-footer-green', intro:'Мощный инструмент для автоматического создания контента:', list:['Генерация уникальных статей и постов','Автоматический рерайт текстов','Подбор изображений по теме','Создание видео из текста','Планирование контент-стратегии'], headerImage:'shapka.png'},
             autoposting:{title:'📝 Автопостинг', footer:'Ведите соцсети без ручного труда!', footerClass:'modal-footer-green', intro:'Полная автоматизация ведения социальных сетей:', list:['Автопубликация постов по расписанию','Кросспостинг во все соцсети сразу','Автоматический подбор хештегов','Аналитика эффективности','Поддержка VK, Telegram, Instagram, Facebook, Twitter'], headerImage:'shapka3.png'},
@@ -747,19 +750,19 @@
         document.querySelectorAll('.feature-card').forEach(card=>{card.addEventListener('click',()=>{openModal(card.getAttribute('data-desc'));});});
         document.querySelectorAll('.plus-item').forEach(btn=>{btn.addEventListener('click',()=>{let type=btn.getAttribute('data-plus');if(type==='machine')openModal('machine');else if(type==='autoposting')openModal('autoposting');else if(type==='ai')openModal('ai');});});
 
-        // Contacts Modal
+        // Contacts Modal: перестроили — надпись перенесена под черту, убрали жирность ссылок, кнопки ровные
         const contactsModal=document.getElementById('contactsModal'), contactsBody=document.getElementById('contactsBody'), closeContacts=document.getElementById('closeContactsModal');
         function buildContactsModal(){
-            return `<h3 style="margin-bottom:1rem;">📬 Связь с нами</h3>
-            <div class="subheading-green">📢 Каналы, фишки, описание по работе с программой</div>
+            return `<h3 style="margin-bottom:0.75rem;">📬 Связь с нами</h3>
             <div class="contacts-container">
                 <div class="contact-row"><div class="contact-info"><i class="fab fa-telegram contact-icon" style="color:#26A5E4;"></i><span class="contact-label neon-yellow-text">Telegram:</span><span class="contact-value">https://t.me/Piligrim757 (@Piligrim757)</span></div><a class="contact-btn" href="https://t.me/Piligrim757" target="_blank">📝 Написать</a></div>
                 <div class="contact-row"><div class="contact-info"><i class="fab fa-vk contact-icon" style="color:#0077FF;"></i><span class="contact-label neon-blue-text">VK:</span><span class="contact-value">https://vk.me/piligrim767</span></div><a class="contact-btn" href="https://vk.me/piligrim767" target="_blank">📝 Написать</a></div>
                 <div class="contact-row"><div class="contact-info"><i class="fas fa-envelope contact-icon" style="color:#ce93d8;"></i><span class="contact-label neon-purple-text">E-mail:</span><span class="contact-value">piligrim@atomicmail.io</span></div><div></div></div>
-                <div style="margin:0.5rem 0; border-top:1px solid rgba(255,255,255,0.2);"></div>
+                <div class="contacts-divider"></div>
                 <div class="contact-row"><div class="contact-info"><i class="fab fa-vk contact-icon" style="color:#0077FF;"></i><span class="contact-label neon-blue-text">ВКонтакте:</span><span class="contact-value">https://vk.com/Piligrim767</span></div><a class="contact-btn" href="https://vk.com/Piligrim767" target="_blank">🚀 Перейти</a></div>
                 <div class="contact-row"><div class="contact-info"><i class="fab fa-telegram contact-icon" style="color:#26A5E4;"></i><span class="contact-label neon-yellow-text">Telegram:</span><span class="contact-value">https://t.me/Piligrim767 (@Piligrim767)</span></div><a class="contact-btn" href="https://t.me/Piligrim767" target="_blank">🚀 Перейти</a></div>
-            </div>`;
+            </div>
+            <div class="contacts-footer-note subheading-green">📢 Каналы, фишки, описание по работе с программой</div>`;
         }
         function openContactsModal(){ contactsBody.innerHTML=buildContactsModal(); contactsModal.classList.add('show'); document.body.style.overflow='hidden'; }
         function closeContactsModalFunc(){ contactsModal.classList.remove('show'); document.body.style.overflow=''; }
