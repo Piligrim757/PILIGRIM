@@ -748,6 +748,9 @@
     <div id="infoModal" class="modal"><div id="modalContent" class="modal-content"><span class="close-modal">&times;</span><div id="modalBody"></div></div></div>
     <div id="contactsModal" class="modal"><div id="contactsModalContent" class="modal-content" style="max-width: 780px;"><span class="close-modal" id="closeContactsModal">&times;</span><div id="contactsBody" class="modal-inner"></div></div></div>
 
+    <!-- Код GoatCounter для отслеживания -->
+    <script data-goatcounter="https://piligrim757.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+
     <script>
         // Burger logic
         const burgerBtn=document.getElementById('burgerBtn'), mobileMenu=document.getElementById('mobileMenu'), menuOverlay=document.getElementById('menuOverlay'), closeBurger=document.getElementById('closeBurger');
@@ -833,12 +836,101 @@
         closeContacts.addEventListener('click',closeContactsModalFunc); contactsModal.addEventListener('click',(e)=>{if(e.target===contactsModal)closeContactsModalFunc();});
         document.addEventListener('keydown',(e)=>{if(e.key==='Escape'&&contactsModal.classList.contains('show'))closeContactsModalFunc();});
 
-        // download stats
-        const GOAT_SITE='piligrim757';
-        function trackDownload(fn){ fetch(`https://${GOAT_SITE}.goatcounter.com/count`,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},body:JSON.stringify({hits:[{path:'/download/'+fn,event:true,title:'Скачивание: '+fn}]})}).catch(e=>console.log); }
-        document.getElementById('downloadButton').addEventListener('click',()=>{trackDownload('piligrim_app.exe'); const a=document.createElement('a'); a.href='https://github.com/Piligrim757/PILIGRIM/releases/download/v1.0.0/2020.exe'; a.download='Piligrim.exe'; document.body.appendChild(a); a.click(); document.body.removeChild(a); alert('Скачивание началось! Спасибо за интерес к PILIGRIM!'); });
-        window.addEventListener('load',()=>{ fetch(`https://${GOAT_SITE}.goatcounter.com/count`,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},body:JSON.stringify({hits:[{path:'/page_view',event:true,title:'Просмотр главной страницы'}]})}).catch(e=>console.log); });
+        // ============================================================
+        // ИСПРАВЛЕННОЕ ОТСЛЕЖИВАНИЕ СКАЧИВАНИЙ ДЛЯ GOATCOUNTER
+        // ============================================================
+        
+        const GOAT_SITE = 'piligrim757';
+        
+        // Функция отслеживания скачиваний (правильный способ)
+        function trackDownload(filename) {
+            // Используем стандартный goatcounter метод
+            if (window.goatcounter && window.goatcounter.count) {
+                window.goatcounter.count({
+                    path: '/download/' + filename,
+                    title: 'Скачивание: ' + filename,
+                    event: true  // Важно: помечаем как событие
+                });
+                console.log('✅ Отслежено скачивание:', filename);
+            } else {
+                // Fallback через fetch
+                fetch(`https://${GOAT_SITE}.goatcounter.com/count`, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        hits: [{
+                            path: '/download/' + filename,
+                            event: true,
+                            title: 'Скачивание: ' + filename
+                        }]
+                    })
+                }).catch(e => console.log('Ошибка отслеживания:', e));
+            }
+        }
+        
+        // Кнопка скачивания
+        const downloadBtn = document.getElementById('downloadButton');
+        if (downloadBtn) {
+            downloadBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const filename = 'Piligrim_Setup.exe';
+                
+                // Сначала отправляем событие о скачивании
+                trackDownload(filename);
+                
+                // Небольшая задержка для гарантии отправки
+                setTimeout(function() {
+                    // Ссылка на файл (замените на реальную, если нужно)
+                    const downloadUrl = 'https://github.com/Piligrim757/PILIGRIM/releases/download/v1.0.0/2020.exe';
+                    
+                    const a = document.createElement('a');
+                    a.href = downloadUrl;
+                    a.download = 'Piligrim.exe';
+                    document.body.appendChild(a);
+                    a.click();
+                    document.body.removeChild(a);
+                    
+                    alert('Скачивание началось! Спасибо за интерес к PILIGRIM!');
+                }, 150);
+            });
+        }
+        
+        // Отслеживаем все ссылки на скачивание файлов на странице
+        function setupAutoDownloadTracking() {
+            const downloadExtensions = ['.exe', '.zip', '.rar', '.7z', '.msi', '.pdf', '.doc', '.docx'];
+            const allLinks = document.querySelectorAll('a');
+            
+            allLinks.forEach(function(link) {
+                const href = link.getAttribute('href');
+                if (href) {
+                    const isDownload = downloadExtensions.some(ext => href.toLowerCase().endsWith(ext));
+                    if (isDownload || href.includes('/download/')) {
+                        link.addEventListener('click', function(e) {
+                            let filename = href.split('/').pop();
+                            if (filename) {
+                                trackDownload(filename);
+                            }
+                        });
+                    }
+                }
+            });
+        }
+        
+        // Запускаем автоматическое отслеживание ссылок
+        setupAutoDownloadTracking();
+        
+        // Отслеживаем просмотр главной страницы (как page view, не как событие)
+        window.addEventListener('load', function() {
+            if (window.goatcounter && window.goatcounter.count) {
+                window.goatcounter.count({
+                    path: '/',
+                    title: 'Главная страница',
+                    event: false
+                });
+            }
+        });
     </script>
-    <script data-goatcounter="https://piligrim757.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </body>
 </html>
