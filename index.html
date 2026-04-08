@@ -85,7 +85,6 @@
             list-style: none;
             gap: 2rem;
         }
-        /* Убрали пункт "Главная" — удалён из разметки, стили остались для контактов */
         .nav-menu a.contact-link {
             background: linear-gradient(145deg, #FFD700, #FFA500);
             color: #1e1e1e;
@@ -139,7 +138,6 @@
         .mobile-menu li {
             margin: 1.5rem 0;
         }
-        /* в мобильном меню также нет пункта Главная */
         .mobile-menu a.contact-link-mobile {
             background: linear-gradient(145deg, #FFD700, #FFA500);
             display: inline-block;
@@ -402,7 +400,7 @@
             font-weight: 500;
         }
 
-        /* МОДАЛЬНЫЕ ОКНА — ШИРЕ, ФОН СЕРЫЙ, КНОПКИ ПО ПРАВОМУ КРАЮ, РОВНЫЕ */
+        /* МОДАЛЬНЫЕ ОКНА — фон под цвет вкладки, списки слева с эмодзи */
         .modal {
             display: none;
             position: fixed;
@@ -410,7 +408,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(30, 30, 40, 0.92); /* сероватый фон вместо черного */
+            background-color: rgba(30, 30, 40, 0.92);
             z-index: 1000;
             justify-content: center;
             align-items: center;
@@ -422,7 +420,7 @@
         }
         .modal-content {
             width: 90%;
-            max-width: 780px;  /* сделали шире, чтобы кнопки не сжимались */
+            max-width: 780px;
             max-height: 85vh;
             border-radius: 32px;
             padding: 0;
@@ -435,7 +433,20 @@
             flex-direction: column;
             border-width: 3px;
             border-style: solid;
-            background: #2a2a2a;  /* основной фон окна — серый/темно-серый, как у вкладок */
+            background: #2a2a2a; /* fallback */
+        }
+        /* Цветовые темы для модальных окон - фон такой же как у карточек */
+        .modal-content[data-modal-bg="machine"] {
+            background: radial-gradient(circle at 10% 20%, #0e3a5c, #04293a);
+            border-color: #39ff14;
+        }
+        .modal-content[data-modal-bg="autoposting"] {
+            background: radial-gradient(circle at 90% 10%, #5a2a6e, #2c103f);
+            border-color: #FFD700;
+        }
+        .modal-content[data-modal-bg="ai"] {
+            background: radial-gradient(circle at 30% 80%, #1f5e44, #0a2a1a);
+            border-color: #00BFFF;
         }
         .modal-header-img {
             width: 100%;
@@ -452,7 +463,7 @@
             flex: 1;
             scrollbar-width: thin;
             text-align: center;
-            background: #2a2a2a; /* единый серый фон как у карточек */
+            background: transparent; /* прозрачный чтобы наследовать градиент */
         }
         .modal-inner h3 {
             font-size: 1.8rem;
@@ -469,18 +480,33 @@
             color: #f0f0f0;
             font-size: 1rem;
         }
+        /* Стили списка: убираем стандартные маркеры, добавляем эмодзи, выравнивание по левому краю */
         .modal-inner ul {
-            padding-left: 1.5rem;
+            padding-left: 0;
             margin: 1rem 0;
             text-align: left;
-            display: inline-block;
-            text-align: left;
+            list-style: none;
+            display: block;
         }
         .modal-inner li {
-            margin: 0.5rem 0;
+            margin: 0.7rem 0;
             color: #f0f0f0;
-            font-size: 0.95rem;
+            font-size: 1rem;
+            line-height: 1.4;
+            display: flex;
+            align-items: center;
+            gap: 12px;
         }
+        /* Эмодзи вместо точек */
+        .modal-inner li::before {
+            content: "✨";
+            font-size: 1.2rem;
+            display: inline-block;
+            width: 28px;
+            text-align: center;
+            flex-shrink: 0;
+        }
+        /* Разные эмодзи для разных типов — зададим динамически через js, но для красоты оставим базовый, а js добавит уникальные */
         .modal-footer-green {
             color: #39ff14;
             text-shadow: 0 0 5px #00ff00, 0 0 10px #00cc00, 0 0 15px #009900;
@@ -521,7 +547,7 @@
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
         @keyframes slideIn { from { transform: translateY(-30px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
 
-        /* КОНТАКТНОЕ МОДАЛЬНОЕ ОКНО — шире, кнопки ровные справа, убрали жирность белых ссылок */
+        /* КОНТАКТНОЕ МОДАЛЬНОЕ ОКНО */
         .contacts-container {
             display: flex;
             flex-direction: column;
@@ -550,11 +576,11 @@
             text-align: center;
         }
         .contact-label {
-            font-weight: 600; /* чуть уменьшили жирность, но оставили различимым */
+            font-weight: 600;
             font-size: 1rem;
         }
         .contact-value {
-            font-weight: 400;  /* убрали жирный шрифт, теперь обычный */
+            font-weight: 400;
             color: #f5f5f5;
             word-break: break-all;
             font-size: 0.9rem;
@@ -586,7 +612,6 @@
             margin: 0.5rem 0 1rem 0;
             text-shadow: 0 0 3px #00ff00;
         }
-        /* Новая структура: надпись перенесена под черту */
         .contacts-divider {
             margin: 1rem 0 0.5rem;
             border-top: 1px solid rgba(255,255,255,0.25);
@@ -686,7 +711,6 @@
             <a href="#" class="logo"><span class="star-icon">✨</span><span class="logo-text">PILIGRIM</span><span class="star-icon">✨</span></a>
             <div class="center-logo"><img src="logo.png" alt="PILIGRIM Logo" class="logo-img" onerror="this.style.display='none'"></div>
             <ul class="nav-menu">
-                <!-- Пункт "Главная" полностью убран -->
                 <li><a href="#" class="contact-link" id="contactsNavBtn">📞 Контакты</a></li>
             </ul>
             <div class="burger" id="burgerBtn"><div></div><div></div><div></div></div>
@@ -731,26 +755,64 @@
         function closeMobileMenu(){mobileMenu.classList.remove('active');menuOverlay.classList.remove('active');document.body.style.overflow='';}
         burgerBtn.addEventListener('click',openMobileMenu); closeBurger.addEventListener('click',closeMobileMenu); menuOverlay.addEventListener('click',closeMobileMenu);
 
-        // Modal data
+        // Modal data с индивидуальными эмодзи для каждого пункта
         const modalData={
-            machine:{title:'✍️→🏭 Контент-завод', footer:'Экономьте до 30 часов в неделю на создании контента!', footerClass:'modal-footer-green', intro:'Мощный инструмент для автоматического создания контента:', list:['Генерация уникальных статей и постов','Автоматический рерайт текстов','Подбор изображений по теме','Создание видео из текста','Планирование контент-стратегии'], headerImage:'shapka7.png'},
-            autoposting:{title:'📝 Автопостинг', footer:'Ведите соцсети без ручного труда!', footerClass:'modal-footer-green', intro:'Полная автоматизация ведения социальных сетей:', list:['Автопубликация постов по расписанию','Кросспостинг во все соцсети сразу','Автоматический подбор хештегов','Аналитика эффективности','Поддержка VK, Telegram, Instagram, Facebook, Twitter'], headerImage:'shapka6.png'},
-            ai:{title:'🤖💡 AI Помощники', footer:'Все нейросети в одном окне!', footerClass:'modal-footer-blue', intro:'Искусственный интеллект для любых задач:', list:['GPT-4 для общения и генерации текстов','Midjourney для создания изображений','Анализ данных и создание отчётов','Автоматический перевод на 100+ языков','Голосовой ассистент с распознаванием речи'], headerImage:'shapka5.png'}
+            machine:{
+                title:'✍️→🏭 Контент-завод',
+                footer:'Экономьте до 30 часов в неделю на создании контента!',
+                footerClass:'modal-footer-green',
+                intro:'Мощный инструмент для автоматического создания контента:',
+                list:['Генерация уникальных статей и постов','Автоматический рерайт текстов','Подбор изображений по теме','Создание видео из текста','Планирование контент-стратегии'],
+                headerImage:'shapka7.png',
+                emojis:['📝','🔄','🖼️','🎥','📅']
+            },
+            autoposting:{
+                title:'📝 Автопостинг',
+                footer:'Ведите соцсети без ручного труда!',
+                footerClass:'modal-footer-green',
+                intro:'Полная автоматизация ведения социальных сетей:',
+                list:['Автопубликация постов по расписанию','Кросспостинг во все соцсети сразу','Автоматический подбор хештегов','Аналитика эффективности','Поддержка VK, Telegram, Instagram, Facebook, Twitter'],
+                headerImage:'shapka6.png',
+                emojis:['⏰','🔄','🏷️','📊','🌐']
+            },
+            ai:{
+                title:'🤖💡 AI Помощники',
+                footer:'Все нейросети в одном окне!',
+                footerClass:'modal-footer-blue',
+                intro:'Искусственный интеллект для любых задач:',
+                list:['GPT-4 для общения и генерации текстов','Midjourney для создания изображений','Анализ данных и создание отчётов','Автоматический перевод на 100+ языков','Голосовой ассистент с распознаванием речи'],
+                headerImage:'shapka5.png',
+                emojis:['💬','🎨','📈','🌍','🎙️']
+            }
         };
         const modal=document.getElementById('infoModal'), modalContentDiv=document.getElementById('modalContent'), modalBody=document.getElementById('modalBody'), closeModalBtn=document.querySelector('#infoModal .close-modal');
+        
         function openModal(type){
             const data=modalData[type]; if(!data) return;
-            let listHtml='<ul>'; data.list.forEach(i=>{listHtml+=`<li>${i}</li>`;}); listHtml+='</ul>';
+            // строим список с индивидуальными эмодзи и выравниванием по левому краю
+            let listHtml='<ul style="list-style:none; padding-left:0;">';
+            data.list.forEach((item, idx) => {
+                const emoji = data.emojis[idx] || '✨';
+                listHtml += `<li style="display: flex; align-items: center; gap: 12px; margin-bottom: 10px;"><span style="font-size:1.3rem; min-width:32px;">${emoji}</span><span>${item}</span></li>`;
+            });
+            listHtml+='</ul>';
             const html=`<img class="modal-header-img" src="${data.headerImage}" alt="header" onerror="this.style.display='none'"><div class="modal-inner"><h3>${data.title}</h3><div class="${data.footerClass}">✨ ${data.footer} ✨</div><p>${data.intro}</p>${listHtml}</div>`;
-            modalBody.innerHTML=html; modalContentDiv.setAttribute('data-modal-bg',type); modalContentDiv.style.borderColor=(type==='machine'?'#39ff14':type==='autoposting'?'#FFD700':'#00BFFF'); modal.classList.add('show'); document.body.style.overflow='hidden';
+            modalBody.innerHTML=html;
+            // Устанавливаем цветовую тему фона модального окна
+            modalContentDiv.setAttribute('data-modal-bg', type);
+            modalContentDiv.style.borderColor = (type==='machine'?'#39ff14':type==='autoposting'?'#FFD700':'#00BFFF');
+            modal.classList.add('show');
+            document.body.style.overflow='hidden';
         }
         function closeModal(){modal.classList.remove('show');document.body.style.overflow='';}
-        closeModalBtn.addEventListener('click',closeModal); modal.addEventListener('click',(e)=>{if(e.target===modal)closeModal();}); document.addEventListener('keydown',(e)=>{if(e.key==='Escape'&&modal.classList.contains('show'))closeModal();});
+        closeModalBtn.addEventListener('click',closeModal);
+        modal.addEventListener('click',(e)=>{if(e.target===modal)closeModal();});
+        document.addEventListener('keydown',(e)=>{if(e.key==='Escape'&&modal.classList.contains('show'))closeModal();});
 
         document.querySelectorAll('.feature-card').forEach(card=>{card.addEventListener('click',()=>{openModal(card.getAttribute('data-desc'));});});
         document.querySelectorAll('.plus-item').forEach(btn=>{btn.addEventListener('click',()=>{let type=btn.getAttribute('data-plus');if(type==='machine')openModal('machine');else if(type==='autoposting')openModal('autoposting');else if(type==='ai')openModal('ai');});});
 
-        // Contacts Modal: перестроили — надпись перенесена под черту, убрали жирность ссылок, кнопки ровные
+        // Contacts Modal
         const contactsModal=document.getElementById('contactsModal'), contactsBody=document.getElementById('contactsBody'), closeContacts=document.getElementById('closeContactsModal');
         function buildContactsModal(){
             return `<h3 style="margin-bottom:0.75rem;">📬 Связь с нами</h3>
