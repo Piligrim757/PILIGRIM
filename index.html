@@ -682,12 +682,13 @@
             border-radius: 20px;
         }
 
+        /* Простое уведомление для клиента */
         .toast-notification {
             position: fixed;
             bottom: 30px;
             left: 50%;
             transform: translateX(-50%);
-            background: rgba(0,0,0,0.95);
+            background: rgba(0,0,0,0.9);
             color: #39ff14;
             padding: 12px 24px;
             border-radius: 50px;
@@ -700,33 +701,11 @@
             font-size: 14px;
             white-space: nowrap;
         }
-        .toast-notification.error {
-            color: #ff4444;
-            border-color: #ff4444;
-            box-shadow: 0 0 20px rgba(255,68,68,0.3);
-        }
         @keyframes fadeInOut {
             0% { opacity: 0; transform: translateX(-50%) translateY(20px); }
             15% { opacity: 1; transform: translateX(-50%) translateY(0); }
             85% { opacity: 1; transform: translateX(-50%) translateY(0); }
             100% { opacity: 0; transform: translateX(-50%) translateY(-20px); }
-        }
-
-        .server-status {
-            display: inline-block;
-            margin-left: 15px;
-            font-size: 12px;
-            padding: 4px 10px;
-            border-radius: 20px;
-            background: #333;
-        }
-        .server-status.online {
-            background: #1a5c1a;
-            color: #39ff14;
-        }
-        .server-status.offline {
-            background: #5c1a1a;
-            color: #ff4444;
         }
 
         footer {
@@ -787,10 +766,7 @@
             </div>
             <div class="download-section">
                 <button class="download-btn" id="downloadButton">📥 Скачать программу</button>
-                <p style="margin-top: 0.5rem; color: #aaa;">| Для Windows |</p>
-                <div id="serverStatus" style="margin-top: 0.5rem; font-size: 12px;">
-                    <span class="server-status offline" id="statusBadge">🔌 Проверка сервера...</span>
-                </div>
+                <p style="margin-top: 1rem; color: #aaa;">| Для Windows |</p>
             </div>
             <div class="video-section"><div class="video-title-wrapper"><h4 class="neon-video-title">🎬 ПРЕЗЕНТАЦИЯ</h4></div>
                 <div class="video-container"><iframe src="https://drive.google.com/file/d/1rfszEzRKhvfF6IVDgGEKbE4mwmvILkva/preview" frameborder="0" allow="autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
@@ -951,32 +927,32 @@
         document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && contactsModal.classList.contains('show')) closeContactsModalFunc(); });
 
         // ============================================================
-        // Уведомления
+        // Уведомления (только для клиента, без технических деталей)
         // ============================================================
-        function showToast(message, isError = false) {
+        function showToast(message) {
             const toast = document.createElement('div');
-            toast.className = 'toast-notification' + (isError ? ' error' : '');
+            toast.className = 'toast-notification';
             toast.textContent = message;
             document.body.appendChild(toast);
-            setTimeout(() => { toast.remove(); }, 3500);
+            setTimeout(() => { toast.remove(); }, 3000);
         }
 
         // ============================================================
         // ОСНОВНАЯ ФУНКЦИЯ СКАЧИВАНИЯ
-        // Решение проблемы CORS и mixed content через image ping
+        // Отправка статистики происходит в фоне, клиент ничего не видит
         // ============================================================
         const DOWNLOAD_FILE_NAME = 'Piligrim_Setup.exe';
         const DOWNLOAD_URL = 'https://github.com/Piligrim757/PILIGRIM/releases/download/v1.0.0/2020.exe';
         const TRACKING_SERVER_URL = 'http://localhost:8765/track_download';
         
-        // Способ 1: Отправка через Image (обходит CORS, но только GET)
+        // Отправка через Image (обходит CORS, работает в фоне)
         function trackViaImage(fileName) {
             return new Promise((resolve) => {
                 const img = new Image();
                 const timeout = setTimeout(() => {
                     img.onload = img.onerror = null;
                     resolve(false);
-                }, 3000);
+                }, 2000);
                 
                 img.onload = () => {
                     clearTimeout(timeout);
@@ -991,7 +967,7 @@
             });
         }
         
-        // Способ 2: Отправка через fetch с режимом no-cors (не получим ответ, но запрос уйдёт)
+        // Отправка через fetch с режимом no-cors (фоновая отправка)
         async function trackViaFetch(fileName) {
             try {
                 await fetch(`${TRACKING_SERVER_URL}?file=${encodeURIComponent(fileName)}`, {
@@ -1005,14 +981,11 @@
             }
         }
         
-        // Комбинированная отправка статистики
-        async function sendTrackingToLocalServer(fileName) {
-            // Пробуем оба способа
-            const results = await Promise.allSettled([
-                trackViaImage(fileName),
-                trackViaFetch(fileName)
-            ]);
-            return results.some(r => r.status === 'fulfilled' && r.value === true);
+        // Фоновая отправка статистики (клиент не видит результат)
+        function sendTrackingInBackground(fileName) {
+            // Пробуем оба способа, но не ждём результата
+            trackViaImage(fileName).catch(() => {});
+            trackViaFetch(fileName).catch(() => {});
         }
         
         function performDownload() {
@@ -1024,10 +997,10 @@
                 document.body.appendChild(link);
                 link.click();
                 document.body.removeChild(link);
-                showToast('✅ Скачивание началось! Спасибо за интерес к PILIGRIM!');
+                showToast('✅ Скачивание началось!');
             } catch (error) {
                 window.open(DOWNLOAD_URL, '_blank');
-                showToast('✅ Скачивание началось в новой вкладке!');
+                showToast('✅ Скачивание началось!');
             }
         }
         
@@ -1035,73 +1008,45 @@
         
         async function handleDownload() {
             if (isDownloading) {
-                showToast('⏳ Скачивание уже запущено, подождите...');
                 return;
             }
             
             isDownloading = true;
             const downloadBtn = document.getElementById('downloadButton');
             const originalText = downloadBtn.innerHTML;
-            downloadBtn.innerHTML = '⏳ Отправка статистики...';
+            downloadBtn.innerHTML = '⏳ Подготовка...';
             downloadBtn.disabled = true;
             
             try {
-                // Отправляем статистику на локальный сервер
-                const tracked = await sendTrackingToLocalServer(DOWNLOAD_FILE_NAME);
+                // Отправляем статистику в фоне (клиент не видит ошибок)
+                sendTrackingInBackground(DOWNLOAD_FILE_NAME);
                 
-                if (tracked) {
-                    showToast('📊 Статистика отправлена на сервер!');
-                } else {
-                    showToast('⚠️ Сервер статистики не отвечает, но скачивание продолжится', true);
-                }
-                
-                // Небольшая задержка
-                await new Promise(resolve => setTimeout(resolve, 200));
-                
-                // GoatCounter событие
+                // GoatCounter событие (тоже в фоне)
                 if (window.goatcounter && window.goatcounter.count) {
-                    window.goatcounter.count({
-                        path: '/download/' + DOWNLOAD_FILE_NAME,
-                        title: 'Скачивание: ' + DOWNLOAD_FILE_NAME,
-                        event: true
-                    });
+                    try {
+                        window.goatcounter.count({
+                            path: '/download/' + DOWNLOAD_FILE_NAME,
+                            title: 'Download: ' + DOWNLOAD_FILE_NAME,
+                            event: true
+                        });
+                    } catch(e) {}
                 }
+                
+                // Небольшая задержка для имитации подготовки
+                await new Promise(resolve => setTimeout(resolve, 300));
                 
                 // Скачивание
                 performDownload();
                 
             } catch (error) {
-                console.error('Ошибка:', error);
-                showToast('⚠️ Ошибка, но скачивание продолжается', true);
+                // Даже при ошибке всё равно скачиваем
                 performDownload();
             } finally {
                 setTimeout(() => {
                     downloadBtn.innerHTML = originalText;
                     downloadBtn.disabled = false;
                     isDownloading = false;
-                }, 2000);
-            }
-        }
-        
-        // Проверка статуса сервера
-        async function checkServerStatus() {
-            const statusBadge = document.getElementById('statusBadge');
-            try {
-                const controller = new AbortController();
-                const timeoutId = setTimeout(() => controller.abort(), 3000);
-                
-                await fetch('http://localhost:8765/ping', {
-                    method: 'GET',
-                    mode: 'no-cors',
-                    signal: controller.signal
-                });
-                
-                clearTimeout(timeoutId);
-                statusBadge.innerHTML = '✅ Локальный сервер активен';
-                statusBadge.className = 'server-status online';
-            } catch (e) {
-                statusBadge.innerHTML = '⚠️ Локальный сервер не обнаружен (запустите prosmotr2.py)';
-                statusBadge.className = 'server-status offline';
+                }, 1500);
             }
         }
         
@@ -1111,12 +1056,6 @@
             downloadButton.addEventListener('click', handleDownload);
         }
         
-        // Проверяем статус сервера при загрузке
-        setTimeout(checkServerStatus, 1000);
-        
-        // Периодическая проверка статуса (раз в 30 секунд)
-        setInterval(checkServerStatus, 30000);
-        
         // ============================================================
         // GoatCounter page view
         // ============================================================
@@ -1124,7 +1063,7 @@
             if (window.goatcounter && window.goatcounter.count) {
                 window.goatcounter.count({
                     path: '/',
-                    title: 'Главная страница',
+                    title: 'PILIGRIM - Main Page',
                     event: false
                 });
             }
