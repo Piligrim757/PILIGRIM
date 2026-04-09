@@ -399,60 +399,37 @@
             font-weight: 500;
         }
 
-        /* Дополнительный блок с голосовым ассистентом */
-        .voice-assistant-card {
-            background: linear-gradient(135deg, #2c1a3a, #1a1a2e);
-            border-radius: 32px;
-            padding: 1.5rem;
+        /* Дополнительная секция с голосовым ассистентом */
+        .voice-assistant-badge {
             text-align: center;
-            margin: 1.5rem 0 0.5rem;
-            border: 1px solid rgba(0, 191, 255, 0.6);
-            box-shadow: 0 8px 25px rgba(0, 191, 255, 0.2);
-            transition: all 0.3s ease;
-        }
-        .voice-assistant-card:hover {
-            transform: translateY(-4px);
-            border-color: #00BFFF;
-            box-shadow: 0 12px 30px rgba(0, 191, 255, 0.35);
-        }
-        .voice-icon {
-            font-size: 2.5rem;
+            margin: 1rem 0 0.5rem 0;
+            padding: 0.8rem 1rem;
+            background: linear-gradient(95deg, rgba(0,0,0,0.6), rgba(30,30,50,0.7));
+            border-radius: 50px;
+            backdrop-filter: blur(4px);
+            border: 1px solid rgba(0, 191, 255, 0.4);
             display: inline-block;
-            background: linear-gradient(135deg, #00BFFF, #7B68EE);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            margin-right: 12px;
-            filter: drop-shadow(0 0 8px #00BFFF);
+            width: auto;
+            max-width: 90%;
+            box-shadow: 0 0 15px rgba(0, 191, 255, 0.2);
         }
-        .voice-text {
-            font-size: 1.3rem;
-            font-weight: 700;
-            color: #ffffff;
-            text-shadow: 0 0 8px #00BFFF, 0 0 12px #0066cc;
-            letter-spacing: 0.5px;
-            display: inline-flex;
+        .voice-assistant-text {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #00e5ff;
+            text-shadow: 0 0 5px #00b3ff, 0 0 8px #0077ff;
+            letter-spacing: 1px;
+            display: flex;
             align-items: center;
+            justify-content: center;
             gap: 12px;
             flex-wrap: wrap;
-            justify-content: center;
         }
-        .voice-text span:first-child {
-            background: linear-gradient(135deg, #FFD966, #FFB347);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            font-size: 1.4rem;
-        }
-        .voice-badge {
-            background: rgba(0, 191, 255, 0.2);
-            border-radius: 40px;
-            padding: 0.3rem 1rem;
-            font-size: 0.8rem;
-            font-weight: 500;
-            color: #00BFFF;
-            border: 1px solid #00BFFF;
-            margin-left: 8px;
+        .voice-assistant-text i {
+            font-size: 1.6rem;
+            color: #FFD966;
+            filter: drop-shadow(0 0 4px gold);
         }
 
         .modal {
@@ -501,43 +478,19 @@
             background: radial-gradient(circle at 30% 80%, #1f5e44, #0a2a1a);
             border-color: #00BFFF;
         }
-        
-        /* Улучшенный контейнер для изображения шапки в модальном окне — рамка и свечение */
-        .modal-header-wrapper {
-            position: relative;
-            background: rgba(0,0,0,0.3);
-            padding: 8px 12px 0 12px;
-            border-bottom: 2px solid rgba(255,255,255,0.3);
-            box-shadow: inset 0 -5px 15px rgba(0,0,0,0.3), 0 4px 12px rgba(0,0,0,0.4);
-        }
+        /* Изображение в модалке - без рамок, идеально вписывается, занимает всю ширину, сохраняет пропорции */
         .modal-header-img {
             width: 100%;
-            height: auto;
-            max-height: 160px;
-            object-fit: cover;
             display: block;
-            border-radius: 24px 24px 12px 12px;
-            box-shadow: 0 0 0 3px rgba(255,215,0,0.4), 0 0 0 6px rgba(0,0,0,0.3), 0 10px 25px rgba(0,0,0,0.5);
-            transition: all 0.2s ease;
-            margin: 0 auto;
+            object-fit: cover;
+            max-height: 180px;
+            min-height: 120px;
+            background: rgba(0,0,0,0.2);
+            flex-shrink: 0;
+            border: none;
+            outline: none;
+            box-shadow: none;
         }
-        /* Декоративная рамка с градиентом для картинки */
-        .modal-header-img {
-            border: 2px solid rgba(255,255,200,0.5);
-        }
-        .modal-content[data-modal-bg="machine"] .modal-header-img {
-            border-color: #39ff14;
-            box-shadow: 0 0 0 2px #39ff14, 0 0 15px rgba(57,255,20,0.6);
-        }
-        .modal-content[data-modal-bg="autoposting"] .modal-header-img {
-            border-color: #FFD700;
-            box-shadow: 0 0 0 2px #FFD700, 0 0 15px rgba(255,215,0,0.6);
-        }
-        .modal-content[data-modal-bg="ai"] .modal-header-img {
-            border-color: #00BFFF;
-            box-shadow: 0 0 0 2px #00BFFF, 0 0 15px rgba(0,191,255,0.6);
-        }
-        
         .modal-inner {
             padding: 1.8rem 2rem 2rem;
             overflow-y: auto;
@@ -808,8 +761,7 @@
             .contact-btn { align-self: flex-end; width: auto; min-width: 100px; }
             .modal-content { max-width: 95%; }
             .toast-notification { white-space: normal; text-align: center; max-width: 90%; font-size: 12px; }
-            .voice-text { font-size: 1rem; }
-            .voice-icon { font-size: 1.8rem; }
+            .voice-assistant-text { font-size: 0.9rem; }
         }
     </style>
 </head>
@@ -838,22 +790,22 @@
                     <div class="plus-item" data-plus="autoposting">📝 Автопостинг</div>
                     <div class="plus-item" data-plus="ai">🤖💡 AI Помощники</div>
                 </div>
+                <!-- Новая надпись под кнопками -->
+                <div style="margin-top: 1.2rem; display: flex; justify-content: center;">
+                    <div class="voice-assistant-badge">
+                        <div class="voice-assistant-text">
+                            <i class="fas fa-microphone-alt"></i> 
+                            🎙️ Голосовой ассистент с распознаванием речи
+                            <i class="fas fa-waveform"></i>
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class="features-grid">
                 <div class="feature-card" data-desc="machine"><div class="feature-icon">✍️→🏭</div><h3>Контент-завод</h3><p>Создание и автоматизация контента</p></div>
                 <div class="feature-card" data-desc="autoposting"><div class="feature-icon">📝</div><h3>Автопостинг</h3><p>Автопубликации в соцсетях</p></div>
                 <div class="feature-card" data-desc="ai"><div class="feature-icon">🤖💡</div><h3>AI Помощники</h3><p>Нейропомщники для любых задач</p></div>
             </div>
-            <!-- ДОБАВЛЕН БЛОК ГОЛОСОВОГО АССИСТЕНТА -->
-            <div class="voice-assistant-card">
-                <div class="voice-text">
-                    <i class="fas fa-microphone-alt voice-icon"></i>
-                    <span>🎙️ Голосовой ассистент с распознаванием речи</span>
-                    <span class="voice-badge">AI POWERED</span>
-                </div>
-                <p style="margin-top: 12px; color: #ccc; font-size: 0.9rem;">Управляйте программой голосом, задавайте вопросы, создавайте контент без клавиатуры</p>
-            </div>
-            
             <div class="download-section">
                 <button class="download-btn" id="downloadButton">📥 Скачать программу</button>
                 <p style="margin-top: 1rem; color: #aaa;">| Для Windows |</p>
@@ -939,10 +891,7 @@
             });
             listHtml += '</ul>';
             
-            // Обёртка для картинки с красивой рамкой
-            const imageHtml = `<div class="modal-header-wrapper"><img class="modal-header-img" src="${data.headerImage}" alt="header" onerror="this.style.display='none'"></div>`;
-            
-            const html = imageHtml + `
+            const html = `<img class="modal-header-img" src="${data.headerImage}" alt="header" onerror="this.style.display='none'">
                          <div class="modal-inner">
                              <h3>${data.title}</h3>
                              <div class="${data.footerClass}"> ${data.footer} </div>
@@ -1012,6 +961,7 @@
         contactsModal.addEventListener('click', (e) => { if (e.target === contactsModal) closeContactsModalFunc(); });
         document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && contactsModal.classList.contains('show')) closeContactsModalFunc(); });
 
+        // Уведомления
         function showToast(message) {
             const toast = document.createElement('div');
             toast.className = 'toast-notification';
@@ -1047,18 +997,26 @@
                 showToast('⏳ Подождите, скачивание уже запущено');
                 return;
             }
+            
             isDownloading = true;
             const downloadBtn = document.getElementById('downloadButton');
             const originalText = downloadBtn.innerHTML;
             downloadBtn.innerHTML = '⏳ Подготовка...';
             downloadBtn.disabled = true;
+            
             try {
                 if (window.goatcounter && window.goatcounter.count) {
-                    window.goatcounter.count({ path: '/download/' + DOWNLOAD_FILE_NAME, title: 'Скачивание: ' + DOWNLOAD_FILE_NAME, event: true });
+                    window.goatcounter.count({
+                        path: '/download/' + DOWNLOAD_FILE_NAME,
+                        title: 'Скачивание: ' + DOWNLOAD_FILE_NAME,
+                        event: true
+                    });
+                    console.log('📊 Отправлено событие в GoatCounter');
                 }
                 await new Promise(resolve => setTimeout(resolve, 200));
                 performDownload();
             } catch (error) {
+                console.error('Ошибка:', error);
                 performDownload();
             } finally {
                 setTimeout(() => {
@@ -1077,7 +1035,12 @@
         
         window.addEventListener('load', () => {
             if (window.goatcounter && window.goatcounter.count) {
-                window.goatcounter.count({ path: '/', title: 'PILIGRIM - Главная', event: false });
+                window.goatcounter.count({
+                    path: '/',
+                    title: 'PILIGRIM - Главная',
+                    event: false
+                });
+                console.log('📊 Отправлен просмотр страницы');
             }
         });
     </script>
