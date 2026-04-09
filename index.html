@@ -498,7 +498,7 @@
             outline: none;
             box-shadow: none;
         }
-        /* Стилизованная черта с загибающимися краями (swipe line) */
+        /* Стилизованная черта с загибающимися краями */
         .image-swipe-line {
             position: absolute;
             bottom: -3px;
@@ -830,23 +830,82 @@
     </style>
 </head>
 <body>
-    <nav class="navbar">...</nav>
-    <div class="main-content">...</div>
-    <footer>...</footer>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo"><span class="star-icon">✨</span><span class="logo-text">PILIGRIM</span><span class="star-icon">✨</span></a>
+            <div class="center-logo"><img src="logo.png" alt="PILIGRIM Logo" class="logo-img" onerror="this.style.display='none'"></div>
+            <ul class="nav-menu">
+                <li><a href="#" class="contact-link" id="contactsNavBtn">📞 Контакты</a></li>
+            </ul>
+            <div class="burger" id="burgerBtn"><div></div><div></div><div></div></div>
+        </div>
+    </nav>
+    <ul class="mobile-menu" id="mobileMenu"><div class="close-burger" id="closeBurger">&times;</div><li><a href="#" id="mobileContactsBtn" class="contact-link-mobile">📞 Контакты</a></li></ul>
+    <div class="menu-overlay" id="menuOverlay"></div>
+
+    <div class="main-content">
+        <div class="container">
+            <div class="hero">
+                <div class="hero-title"><span class="neon-yellow">ДОБРО ПОЖАЛОВАТЬ В</span><span class="neon-purple">PILIGRIM</span></div>
+                <p><strong class="partner-text">🤝 Ваш надёжный партнёр в мире цифровых решений 🤝</strong></p>
+                <div class="hero-badge"><div class="three-in-one">⚡ 3в1 ⚡</div></div>
+                <div class="plus-features">
+                    <div class="plus-item" data-plus="machine">✍️→🏭 Контент-завод</div>
+                    <div class="plus-item" data-plus="autoposting">📝 Автопостинг</div>
+                    <div class="plus-item" data-plus="ai">🤖💡 AI Помощники</div>
+                </div>
+                <div style="margin-top: 1.2rem; display: flex; justify-content: center;">
+                    <div class="voice-assistant-badge">
+                        <div class="voice-assistant-text">
+                            <i class="fas fa-microphone-alt"></i> 
+                            🎙️ Голосовой ассистент с распознаванием речи
+                            <i class="fas fa-waveform"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card" data-desc="machine"><div class="feature-icon">✍️→🏭</div><h3>Контент-завод</h3><p>Создание и автоматизация контента</p></div>
+                <div class="feature-card" data-desc="autoposting"><div class="feature-icon">📝</div><h3>Автопостинг</h3><p>Автопубликации в соцсетях</p></div>
+                <div class="feature-card" data-desc="ai"><div class="feature-icon">🤖💡</div><h3>AI Помощники</h3><p>Нейропомщники для любых задач</p></div>
+            </div>
+            <div class="download-section">
+                <button class="download-btn" id="downloadButton">📥 Скачать программу</button>
+                <p style="margin-top: 1rem; color: #aaa;">| Для Windows |</p>
+            </div>
+            <div class="video-section"><div class="video-title-wrapper"><h4 class="neon-video-title">🎬 ПРЕЗЕНТАЦИЯ</h4></div>
+                <div class="video-container"><iframe src="https://drive.google.com/file/d/1rfszEzRKhvfF6IVDgGEKbE4mwmvILkva/preview" frameborder="0" allow="autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
+                <p style="margin-top: 1rem; color: #aaa;">Узнайте больше о наших возможностях</p>
+            </div>
+        </div>
+    </div>
+    <footer><p>&copy; 2026 PILIGRIM. Все права защищены.</p></footer>
+
     <div id="infoModal" class="modal"><div id="modalContent" class="modal-content"><span class="close-modal">&times;</span><div id="modalBody"></div></div></div>
-    <div id="contactsModal" class="modal">...</div>
+    <div id="contactsModal" class="modal"><div id="contactsModalContent" class="modal-content" style="max-width: 780px;"><span class="close-modal" id="closeContactsModal">&times;</span><div id="contactsBody" class="modal-inner"></div></div></div>
+
     <script data-goatcounter="https://piligrim757.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+
     <script>
-        // ... (полный код навигации и модальных окон, но с доработкой отображения списка и черты) 
-        // Ниже представлена улучшенная логика модалок с прокруткой и декоративной чертой.
-        // Для краткости оставим только ключевые изменения функций openModal и данных.
+        // Burger menu
+        const burgerBtn = document.getElementById('burgerBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const menuOverlay = document.getElementById('menuOverlay');
+        const closeBurger = document.getElementById('closeBurger');
+        
+        function openMobileMenu() { mobileMenu.classList.add('active'); menuOverlay.classList.add('active'); document.body.style.overflow = 'hidden'; }
+        function closeMobileMenu() { mobileMenu.classList.remove('active'); menuOverlay.classList.remove('active'); document.body.style.overflow = ''; }
+        if(burgerBtn) burgerBtn.addEventListener('click', openMobileMenu);
+        if(closeBurger) closeBurger.addEventListener('click', closeMobileMenu);
+        if(menuOverlay) menuOverlay.addEventListener('click', closeMobileMenu);
+
+        // Modal data with extended list for scroll demonstration
         const modalData = {
             machine: {
                 title: '✍️→🏭 Контент-завод',
                 footer: 'Экономьте до 30 часов в неделю на создании контента!',
                 footerClass: 'modal-footer-green',
                 intro: 'Мощный инструмент для автоматического создания контента:',
-                // Увеличили количество пунктов для демонстрации скролла
                 list: ['Генерация уникальных статей и постов', 'Автоматический рерайт текстов', 'Подбор изображений по теме', 'Создание видео из текста', 'Планирование контент-стратегии', 'SEO-оптимизация публикаций', 'Интеграция с нейросетями', 'Экспорт в любые форматы', 'Генерация сценариев для видео', 'Автоматическая рассылка контента'],
                 headerImage: 'shapka7.png',
                 emojis: ['📝', '🔄', '🖼️', '🎥', '📅', '📈', '🧠', '💾', '🎬', '✉️']
@@ -885,10 +944,8 @@
                 const emoji = data.emojis[idx] || '✨';
                 listItemsHtml += `<li><span style="font-size:1.3rem; min-width:32px;">${emoji}</span><span>${item}</span></li>`;
             });
-            
             const listFullHtml = `<div class="scrollable-list-container"><ul style="list-style:none; padding-left:0;">${listItemsHtml}</ul></div>`;
             
-            // Формируем структуру с оберткой для изображения и декоративной линией
             const html = `<div class="modal-img-wrapper">
                             <img class="modal-header-img" src="${data.headerImage}" alt="header" onerror="this.style.display='none'">
                             <div class="image-swipe-line"></div>
@@ -907,8 +964,8 @@
         }
         
         function closeModal() { modal.classList.remove('show'); document.body.style.overflow = ''; }
-        closeModalBtn.addEventListener('click', closeModal);
-        modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
+        if(closeModalBtn) closeModalBtn.addEventListener('click', closeModal);
+        if(modal) modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
         document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && modal.classList.contains('show')) closeModal(); });
         
         document.querySelectorAll('.feature-card').forEach(card => {
@@ -922,40 +979,46 @@
                 else if (type === 'ai') openModal('ai');
             });
         });
-        
-        // Остальные функции (контакты, скачивание, бургер-меню) оставляем без изменений, они уже присутствовали.
-        // Для полноты скопируем их из оригинального скрипта (они работают корректно)
-        const burgerBtn = document.getElementById('burgerBtn');
-        const mobileMenu = document.getElementById('mobileMenu');
-        const menuOverlay = document.getElementById('menuOverlay');
-        const closeBurger = document.getElementById('closeBurger');
-        function openMobileMenu() { mobileMenu.classList.add('active'); menuOverlay.classList.add('active'); document.body.style.overflow = 'hidden'; }
-        function closeMobileMenu() { mobileMenu.classList.remove('active'); menuOverlay.classList.remove('active'); document.body.style.overflow = ''; }
-        burgerBtn?.addEventListener('click', openMobileMenu);
-        closeBurger?.addEventListener('click', closeMobileMenu);
-        menuOverlay?.addEventListener('click', closeMobileMenu);
-        
+
+        // Contacts Modal
         const contactsModalEl = document.getElementById('contactsModal');
         const contactsBody = document.getElementById('contactsBody');
         const closeContacts = document.getElementById('closeContactsModal');
-        function buildContactsModal() { return `<h3>📬 Связь с нами</h3>...`; }
+        
+        function buildContactsModal() {
+            return `<h3 style="margin-bottom:0.75rem;">📬 Связь с нами</h3>
+            <div class="contacts-container">
+                <div class="contact-row"><div class="contact-info"><i class="fab fa-telegram contact-icon" style="color:#26A5E4;"></i><span class="contact-label neon-yellow-text">Telegram:</span><span class="contact-value">https://t.me/Piligrim757 (@Piligrim757)</span></div><a class="contact-btn" href="https://t.me/Piligrim757" target="_blank">📝 Написать</a></div>
+                <div class="contact-row"><div class="contact-info"><i class="fab fa-vk contact-icon" style="color:#0077FF;"></i><span class="contact-label neon-blue-text">VK:</span><span class="contact-value">https://vk.me/piligrim767</span></div><a class="contact-btn" href="https://vk.me/piligrim767" target="_blank">📝 Написать</a></div>
+                <div class="contact-row"><div class="contact-info"><i class="fas fa-envelope contact-icon" style="color:#ce93d8;"></i><span class="contact-label neon-purple-text">E-mail:</span><span class="contact-value">piligrim@atomicmail.io</span></div><div></div></div>
+                <div class="contacts-divider"></div>
+                <div class="contacts-footer-note subheading-green">📢 Каналы, фишки, описание по работе с программой</div>
+                <div class="contact-row"><div class="contact-info"><i class="fab fa-vk contact-icon" style="color:#0077FF;"></i><span class="contact-label neon-blue-text">ВКонтакте:</span><span class="contact-value">https://vk.com/Piligrim767</span></div><a class="contact-btn" href="https://vk.com/Piligrim767" target="_blank">🚀 Перейти</a></div>
+                <div class="contact-row"><div class="contact-info"><i class="fab fa-telegram contact-icon" style="color:#26A5E4;"></i><span class="contact-label neon-yellow-text">Telegram:</span><span class="contact-value">https://t.me/Piligrim767 (@Piligrim767)</span></div><a class="contact-btn" href="https://t.me/Piligrim767" target="_blank">🚀 Перейти</a></div>
+            </div>`;
+        }
+        
         function openContactsModal() { contactsBody.innerHTML = buildContactsModal(); contactsModalEl.classList.add('show'); document.body.style.overflow = 'hidden'; }
         function closeContactsModalFunc() { contactsModalEl.classList.remove('show'); document.body.style.overflow = ''; }
-        document.getElementById('contactsNavBtn')?.addEventListener('click', (e) => { e.preventDefault(); openContactsModal(); });
-        document.getElementById('mobileContactsBtn')?.addEventListener('click', (e) => { e.preventDefault(); closeMobileMenu(); setTimeout(openContactsModal, 100); });
-        closeContacts?.addEventListener('click', closeContactsModalFunc);
-        contactsModalEl?.addEventListener('click', (e) => { if (e.target === contactsModalEl) closeContactsModalFunc(); });
         
-        function showToast(msg) { const toast = document.createElement('div'); toast.className = 'toast-notification'; toast.textContent = msg; document.body.appendChild(toast); setTimeout(() => toast.remove(), 3000); }
+        const contactsNavBtn = document.getElementById('contactsNavBtn');
+        const mobileContactsBtn = document.getElementById('mobileContactsBtn');
+        if(contactsNavBtn) contactsNavBtn.addEventListener('click', (e) => { e.preventDefault(); openContactsModal(); });
+        if(mobileContactsBtn) mobileContactsBtn.addEventListener('click', (e) => { e.preventDefault(); closeMobileMenu(); setTimeout(openContactsModal, 100); });
+        if(closeContacts) closeContacts.addEventListener('click', closeContactsModalFunc);
+        if(contactsModalEl) contactsModalEl.addEventListener('click', (e) => { if (e.target === contactsModalEl) closeContactsModalFunc(); });
+        document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && contactsModalEl.classList.contains('show')) closeContactsModalFunc(); });
+
+        // Download & Toast
+        function showToast(message) { const toast = document.createElement('div'); toast.className = 'toast-notification'; toast.textContent = message; document.body.appendChild(toast); setTimeout(() => toast.remove(), 3000); }
         const DOWNLOAD_URL = 'https://github.com/Piligrim757/PILIGRIM/releases/download/v1.0.0/2020.exe';
         let isDownloading = false;
         function performDownload() { try { const link = document.createElement('a'); link.href = DOWNLOAD_URL; link.download = 'Piligrim.exe'; document.body.appendChild(link); link.click(); document.body.removeChild(link); showToast('✅ Скачивание началось!'); } catch(e) { window.open(DOWNLOAD_URL, '_blank'); showToast('✅ Скачивание началось!'); } }
-        async function handleDownload() { if(isDownloading) { showToast('⏳ Подождите'); return; } isDownloading=true; const btn=document.getElementById('downloadButton'); const orig=btn.innerHTML; btn.innerHTML='⏳ Подготовка...'; btn.disabled=true; try { if(window.goatcounter?.count) window.goatcounter.count({path:'/download/Piligrim_Setup.exe',title:'Скачивание',event:true}); await new Promise(r=>setTimeout(r,200)); performDownload(); } catch(e){ performDownload(); } finally { setTimeout(()=>{ btn.innerHTML=orig; btn.disabled=false; isDownloading=false; },1500); } }
-        document.getElementById('downloadButton')?.addEventListener('click', handleDownload);
+        async function handleDownload() { if(isDownloading) { showToast('⏳ Подождите, скачивание уже запущено'); return; } isDownloading=true; const btn=document.getElementById('downloadButton'); const originalText=btn.innerHTML; btn.innerHTML='⏳ Подготовка...'; btn.disabled=true; try { if(window.goatcounter?.count) window.goatcounter.count({path:'/download/Piligrim_Setup.exe',title:'Скачивание',event:true}); await new Promise(r=>setTimeout(r,200)); performDownload(); } catch(e){ performDownload(); } finally { setTimeout(()=>{ btn.innerHTML=originalText; btn.disabled=false; isDownloading=false; },1500); } }
+        const downloadButton = document.getElementById('downloadButton');
+        if(downloadButton) downloadButton.addEventListener('click', handleDownload);
+        
         window.addEventListener('load', () => { if(window.goatcounter?.count) window.goatcounter.count({path:'/',title:'PILIGRIM - Главная',event:false}); });
-        // Восстановим полную генерацию контактов (коротко)
-        buildContactsModal = () => `<h3 style="margin-bottom:0.75rem;">📬 Связь с нами</h3><div class="contacts-container"><div class="contact-row"><div class="contact-info"><i class="fab fa-telegram contact-icon" style="color:#26A5E4;"></i><span class="contact-label neon-yellow-text">Telegram:</span><span class="contact-value">https://t.me/Piligrim757 (@Piligrim757)</span></div><a class="contact-btn" href="https://t.me/Piligrim757" target="_blank">📝 Написать</a></div><div class="contact-row"><div class="contact-info"><i class="fab fa-vk contact-icon" style="color:#0077FF;"></i><span class="contact-label neon-blue-text">VK:</span><span class="contact-value">https://vk.me/piligrim767</span></div><a class="contact-btn" href="https://vk.me/piligrim767" target="_blank">📝 Написать</a></div><div class="contact-row"><div class="contact-info"><i class="fas fa-envelope contact-icon" style="color:#ce93d8;"></i><span class="contact-label neon-purple-text">E-mail:</span><span class="contact-value">piligrim@atomicmail.io</span></div><div></div></div><div class="contacts-divider"></div><div class="contacts-footer-note subheading-green">📢 Каналы, фишки, описание по работе с программой</div><div class="contact-row"><div class="contact-info"><i class="fab fa-vk contact-icon" style="color:#0077FF;"></i><span class="contact-label neon-blue-text">ВКонтакте:</span><span class="contact-value">https://vk.com/Piligrim767</span></div><a class="contact-btn" href="https://vk.com/Piligrim767" target="_blank">🚀 Перейти</a></div><div class="contact-row"><div class="contact-info"><i class="fab fa-telegram contact-icon" style="color:#26A5E4;"></i><span class="contact-label neon-yellow-text">Telegram:</span><span class="contact-value">https://t.me/Piligrim767 (@Piligrim767)</span></div><a class="contact-btn" href="https://t.me/Piligrim767" target="_blank">🚀 Перейти</a></div></div>`;
-        openContactsModal = () => { contactsBody.innerHTML = buildContactsModal(); contactsModalEl.classList.add('show'); document.body.style.overflow = 'hidden'; };
     </script>
 </body>
 </html>
