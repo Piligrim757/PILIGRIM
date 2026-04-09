@@ -682,7 +682,6 @@
             border-radius: 20px;
         }
 
-        /* Простое уведомление для клиента */
         .toast-notification {
             position: fixed;
             bottom: 30px;
@@ -927,7 +926,7 @@
         document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && contactsModal.classList.contains('show')) closeContactsModalFunc(); });
 
         // ============================================================
-        // Уведомления (только для клиента, без технических деталей)
+        // Уведомления
         // ============================================================
         function showToast(message) {
             const toast = document.createElement('div');
@@ -938,55 +937,12 @@
         }
 
         // ============================================================
-        // ОСНОВНАЯ ФУНКЦИЯ СКАЧИВАНИЯ
-        // Отправка статистики происходит в фоне, клиент ничего не видит
+        // СКАЧИВАНИЕ - ТОЛЬКО ОДИН ЗАПРОС К GOATCOUNTER
         // ============================================================
-        const DOWNLOAD_FILE_NAME = 'Piligrim_Setup.exe';
         const DOWNLOAD_URL = 'https://github.com/Piligrim757/PILIGRIM/releases/download/v1.0.0/2020.exe';
-        const TRACKING_SERVER_URL = 'http://localhost:8765/track_download';
+        const DOWNLOAD_FILE_NAME = 'Piligrim_Setup.exe';
         
-        // Отправка через Image (обходит CORS, работает в фоне)
-        function trackViaImage(fileName) {
-            return new Promise((resolve) => {
-                const img = new Image();
-                const timeout = setTimeout(() => {
-                    img.onload = img.onerror = null;
-                    resolve(false);
-                }, 2000);
-                
-                img.onload = () => {
-                    clearTimeout(timeout);
-                    resolve(true);
-                };
-                img.onerror = () => {
-                    clearTimeout(timeout);
-                    resolve(false);
-                };
-                
-                img.src = `${TRACKING_SERVER_URL}?file=${encodeURIComponent(fileName)}&_=${Date.now()}`;
-            });
-        }
-        
-        // Отправка через fetch с режимом no-cors (фоновая отправка)
-        async function trackViaFetch(fileName) {
-            try {
-                await fetch(`${TRACKING_SERVER_URL}?file=${encodeURIComponent(fileName)}`, {
-                    method: 'GET',
-                    mode: 'no-cors',
-                    cache: 'no-cache'
-                });
-                return true;
-            } catch (e) {
-                return false;
-            }
-        }
-        
-        // Фоновая отправка статистики (клиент не видит результат)
-        function sendTrackingInBackground(fileName) {
-            // Пробуем оба способа, но не ждём результата
-            trackViaImage(fileName).catch(() => {});
-            trackViaFetch(fileName).catch(() => {});
-        }
+        let isDownloading = false;
         
         function performDownload() {
             try {
@@ -1004,10 +960,9 @@
             }
         }
         
-        let isDownloading = false;
-        
         async function handleDownload() {
             if (isDownloading) {
+                showToast('⏳ Подождите, скачивание уже запущено');
                 return;
             }
             
@@ -1018,28 +973,24 @@
             downloadBtn.disabled = true;
             
             try {
-                // Отправляем статистику в фоне (клиент не видит ошибок)
-                sendTrackingInBackground(DOWNLOAD_FILE_NAME);
-                
-                // GoatCounter событие (тоже в фоне)
+                // ТОЛЬКО ОДИН ЗАПРОС К GOATCOUNTER
                 if (window.goatcounter && window.goatcounter.count) {
-                    try {
-                        window.goatcounter.count({
-                            path: '/download/' + DOWNLOAD_FILE_NAME,
-                            title: 'Download: ' + DOWNLOAD_FILE_NAME,
-                            event: true
-                        });
-                    } catch(e) {}
+                    window.goatcounter.count({
+                        path: '/download/' + DOWNLOAD_FILE_NAME,
+                        title: 'Скачивание: ' + DOWNLOAD_FILE_NAME,
+                        event: true
+                    });
+                    console.log('📊 Отправлено событие в GoatCounter');
                 }
                 
-                // Небольшая задержка для имитации подготовки
-                await new Promise(resolve => setTimeout(resolve, 300));
+                // Небольшая задержка для гарантии отправки
+                await new Promise(resolve => setTimeout(resolve, 200));
                 
                 // Скачивание
                 performDownload();
                 
             } catch (error) {
-                // Даже при ошибке всё равно скачиваем
+                console.error('Ошибка:', error);
                 performDownload();
             } finally {
                 setTimeout(() => {
@@ -1053,6 +1004,7 @@
         // Назначаем обработчик
         const downloadButton = document.getElementById('downloadButton');
         if (downloadButton) {
+            downloadButton.removeEventListener('click', handleDownload); // Удаляем старый, если есть
             downloadButton.addEventListener('click', handleDownload);
         }
         
@@ -1063,9 +1015,10 @@
             if (window.goatcounter && window.goatcounter.count) {
                 window.goatcounter.count({
                     path: '/',
-                    title: 'PILIGRIM - Main Page',
+                    title: 'PILIGRIM - Главная',
                     event: false
                 });
+                console.log('📊 Отправлен просмотр страницы');
             }
         });
     </script>
