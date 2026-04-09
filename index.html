@@ -184,7 +184,6 @@
             padding: 2rem 1rem;
         }
 
-        /* Герой блок */
         .hero {
             text-align: center;
             padding: 3rem 2rem;
@@ -400,7 +399,6 @@
             font-weight: 500;
         }
 
-        /* МОДАЛЬНЫЕ ОКНА — фон под цвет вкладки, списки слева с эмодзи */
         .modal {
             display: none;
             position: fixed;
@@ -433,9 +431,8 @@
             flex-direction: column;
             border-width: 3px;
             border-style: solid;
-            background: #2a2a2a; /* fallback */
+            background: #2a2a2a;
         }
-        /* Цветовые темы для модальных окон - фон такой же как у карточек */
         .modal-content[data-modal-bg="machine"] {
             background: radial-gradient(circle at 10% 20%, #0e3a5c, #04293a);
             border-color: #39ff14;
@@ -463,7 +460,7 @@
             flex: 1;
             scrollbar-width: thin;
             text-align: center;
-            background: transparent; /* прозрачный чтобы наследовать градиент */
+            background: transparent;
         }
         .modal-inner h3 {
             font-size: 1.8rem;
@@ -480,7 +477,6 @@
             color: #f0f0f0;
             font-size: 1rem;
         }
-        /* Стили списка: убираем стандартные маркеры, добавляем эмодзи, выравнивание по левому краю */
         .modal-inner ul {
             padding-left: 0;
             margin: 1rem 0;
@@ -497,7 +493,6 @@
             align-items: center;
             gap: 12px;
         }
-        /* Эмодзи вместо точек */
         .modal-inner li::before {
             content: "✨";
             font-size: 1.2rem;
@@ -506,7 +501,6 @@
             text-align: center;
             flex-shrink: 0;
         }
-        /* Разные эмодзи для разных типов — зададим динамически через js, но для красоты оставим базовый, а js добавит уникальные */
         .modal-footer-green {
             color: #39ff14;
             text-shadow: 0 0 5px #00ff00, 0 0 10px #00cc00, 0 0 15px #009900;
@@ -547,7 +541,6 @@
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
         @keyframes slideIn { from { transform: translateY(-30px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
 
-        /* КОНТАКТНОЕ МОДАЛЬНОЕ ОКНО */
         .contacts-container {
             display: flex;
             flex-direction: column;
@@ -654,6 +647,14 @@
             transform: translateY(-3px);
             box-shadow: 0 0 25px rgba(0, 255, 0, 0.8);
         }
+        .download-btn:active {
+            transform: translateY(1px);
+        }
+        .download-btn:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+            transform: none;
+        }
 
         .video-section {
             margin: 2rem 0 1rem;
@@ -681,6 +682,53 @@
             border-radius: 20px;
         }
 
+        .toast-notification {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0,0,0,0.95);
+            color: #39ff14;
+            padding: 12px 24px;
+            border-radius: 50px;
+            font-weight: 600;
+            z-index: 1001;
+            animation: fadeInOut 3s ease;
+            pointer-events: none;
+            border: 1px solid #39ff14;
+            box-shadow: 0 0 20px rgba(57,255,20,0.3);
+            font-size: 14px;
+            white-space: nowrap;
+        }
+        .toast-notification.error {
+            color: #ff4444;
+            border-color: #ff4444;
+            box-shadow: 0 0 20px rgba(255,68,68,0.3);
+        }
+        @keyframes fadeInOut {
+            0% { opacity: 0; transform: translateX(-50%) translateY(20px); }
+            15% { opacity: 1; transform: translateX(-50%) translateY(0); }
+            85% { opacity: 1; transform: translateX(-50%) translateY(0); }
+            100% { opacity: 0; transform: translateX(-50%) translateY(-20px); }
+        }
+
+        .server-status {
+            display: inline-block;
+            margin-left: 15px;
+            font-size: 12px;
+            padding: 4px 10px;
+            border-radius: 20px;
+            background: #333;
+        }
+        .server-status.online {
+            background: #1a5c1a;
+            color: #39ff14;
+        }
+        .server-status.offline {
+            background: #5c1a1a;
+            color: #ff4444;
+        }
+
         footer {
             background: #000000;
             color: #ce93d8;
@@ -702,6 +750,7 @@
             .contact-row { flex-direction: column; align-items: flex-start; }
             .contact-btn { align-self: flex-end; width: auto; min-width: 100px; }
             .modal-content { max-width: 95%; }
+            .toast-notification { white-space: normal; text-align: center; max-width: 90%; font-size: 12px; }
         }
     </style>
 </head>
@@ -736,7 +785,13 @@
                 <div class="feature-card" data-desc="autoposting"><div class="feature-icon">📝</div><h3>Автопостинг</h3><p>Автопубликации в соцсетях</p></div>
                 <div class="feature-card" data-desc="ai"><div class="feature-icon">🤖💡</div><h3>AI Помощники</h3><p>Нейропомщники для любых задач</p></div>
             </div>
-            <div class="download-section"><button class="download-btn" id="downloadButton">📥 Скачать программу</button><p style="margin-top: 1rem; color: #aaa;">| Для Windows |</p></div>
+            <div class="download-section">
+                <button class="download-btn" id="downloadButton">📥 Скачать программу</button>
+                <p style="margin-top: 0.5rem; color: #aaa;">| Для Windows |</p>
+                <div id="serverStatus" style="margin-top: 0.5rem; font-size: 12px;">
+                    <span class="server-status offline" id="statusBadge">🔌 Проверка сервера...</span>
+                </div>
+            </div>
             <div class="video-section"><div class="video-title-wrapper"><h4 class="neon-video-title">🎬 ПРЕЗЕНТАЦИЯ</h4></div>
                 <div class="video-container"><iframe src="https://drive.google.com/file/d/1rfszEzRKhvfF6IVDgGEKbE4mwmvILkva/preview" frameborder="0" allow="autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
                 <p style="margin-top: 1rem; color: #aaa;">Узнайте больше о наших возможностях</p>
@@ -748,76 +803,124 @@
     <div id="infoModal" class="modal"><div id="modalContent" class="modal-content"><span class="close-modal">&times;</span><div id="modalBody"></div></div></div>
     <div id="contactsModal" class="modal"><div id="contactsModalContent" class="modal-content" style="max-width: 780px;"><span class="close-modal" id="closeContactsModal">&times;</span><div id="contactsBody" class="modal-inner"></div></div></div>
 
-    <!-- Код GoatCounter для отслеживания -->
+    <!-- GoatCounter для отслеживания -->
     <script data-goatcounter="https://piligrim757.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 
     <script>
-        // Burger logic
-        const burgerBtn=document.getElementById('burgerBtn'), mobileMenu=document.getElementById('mobileMenu'), menuOverlay=document.getElementById('menuOverlay'), closeBurger=document.getElementById('closeBurger');
-        function openMobileMenu(){mobileMenu.classList.add('active');menuOverlay.classList.add('active');document.body.style.overflow='hidden';}
-        function closeMobileMenu(){mobileMenu.classList.remove('active');menuOverlay.classList.remove('active');document.body.style.overflow='';}
-        burgerBtn.addEventListener('click',openMobileMenu); closeBurger.addEventListener('click',closeMobileMenu); menuOverlay.addEventListener('click',closeMobileMenu);
+        // ============================================================
+        // Burger menu
+        // ============================================================
+        const burgerBtn = document.getElementById('burgerBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const menuOverlay = document.getElementById('menuOverlay');
+        const closeBurger = document.getElementById('closeBurger');
+        
+        function openMobileMenu() {
+            mobileMenu.classList.add('active');
+            menuOverlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+        function closeMobileMenu() {
+            mobileMenu.classList.remove('active');
+            menuOverlay.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+        burgerBtn.addEventListener('click', openMobileMenu);
+        closeBurger.addEventListener('click', closeMobileMenu);
+        menuOverlay.addEventListener('click', closeMobileMenu);
 
-        // Modal data с индивидуальными эмодзи для каждого пункта
-        const modalData={
-            machine:{
-                title:'✍️→🏭 Контент-завод',
-                footer:'Экономьте до 30 часов в неделю на создании контента!',
-                footerClass:'modal-footer-green',
-                intro:'Мощный инструмент для автоматического создания контента:',
-                list:['Генерация уникальных статей и постов','Автоматический рерайт текстов','Подбор изображений по теме','Создание видео из текста','Планирование контент-стратегии'],
-                headerImage:'shapka7.png',
-                emojis:['📝','🔄','🖼️','🎥','📅']
+        // ============================================================
+        // Modal data
+        // ============================================================
+        const modalData = {
+            machine: {
+                title: '✍️→🏭 Контент-завод',
+                footer: 'Экономьте до 30 часов в неделю на создании контента!',
+                footerClass: 'modal-footer-green',
+                intro: 'Мощный инструмент для автоматического создания контента:',
+                list: ['Генерация уникальных статей и постов', 'Автоматический рерайт текстов', 'Подбор изображений по теме', 'Создание видео из текста', 'Планирование контент-стратегии'],
+                headerImage: 'shapka7.png',
+                emojis: ['📝', '🔄', '🖼️', '🎥', '📅']
             },
-            autoposting:{
-                title:'📝 Автопостинг',
-                footer:'Ведите соцсети без ручного труда!',
-                footerClass:'modal-footer-green',
-                intro:'Полная автоматизация ведения социальных сетей:',
-                list:['Автопубликация постов по расписанию','Кросспостинг во все соцсети сразу','Автоматический подбор хештегов','Аналитика эффективности','Поддержка VK, Telegram, Instagram, Facebook, Twitter'],
-                headerImage:'shapka6.png',
-                emojis:['⏰','🔄','🏷️','📊','🌐']
+            autoposting: {
+                title: '📝 Автопостинг',
+                footer: 'Ведите соцсети без ручного труда!',
+                footerClass: 'modal-footer-green',
+                intro: 'Полная автоматизация ведения социальных сетей:',
+                list: ['Автопубликация постов по расписанию', 'Кросспостинг во все соцсети сразу', 'Автоматический подбор хештегов', 'Аналитика эффективности', 'Поддержка VK, Telegram, Instagram, Facebook, Twitter'],
+                headerImage: 'shapka6.png',
+                emojis: ['⏰', '🔄', '🏷️', '📊', '🌐']
             },
-            ai:{
-                title:'🤖💡 AI Помощники',
-                footer:'Все нейросети в одном окне!',
-                footerClass:'modal-footer-blue',
-                intro:'Искусственный интеллект для любых задач:',
-                list:['GPT-4 для общения и генерации текстов','Midjourney для создания изображений','Анализ данных и создание отчётов','Автоматический перевод на 100+ языков','Голосовой ассистент с распознаванием речи'],
-                headerImage:'shapka5.png',
-                emojis:['💬','🎨','📈','🌍','🎙️']
+            ai: {
+                title: '🤖💡 AI Помощники',
+                footer: 'Все нейросети в одном окне!',
+                footerClass: 'modal-footer-blue',
+                intro: 'Искусственный интеллект для любых задач:',
+                list: ['GPT-4 для общения и генерации текстов', 'Midjourney для создания изображений', 'Анализ данных и создание отчётов', 'Автоматический перевод на 100+ языков', 'Голосовой ассистент с распознаванием речи'],
+                headerImage: 'shapka5.png',
+                emojis: ['💬', '🎨', '📈', '🌍', '🎙️']
             }
         };
-        const modal=document.getElementById('infoModal'), modalContentDiv=document.getElementById('modalContent'), modalBody=document.getElementById('modalBody'), closeModalBtn=document.querySelector('#infoModal .close-modal');
         
-        function openModal(type){
-            const data=modalData[type]; if(!data) return;
-            // строим список с индивидуальными эмодзи и выравниванием по левому краю
-            let listHtml='<ul style="list-style:none; padding-left:0;">';
+        const modal = document.getElementById('infoModal');
+        const modalContentDiv = document.getElementById('modalContent');
+        const modalBody = document.getElementById('modalBody');
+        const closeModalBtn = document.querySelector('#infoModal .close-modal');
+        
+        function openModal(type) {
+            const data = modalData[type];
+            if (!data) return;
+            
+            let listHtml = '<ul style="list-style:none; padding-left:0;">';
             data.list.forEach((item, idx) => {
                 const emoji = data.emojis[idx] || '✨';
                 listHtml += `<li style="display: flex; align-items: center; gap: 12px; margin-bottom: 10px;"><span style="font-size:1.3rem; min-width:32px;">${emoji}</span><span>${item}</span></li>`;
             });
-            listHtml+='</ul>';
-            const html=`<img class="modal-header-img" src="${data.headerImage}" alt="header" onerror="this.style.display='none'"><div class="modal-inner"><h3>${data.title}</h3><div class="${data.footerClass}">✨ ${data.footer} ✨</div><p>${data.intro}</p>${listHtml}</div>`;
-            modalBody.innerHTML=html;
-            // Устанавливаем цветовую тему фона модального окна
+            listHtml += '</ul>';
+            
+            const html = `<img class="modal-header-img" src="${data.headerImage}" alt="header" onerror="this.style.display='none'">
+                         <div class="modal-inner">
+                             <h3>${data.title}</h3>
+                             <div class="${data.footerClass}"> ${data.footer} </div>
+                             <p>${data.intro}</p>
+                             ${listHtml}
+                         </div>`;
+            modalBody.innerHTML = html;
             modalContentDiv.setAttribute('data-modal-bg', type);
-            modalContentDiv.style.borderColor = (type==='machine'?'#39ff14':type==='autoposting'?'#FFD700':'#00BFFF');
+            modalContentDiv.style.borderColor = (type === 'machine' ? '#39ff14' : type === 'autoposting' ? '#FFD700' : '#00BFFF');
             modal.classList.add('show');
-            document.body.style.overflow='hidden';
+            document.body.style.overflow = 'hidden';
         }
-        function closeModal(){modal.classList.remove('show');document.body.style.overflow='';}
-        closeModalBtn.addEventListener('click',closeModal);
-        modal.addEventListener('click',(e)=>{if(e.target===modal)closeModal();});
-        document.addEventListener('keydown',(e)=>{if(e.key==='Escape'&&modal.classList.contains('show'))closeModal();});
+        
+        function closeModal() {
+            modal.classList.remove('show');
+            document.body.style.overflow = '';
+        }
+        
+        closeModalBtn.addEventListener('click', closeModal);
+        modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
+        document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && modal.classList.contains('show')) closeModal(); });
+        
+        document.querySelectorAll('.feature-card').forEach(card => {
+            card.addEventListener('click', () => { openModal(card.getAttribute('data-desc')); });
+        });
+        document.querySelectorAll('.plus-item').forEach(btn => {
+            btn.addEventListener('click', () => {
+                let type = btn.getAttribute('data-plus');
+                if (type === 'machine') openModal('machine');
+                else if (type === 'autoposting') openModal('autoposting');
+                else if (type === 'ai') openModal('ai');
+            });
+        });
 
-        document.querySelectorAll('.feature-card').forEach(card=>{card.addEventListener('click',()=>{openModal(card.getAttribute('data-desc'));});});
-        document.querySelectorAll('.plus-item').forEach(btn=>{btn.addEventListener('click',()=>{let type=btn.getAttribute('data-plus');if(type==='machine')openModal('machine');else if(type==='autoposting')openModal('autoposting');else if(type==='ai')openModal('ai');});});
-
+        // ============================================================
         // Contacts Modal
-        const contactsModal=document.getElementById('contactsModal'), contactsBody=document.getElementById('contactsBody'), closeContacts=document.getElementById('closeContactsModal');
-        function buildContactsModal(){
+        // ============================================================
+        const contactsModal = document.getElementById('contactsModal');
+        const contactsBody = document.getElementById('contactsBody');
+        const closeContacts = document.getElementById('closeContactsModal');
+        
+        function buildContactsModal() {
             return `<h3 style="margin-bottom:0.75rem;">📬 Связь с нами</h3>
             <div class="contacts-container">
                 <div class="contact-row"><div class="contact-info"><i class="fab fa-telegram contact-icon" style="color:#26A5E4;"></i><span class="contact-label neon-yellow-text">Telegram:</span><span class="contact-value">https://t.me/Piligrim757 (@Piligrim757)</span></div><a class="contact-btn" href="https://t.me/Piligrim757" target="_blank">📝 Написать</a></div>
@@ -829,100 +932,195 @@
             </div>
             <div class="contacts-footer-note subheading-green">📢 Каналы, фишки, описание по работе с программой</div>`;
         }
-        function openContactsModal(){ contactsBody.innerHTML=buildContactsModal(); contactsModal.classList.add('show'); document.body.style.overflow='hidden'; }
-        function closeContactsModalFunc(){ contactsModal.classList.remove('show'); document.body.style.overflow=''; }
-        document.getElementById('contactsNavBtn')?.addEventListener('click',(e)=>{e.preventDefault();openContactsModal();});
-        document.getElementById('mobileContactsBtn')?.addEventListener('click',(e)=>{e.preventDefault();closeMobileMenu();setTimeout(openContactsModal,100);});
-        closeContacts.addEventListener('click',closeContactsModalFunc); contactsModal.addEventListener('click',(e)=>{if(e.target===contactsModal)closeContactsModalFunc();});
-        document.addEventListener('keydown',(e)=>{if(e.key==='Escape'&&contactsModal.classList.contains('show'))closeContactsModalFunc();});
+        
+        function openContactsModal() {
+            contactsBody.innerHTML = buildContactsModal();
+            contactsModal.classList.add('show');
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function closeContactsModalFunc() {
+            contactsModal.classList.remove('show');
+            document.body.style.overflow = '';
+        }
+        
+        document.getElementById('contactsNavBtn')?.addEventListener('click', (e) => { e.preventDefault(); openContactsModal(); });
+        document.getElementById('mobileContactsBtn')?.addEventListener('click', (e) => { e.preventDefault(); closeMobileMenu(); setTimeout(openContactsModal, 100); });
+        closeContacts.addEventListener('click', closeContactsModalFunc);
+        contactsModal.addEventListener('click', (e) => { if (e.target === contactsModal) closeContactsModalFunc(); });
+        document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && contactsModal.classList.contains('show')) closeContactsModalFunc(); });
 
         // ============================================================
-        // ИСПРАВЛЕННОЕ ОТСЛЕЖИВАНИЕ СКАЧИВАНИЙ ДЛЯ GOATCOUNTER
+        // Уведомления
         // ============================================================
+        function showToast(message, isError = false) {
+            const toast = document.createElement('div');
+            toast.className = 'toast-notification' + (isError ? ' error' : '');
+            toast.textContent = message;
+            document.body.appendChild(toast);
+            setTimeout(() => { toast.remove(); }, 3500);
+        }
+
+        // ============================================================
+        // ОСНОВНАЯ ФУНКЦИЯ СКАЧИВАНИЯ
+        // Решение проблемы CORS и mixed content через image ping
+        // ============================================================
+        const DOWNLOAD_FILE_NAME = 'Piligrim_Setup.exe';
+        const DOWNLOAD_URL = 'https://github.com/Piligrim757/PILIGRIM/releases/download/v1.0.0/2020.exe';
+        const TRACKING_SERVER_URL = 'http://localhost:8765/track_download';
         
-        const GOAT_SITE = 'piligrim757';
+        // Способ 1: Отправка через Image (обходит CORS, но только GET)
+        function trackViaImage(fileName) {
+            return new Promise((resolve) => {
+                const img = new Image();
+                const timeout = setTimeout(() => {
+                    img.onload = img.onerror = null;
+                    resolve(false);
+                }, 3000);
+                
+                img.onload = () => {
+                    clearTimeout(timeout);
+                    resolve(true);
+                };
+                img.onerror = () => {
+                    clearTimeout(timeout);
+                    resolve(false);
+                };
+                
+                img.src = `${TRACKING_SERVER_URL}?file=${encodeURIComponent(fileName)}&_=${Date.now()}`;
+            });
+        }
         
-        // Функция отслеживания скачиваний (правильный способ)
-        function trackDownload(filename) {
-            // Используем стандартный goatcounter метод
-            if (window.goatcounter && window.goatcounter.count) {
-                window.goatcounter.count({
-                    path: '/download/' + filename,
-                    title: 'Скачивание: ' + filename,
-                    event: true  // Важно: помечаем как событие
-                });
-                console.log('✅ Отслежено скачивание:', filename);
-            } else {
-                // Fallback через fetch
-                fetch(`https://${GOAT_SITE}.goatcounter.com/count`, {
-                    method: 'POST',
+        // Способ 2: Отправка через fetch с режимом no-cors (не получим ответ, но запрос уйдёт)
+        async function trackViaFetch(fileName) {
+            try {
+                await fetch(`${TRACKING_SERVER_URL}?file=${encodeURIComponent(fileName)}`, {
+                    method: 'GET',
                     mode: 'no-cors',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                        hits: [{
-                            path: '/download/' + filename,
-                            event: true,
-                            title: 'Скачивание: ' + filename
-                        }]
-                    })
-                }).catch(e => console.log('Ошибка отслеживания:', e));
+                    cache: 'no-cache'
+                });
+                return true;
+            } catch (e) {
+                return false;
             }
         }
         
-        // Кнопка скачивания
-        const downloadBtn = document.getElementById('downloadButton');
-        if (downloadBtn) {
-            downloadBtn.addEventListener('click', function(e) {
-                e.preventDefault();
-                
-                const filename = 'Piligrim_Setup.exe';
-                
-                // Сначала отправляем событие о скачивании
-                trackDownload(filename);
-                
-                // Небольшая задержка для гарантии отправки
-                setTimeout(function() {
-                    // Ссылка на файл (замените на реальную, если нужно)
-                    const downloadUrl = 'https://github.com/Piligrim757/PILIGRIM/releases/download/v1.0.0/2020.exe';
-                    
-                    const a = document.createElement('a');
-                    a.href = downloadUrl;
-                    a.download = 'Piligrim.exe';
-                    document.body.appendChild(a);
-                    a.click();
-                    document.body.removeChild(a);
-                    
-                    alert('Скачивание началось! Спасибо за интерес к PILIGRIM!');
-                }, 150);
-            });
+        // Комбинированная отправка статистики
+        async function sendTrackingToLocalServer(fileName) {
+            // Пробуем оба способа
+            const results = await Promise.allSettled([
+                trackViaImage(fileName),
+                trackViaFetch(fileName)
+            ]);
+            return results.some(r => r.status === 'fulfilled' && r.value === true);
         }
         
-        // Отслеживаем все ссылки на скачивание файлов на странице
-        function setupAutoDownloadTracking() {
-            const downloadExtensions = ['.exe', '.zip', '.rar', '.7z', '.msi', '.pdf', '.doc', '.docx'];
-            const allLinks = document.querySelectorAll('a');
+        function performDownload() {
+            try {
+                const link = document.createElement('a');
+                link.href = DOWNLOAD_URL;
+                link.download = 'Piligrim.exe';
+                link.style.display = 'none';
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+                showToast('✅ Скачивание началось! Спасибо за интерес к PILIGRIM!');
+            } catch (error) {
+                window.open(DOWNLOAD_URL, '_blank');
+                showToast('✅ Скачивание началось в новой вкладке!');
+            }
+        }
+        
+        let isDownloading = false;
+        
+        async function handleDownload() {
+            if (isDownloading) {
+                showToast('⏳ Скачивание уже запущено, подождите...');
+                return;
+            }
             
-            allLinks.forEach(function(link) {
-                const href = link.getAttribute('href');
-                if (href) {
-                    const isDownload = downloadExtensions.some(ext => href.toLowerCase().endsWith(ext));
-                    if (isDownload || href.includes('/download/')) {
-                        link.addEventListener('click', function(e) {
-                            let filename = href.split('/').pop();
-                            if (filename) {
-                                trackDownload(filename);
-                            }
-                        });
-                    }
+            isDownloading = true;
+            const downloadBtn = document.getElementById('downloadButton');
+            const originalText = downloadBtn.innerHTML;
+            downloadBtn.innerHTML = '⏳ Отправка статистики...';
+            downloadBtn.disabled = true;
+            
+            try {
+                // Отправляем статистику на локальный сервер
+                const tracked = await sendTrackingToLocalServer(DOWNLOAD_FILE_NAME);
+                
+                if (tracked) {
+                    showToast('📊 Статистика отправлена на сервер!');
+                } else {
+                    showToast('⚠️ Сервер статистики не отвечает, но скачивание продолжится', true);
                 }
-            });
+                
+                // Небольшая задержка
+                await new Promise(resolve => setTimeout(resolve, 200));
+                
+                // GoatCounter событие
+                if (window.goatcounter && window.goatcounter.count) {
+                    window.goatcounter.count({
+                        path: '/download/' + DOWNLOAD_FILE_NAME,
+                        title: 'Скачивание: ' + DOWNLOAD_FILE_NAME,
+                        event: true
+                    });
+                }
+                
+                // Скачивание
+                performDownload();
+                
+            } catch (error) {
+                console.error('Ошибка:', error);
+                showToast('⚠️ Ошибка, но скачивание продолжается', true);
+                performDownload();
+            } finally {
+                setTimeout(() => {
+                    downloadBtn.innerHTML = originalText;
+                    downloadBtn.disabled = false;
+                    isDownloading = false;
+                }, 2000);
+            }
         }
         
-        // Запускаем автоматическое отслеживание ссылок
-        setupAutoDownloadTracking();
+        // Проверка статуса сервера
+        async function checkServerStatus() {
+            const statusBadge = document.getElementById('statusBadge');
+            try {
+                const controller = new AbortController();
+                const timeoutId = setTimeout(() => controller.abort(), 3000);
+                
+                await fetch('http://localhost:8765/ping', {
+                    method: 'GET',
+                    mode: 'no-cors',
+                    signal: controller.signal
+                });
+                
+                clearTimeout(timeoutId);
+                statusBadge.innerHTML = '✅ Локальный сервер активен';
+                statusBadge.className = 'server-status online';
+            } catch (e) {
+                statusBadge.innerHTML = '⚠️ Локальный сервер не обнаружен (запустите prosmotr2.py)';
+                statusBadge.className = 'server-status offline';
+            }
+        }
         
-        // Отслеживаем просмотр главной страницы (как page view, не как событие)
-        window.addEventListener('load', function() {
+        // Назначаем обработчик
+        const downloadButton = document.getElementById('downloadButton');
+        if (downloadButton) {
+            downloadButton.addEventListener('click', handleDownload);
+        }
+        
+        // Проверяем статус сервера при загрузке
+        setTimeout(checkServerStatus, 1000);
+        
+        // Периодическая проверка статуса (раз в 30 секунд)
+        setInterval(checkServerStatus, 30000);
+        
+        // ============================================================
+        // GoatCounter page view
+        // ============================================================
+        window.addEventListener('load', () => {
             if (window.goatcounter && window.goatcounter.count) {
                 window.goatcounter.count({
                     path: '/',
