@@ -1011,7 +1011,7 @@
 
         // Download & Toast
         function showToast(message) { const toast = document.createElement('div'); toast.className = 'toast-notification'; toast.textContent = message; document.body.appendChild(toast); setTimeout(() => toast.remove(), 3000); }
-        const DOWNLOAD_URL = 'https://github.com/Piligrim757/PILIGRIM/releases/download/v1.0.0/2020.exe';
+        const DOWNLOAD_URL = 'https://github.com/Piligrim757/PILIGRIM/releases/download/v1.0.0/PILIGRIM.exe';
         let isDownloading = false;
         function performDownload() { try { const link = document.createElement('a'); link.href = DOWNLOAD_URL; link.download = 'Piligrim.exe'; document.body.appendChild(link); link.click(); document.body.removeChild(link); showToast('✅ Скачивание началось!'); } catch(e) { window.open(DOWNLOAD_URL, '_blank'); showToast('✅ Скачивание началось!'); } }
         async function handleDownload() { if(isDownloading) { showToast('⏳ Подождите, скачивание уже запущено'); return; } isDownloading=true; const btn=document.getElementById('downloadButton'); const originalText=btn.innerHTML; btn.innerHTML='⏳ Подготовка...'; btn.disabled=true; try { if(window.goatcounter?.count) window.goatcounter.count({path:'/download/Piligrim_Setup.exe',title:'Скачивание',event:true}); await new Promise(r=>setTimeout(r,200)); performDownload(); } catch(e){ performDownload(); } finally { setTimeout(()=>{ btn.innerHTML=originalText; btn.disabled=false; isDownloading=false; },1500); } }
