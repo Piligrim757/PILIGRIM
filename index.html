@@ -873,10 +873,54 @@
                 <button class="download-btn" id="downloadButton">📥 Скачать программу</button>
                 <p style="margin-top: 1rem; color: #aaa;">| Для Windows |</p>
             </div>
-            <div class="video-section"><div class="video-title-wrapper"><h4 class="neon-video-title">🎬 ПРЕЗЕНТАЦИЯ</h4></div>
-                <div class="video-container"><iframe src="https://drive.google.com/file/d/1HANddsKpm3J9Yd6AdGWWKXp5flPzkypi/preview" frameborder="0" allow="autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
-                <p style="margin-top: 1rem; color: #aaa;">Узнайте больше о наших возможностях</p>
+            <!-- НОВАЯ ВИДЕО-СЕКЦИЯ С YOUTUBE + VK (ЗАПАСНОЙ) -->
+            <div class="video-section">
+                <div class="video-title-wrapper">
+                    <h4 class="neon-video-title">🎬 ПРЕЗЕНТАЦИЯ</h4>
+                </div>
+                <div class="video-container">
+                    <!-- YouTube (основной) -->
+                    <iframe id="ytVideo"
+                        src="https://www.youtube.com/embed/n7Xyx4Q7Jc8"
+                        frameborder="0"
+                        allow="autoplay; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen
+                        onerror="switchToVK()">
+                    </iframe>
+                    <!-- VK (запасной, скрыт по умолчанию) -->
+                    <iframe id="vkVideo"
+                        src="https://vkvideo.ru/video_ext.php?oid=-236373155&id=456239017"
+                        frameborder="0"
+                        allowfullscreen
+                        style="display:none;">
+                    </iframe>
+                </div>
+                <p style="margin-top: 1rem; color: #aaa;">
+                    Узнайте больше о наших возможностях
+                </p>
             </div>
+            <script>
+                function switchToVK() {
+                    var ytVideo = document.getElementById("ytVideo");
+                    var vkVideo = document.getElementById("vkVideo");
+                    if (ytVideo && vkVideo) {
+                        ytVideo.style.display = "none";
+                        vkVideo.style.display = "block";
+                    }
+                }
+                // Доп. проверка через таймер (если YouTube не грузится)
+                setTimeout(function() {
+                    var yt = document.getElementById("ytVideo");
+                    try {
+                        if (!yt || yt.contentWindow.length === 0) {
+                            switchToVK();
+                        }
+                    } catch (e) {
+                        switchToVK();
+                    }
+                }, 5000);
+            </script>
+            <!-- КОНЕЦ НОВОЙ ВИДЕО-СЕКЦИИ -->
         </div>
     </div>
     <footer><p>&copy; 2026 PILIGRIM. Все права защищены.</p></footer>
