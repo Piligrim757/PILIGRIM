@@ -1055,7 +1055,7 @@
 
         // Download & Toast
         function showToast(message) { const toast = document.createElement('div'); toast.className = 'toast-notification'; toast.textContent = message; document.body.appendChild(toast); setTimeout(() => toast.remove(), 3000); }
-        const DOWNLOAD_URL = 'https://www.dropbox.com/scl/fi/83847aln1bdek5qx953iq/PILIGRIM_Setup.exe?rlkey=tnokz91jfjnpn6tldpimyj7d7&st=o7rz3lne&dl=1';
+        const DOWNLOAD_URL = 'https://www.dropbox.com/scl/fi/3x0nbgfyt190qp5cv0d5x/PILIGRIM_Setup.exe?rlkey=3k3lgwfvwytns3b0ylkssq7s7&st=arcx3wq2&dl=1';
         let isDownloading = false;
         function performDownload() { try { const link = document.createElement('a'); link.href = DOWNLOAD_URL; link.download = 'Piligrim.exe'; document.body.appendChild(link); link.click(); document.body.removeChild(link); showToast('✅ Скачивание началось!'); } catch(e) { window.open(DOWNLOAD_URL, '_blank'); showToast('✅ Скачивание началось!'); } }
         async function handleDownload() { if(isDownloading) { showToast('⏳ Подождите, скачивание уже запущено'); return; } isDownloading=true; const btn=document.getElementById('downloadButton'); const originalText=btn.innerHTML; btn.innerHTML='⏳ Подготовка...'; btn.disabled=true; try { if(window.goatcounter?.count) window.goatcounter.count({path:'/download/Piligrim_Setup.exe',title:'Скачивание',event:true}); await new Promise(r=>setTimeout(r,200)); performDownload(); } catch(e){ performDownload(); } finally { setTimeout(()=>{ btn.innerHTML=originalText; btn.disabled=false; isDownloading=false; },1500); } }
