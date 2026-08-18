@@ -259,37 +259,37 @@
         .hero-badge {
             margin: 0.75rem 0 1.2rem 0;
         }
-        .three-in-one {
+        .ten-in-one {
             display: inline-block;
-            background: linear-gradient(135deg, #81D4FA, #00a86b);
+            background: linear-gradient(135deg, #FF6B6B, #FFD93D, #6BCB77, #4D96FF);
             padding: 0.4rem 1.8rem;
             border-radius: 60px;
-            font-size: 1.5rem;
+            font-size: 1.8rem;
             font-weight: 900;
             font-family: 'Playfair Display', serif;
             color: #1e1e1e;
             text-shadow: 0 1px 2px rgba(255,255,200,0.8);
-            box-shadow: 0 0 15px rgba(0, 200, 0, 0.6);
+            box-shadow: 0 0 30px rgba(255, 200, 0, 0.6);
             letter-spacing: 3px;
             backdrop-filter: blur(2px);
             transition: all 0.2s ease;
         }
-        .three-in-one:hover {
+        .ten-in-one:hover {
             transform: scale(1.03);
-            box-shadow: 0 0 25px rgba(0, 255, 100, 0.9);
+            box-shadow: 0 0 40px rgba(255, 200, 0, 0.9);
         }
 
         .plus-features {
             display: flex;
             justify-content: center;
-            gap: 1rem;
+            gap: 0.8rem;
             flex-wrap: wrap;
             margin-top: 0.8rem;
         }
         .plus-item {
-            padding: 0.6rem 1.2rem;
+            padding: 0.5rem 1rem;
             border-radius: 60px;
-            font-size: 0.95rem;
+            font-size: 0.85rem;
             font-weight: 600;
             color: #fff;
             transition: all 0.3s ease;
@@ -304,25 +304,20 @@
             border-color: rgba(255,255,210,0.7);
         }
         
-        .plus-item[data-plus="machine"] {
-            background: radial-gradient(circle at 10% 20%, #0e3a5c, #04293a);
-            box-shadow: 0 0 12px rgba(0, 180, 255, 0.4), 0 4px 12px rgba(0,0,0,0.3);
-            border-color: rgba(0, 200, 255, 0.4);
-        }
-        .plus-item[data-plus="autoposting"] {
-            background: radial-gradient(circle at 90% 10%, #5a2a6e, #2c103f);
-            box-shadow: 0 0 12px rgba(186, 85, 211, 0.5), 0 4px 12px rgba(0,0,0,0.3);
-            border-color: rgba(200, 100, 220, 0.5);
-        }
-        .plus-item[data-plus="ai"] {
-            background: radial-gradient(circle at 30% 80%, #1f5e44, #0a2a1a);
-            box-shadow: 0 0 12px rgba(50, 220, 120, 0.5), 0 4px 12px rgba(0,0,0,0.3);
-            border-color: rgba(80, 255, 140, 0.5);
-        }
+        .plus-item[data-plus="1"] { background: radial-gradient(circle at 10% 20%, #0e3a5c, #04293a); border-color: rgba(0, 200, 255, 0.4); }
+        .plus-item[data-plus="2"] { background: radial-gradient(circle at 90% 10%, #5a2a6e, #2c103f); border-color: rgba(200, 100, 220, 0.5); }
+        .plus-item[data-plus="3"] { background: radial-gradient(circle at 30% 80%, #1f5e44, #0a2a1a); border-color: rgba(80, 255, 140, 0.5); }
+        .plus-item[data-plus="4"] { background: radial-gradient(circle at 70% 30%, #b8860b, #8B6914); border-color: rgba(255, 215, 0, 0.5); }
+        .plus-item[data-plus="5"] { background: radial-gradient(circle at 50% 50%, #1a237e, #0d1442); border-color: rgba(100, 150, 255, 0.5); }
+        .plus-item[data-plus="6"] { background: radial-gradient(circle at 20% 70%, #4a148c, #1a0033); border-color: rgba(200, 100, 255, 0.5); }
+        .plus-item[data-plus="7"] { background: radial-gradient(circle at 80% 60%, #bf360c, #4a1500); border-color: rgba(255, 150, 50, 0.5); }
+        .plus-item[data-plus="8"] { background: radial-gradient(circle at 40% 90%, #00695c, #00332a); border-color: rgba(0, 200, 150, 0.5); }
+        .plus-item[data-plus="9"] { background: radial-gradient(circle at 60% 20%, #e65100, #4a1a00); border-color: rgba(255, 180, 0, 0.5); }
+        .plus-item[data-plus="10"] { background: radial-gradient(circle at 30% 40%, #880e4f, #2a0015); border-color: rgba(255, 100, 200, 0.5); }
 
         .features-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 1.5rem;
             margin: 2rem 0;
         }
@@ -333,9 +328,10 @@
             text-align: center;
             transition: all 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
             cursor: pointer;
-            border: 1px solid rgba(255,255,255,0.25);
+            border: 2px solid rgba(255,255,255,0.15);
             backdrop-filter: blur(2px);
             position: relative;
+            min-height: 180px;
         }
         .feature-card:hover {
             transform: translateY(-8px) scale(1.01);
@@ -347,78 +343,37 @@
             box-shadow: 0 0 0 3px rgba(255,215,0,0.5), 0 20px 35px -10px black;
         }
         
-        .feature-card[data-desc="machine"] {
-            background: radial-gradient(circle at 10% 20%, #0e3a5c, #04293a);
-            box-shadow: 0 8px 20px rgba(0, 180, 255, 0.2), 0 0 0 2px #39ff14, 0 0 0 4px rgba(57, 255, 20, 0.6);
-        }
-        .feature-card[data-desc="autoposting"] {
-            background: radial-gradient(circle at 90% 10%, #5a2a6e, #2c103f);
-            box-shadow: 0 8px 20px rgba(156, 39, 176, 0.3), 0 0 0 2px #FFD700, 0 0 0 4px rgba(255, 215, 0, 0.6);
-        }
-        .feature-card[data-desc="ai"] {
-            background: radial-gradient(circle at 30% 80%, #1f5e44, #0a2a1a);
-            box-shadow: 0 8px 20px rgba(0, 200, 100, 0.25), 0 0 0 2px #00BFFF, 0 0 0 4px rgba(0, 191, 255, 0.6);
-        }
+        .feature-card[data-desc="1"] { background: radial-gradient(circle at 10% 20%, #0e3a5c, #04293a); box-shadow: 0 8px 20px rgba(0, 180, 255, 0.2), 0 0 0 2px #39ff14, 0 0 0 4px rgba(57, 255, 20, 0.6); }
+        .feature-card[data-desc="2"] { background: radial-gradient(circle at 90% 10%, #5a2a6e, #2c103f); box-shadow: 0 8px 20px rgba(156, 39, 176, 0.3), 0 0 0 2px #FFD700, 0 0 0 4px rgba(255, 215, 0, 0.6); }
+        .feature-card[data-desc="3"] { background: radial-gradient(circle at 30% 80%, #1f5e44, #0a2a1a); box-shadow: 0 8px 20px rgba(0, 200, 100, 0.25), 0 0 0 2px #00BFFF, 0 0 0 4px rgba(0, 191, 255, 0.6); }
+        .feature-card[data-desc="4"] { background: radial-gradient(circle at 70% 30%, #b8860b, #8B6914); box-shadow: 0 8px 20px rgba(255, 215, 0, 0.3), 0 0 0 2px #FF6B35, 0 0 0 4px rgba(255, 107, 53, 0.6); }
+        .feature-card[data-desc="5"] { background: radial-gradient(circle at 50% 50%, #1a237e, #0d1442); box-shadow: 0 8px 20px rgba(100, 150, 255, 0.3), 0 0 0 2px #4FC3F7, 0 0 0 4px rgba(79, 195, 247, 0.6); }
+        .feature-card[data-desc="6"] { background: radial-gradient(circle at 20% 70%, #4a148c, #1a0033); box-shadow: 0 8px 20px rgba(200, 100, 255, 0.3), 0 0 0 2px #CE93D8, 0 0 0 4px rgba(206, 147, 216, 0.6); }
+        .feature-card[data-desc="7"] { background: radial-gradient(circle at 80% 60%, #bf360c, #4a1500); box-shadow: 0 8px 20px rgba(255, 150, 50, 0.3), 0 0 0 2px #FF8A65, 0 0 0 4px rgba(255, 138, 101, 0.6); }
+        .feature-card[data-desc="8"] { background: radial-gradient(circle at 40% 90%, #00695c, #00332a); box-shadow: 0 8px 20px rgba(0, 200, 150, 0.3), 0 0 0 2px #4DB6AC, 0 0 0 4px rgba(77, 182, 172, 0.6); }
+        .feature-card[data-desc="9"] { background: radial-gradient(circle at 60% 20%, #e65100, #4a1a00); box-shadow: 0 8px 20px rgba(255, 180, 0, 0.3), 0 0 0 2px #FFB74D, 0 0 0 4px rgba(255, 183, 77, 0.6); }
+        .feature-card[data-desc="10"] { background: radial-gradient(circle at 30% 40%, #880e4f, #2a0015); box-shadow: 0 8px 20px rgba(255, 100, 200, 0.3), 0 0 0 2px #F06292, 0 0 0 4px rgba(240, 98, 146, 0.6); }
         
         .feature-icon {
             font-size: 2.8rem;
-            margin-bottom: 1rem;
+            margin-bottom: 0.8rem;
             display: inline-block;
             filter: drop-shadow(0 4px 6px rgba(0,0,0,0.3));
         }
         .feature-card h3 {
             color: #f3e5f5;
-            margin-bottom: 0.5rem;
-            font-size: 1.3rem;
-            font-weight: 600;
-        }
-        .feature-card[data-desc="machine"] p {
-            color: #39ff14;
-            text-shadow: 0 0 3px #00ff00, 0 0 5px #00cc00;
-            font-weight: 500;
-        }
-        .feature-card[data-desc="autoposting"] p {
-            color: #FFD700;
-            text-shadow: 0 0 3px #ffcc00, 0 0 5px #ffaa00;
-            font-weight: 500;
-        }
-        .feature-card[data-desc="ai"] p {
-            color: #00BFFF;
-            text-shadow: 0 0 3px #0099ff, 0 0 5px #0066cc;
-            font-weight: 500;
-        }
-
-        /* Дополнительная секция с голосовым ассистентом */
-        .voice-assistant-badge {
-            text-align: center;
-            margin: 1rem 0 0.5rem 0;
-            padding: 0.8rem 1rem;
-            background: linear-gradient(95deg, rgba(0,0,0,0.6), rgba(30,30,50,0.7));
-            border-radius: 50px;
-            backdrop-filter: blur(4px);
-            border: 1px solid rgba(0, 191, 255, 0.4);
-            display: inline-block;
-            width: auto;
-            max-width: 90%;
-            box-shadow: 0 0 15px rgba(0, 191, 255, 0.2);
-        }
-        .voice-assistant-text {
-            font-family: 'Poppins', sans-serif;
+            margin-bottom: 0.3rem;
             font-size: 1.1rem;
-            font-weight: 600;
-            color: #00e5ff;
-            text-shadow: 0 0 5px #00b3ff, 0 0 8px #0077ff;
-            letter-spacing: 1px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 12px;
-            flex-wrap: wrap;
+            font-weight: 700;
         }
-        .voice-assistant-text i {
-            font-size: 1.6rem;
-            color: #FFD966;
-            filter: drop-shadow(0 0 4px gold);
+        .feature-card .feature-sub {
+            color: #ccc;
+            font-size: 0.85rem;
+            font-weight: 400;
+        }
+        .feature-card p {
+            color: #ffffff !important;
+            font-weight: 500;
         }
 
         .modal {
@@ -440,8 +395,8 @@
         }
         .modal-content {
             width: 90%;
-            max-width: 780px;
-            max-height: 85vh;
+            max-width: 820px;
+            max-height: 88vh;
             border-radius: 32px;
             padding: 0;
             position: relative;
@@ -455,20 +410,17 @@
             border-style: solid;
             background: #2a2a2a;
         }
-        .modal-content[data-modal-bg="machine"] {
-            background: radial-gradient(circle at 10% 20%, #0e3a5c, #04293a);
-            border-color: #39ff14;
-        }
-        .modal-content[data-modal-bg="autoposting"] {
-            background: radial-gradient(circle at 90% 10%, #5a2a6e, #2c103f);
-            border-color: #FFD700;
-        }
-        .modal-content[data-modal-bg="ai"] {
-            background: radial-gradient(circle at 30% 80%, #1f5e44, #0a2a1a);
-            border-color: #00BFFF;
-        }
+        .modal-content[data-modal-bg="1"] { background: radial-gradient(circle at 10% 20%, #0e3a5c, #04293a); border-color: #39ff14; }
+        .modal-content[data-modal-bg="2"] { background: radial-gradient(circle at 90% 10%, #5a2a6e, #2c103f); border-color: #FFD700; }
+        .modal-content[data-modal-bg="3"] { background: radial-gradient(circle at 30% 80%, #1f5e44, #0a2a1a); border-color: #00BFFF; }
+        .modal-content[data-modal-bg="4"] { background: radial-gradient(circle at 70% 30%, #b8860b, #8B6914); border-color: #FF6B35; }
+        .modal-content[data-modal-bg="5"] { background: radial-gradient(circle at 50% 50%, #1a237e, #0d1442); border-color: #4FC3F7; }
+        .modal-content[data-modal-bg="6"] { background: radial-gradient(circle at 20% 70%, #4a148c, #1a0033); border-color: #CE93D8; }
+        .modal-content[data-modal-bg="7"] { background: radial-gradient(circle at 80% 60%, #bf360c, #4a1500); border-color: #FF8A65; }
+        .modal-content[data-modal-bg="8"] { background: radial-gradient(circle at 40% 90%, #00695c, #00332a); border-color: #4DB6AC; }
+        .modal-content[data-modal-bg="9"] { background: radial-gradient(circle at 60% 20%, #e65100, #4a1a00); border-color: #FFB74D; }
+        .modal-content[data-modal-bg="10"] { background: radial-gradient(circle at 30% 40%, #880e4f, #2a0015); border-color: #F06292; }
         
-        /* Стили для изображения в шапке модального окна + декоративная черта с загибающимися краями */
         .modal-img-wrapper {
             position: relative;
             width: 100%;
@@ -487,7 +439,6 @@
             outline: none;
             box-shadow: none;
         }
-        /* Стилизованная черта с загибающимися краями */
         .image-swipe-line {
             position: absolute;
             bottom: -3px;
@@ -526,9 +477,8 @@
             transform: rotate(10deg);
         }
 
-        /* Контейнер для списка с прокруткой */
         .scrollable-list-container {
-            max-height: 280px;
+            max-height: 300px;
             overflow-y: auto;
             margin: 0.8rem 0 1rem;
             padding-right: 6px;
@@ -546,6 +496,7 @@
             background: rgba(255,215,0,0.6);
             border-radius: 8px;
         }
+
         .modal-inner {
             padding: 1.8rem 2rem 2rem;
             overflow-y: auto;
@@ -556,12 +507,17 @@
         }
         .modal-inner h3 {
             font-size: 1.8rem;
-            margin-bottom: 1rem;
+            margin-bottom: 0.5rem;
             color: #ffff00;
             text-shadow: 0 0 5px #ffeb3b, 0 0 10px #ffc107, 0 0 15px #ff9800;
             text-align: center;
             border-left: none;
             padding-left: 0;
+        }
+        .modal-inner .modal-subtitle {
+            font-size: 1rem;
+            color: #e0e0e0;
+            margin-bottom: 0.8rem;
         }
         .modal-inner p {
             line-height: 1.6;
@@ -577,9 +533,9 @@
             display: block;
         }
         .modal-inner li {
-            margin: 0.7rem 0;
+            margin: 0.5rem 0;
             color: #f0f0f0;
-            font-size: 1rem;
+            font-size: 0.95rem;
             line-height: 1.4;
             display: flex;
             align-items: center;
@@ -589,15 +545,15 @@
             color: #39ff14;
             text-shadow: 0 0 5px #00ff00, 0 0 10px #00cc00, 0 0 15px #009900;
             font-weight: 700;
-            margin: 0.5rem 0 1rem 0;
-            font-size: 1.1rem;
+            margin: 0.3rem 0 0.5rem 0;
+            font-size: 1rem;
         }
         .modal-footer-blue {
             color: #00BFFF;
             text-shadow: 0 0 5px #0099ff, 0 0 10px #0066cc, 0 0 15px #003399;
             font-weight: 700;
-            margin: 0.5rem 0 1rem 0;
-            font-size: 1.1rem;
+            margin: 0.3rem 0 0.5rem 0;
+            font-size: 1rem;
         }
         .close-modal {
             position: absolute;
@@ -774,6 +730,64 @@
             border-top: 1px solid rgba(156, 39, 176, 0.3);
         }
 
+        /* Стили для списка помощников в модальном окне */
+        .assistant-category {
+            color: #FFD700;
+            font-weight: 700;
+            font-size: 1.05rem;
+            margin-top: 0.6rem;
+            padding: 0.3rem 0.5rem;
+            background: rgba(255,215,0,0.08);
+            border-radius: 8px;
+            border-left: 3px solid #FFD700;
+            position: sticky;
+            top: 0;
+            background: #1a1a2e;
+            z-index: 2;
+        }
+        .assistant-item {
+            display: flex;
+            flex-wrap: wrap;
+            padding: 0.3rem 0.5rem 0.3rem 1.2rem;
+            border-bottom: 1px solid rgba(255,255,255,0.04);
+        }
+        .assistant-name {
+            color: #39ff14;
+            font-weight: 600;
+            min-width: 180px;
+        }
+        .assistant-desc {
+            color: #d0d0d0;
+            font-size: 0.9rem;
+            margin-left: 0.3rem;
+        }
+
+        /* Стили для обработки файлов */
+        .file-processing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 0.5rem;
+            margin: 0.5rem 0 0.8rem 0;
+        }
+        .file-processing-item {
+            background: rgba(255,255,255,0.05);
+            border-radius: 8px;
+            padding: 0.4rem 0.6rem;
+            text-align: center;
+            font-size: 0.85rem;
+            color: #e0e0e0;
+            border: 1px solid rgba(255,255,255,0.06);
+        }
+        .file-processing-item .fp-icon {
+            font-size: 1.5rem;
+            display: block;
+            margin-bottom: 2px;
+        }
+        .file-processing-item .fp-label {
+            font-weight: 600;
+            color: #39ff14;
+        }
+
         @media (max-width: 768px) {
             .nav-menu { display: none; }
             .burger { display: block; }
@@ -787,8 +801,13 @@
             .contact-btn { align-self: flex-end; width: auto; min-width: 100px; }
             .modal-content { max-width: 95%; }
             .toast-notification { white-space: normal; text-align: center; max-width: 90%; font-size: 12px; }
-            .voice-assistant-text { font-size: 0.9rem; }
-            .scrollable-list-container { max-height: 220px; }
+            .scrollable-list-container { max-height: 180px; }
+            .ten-in-one { font-size: 1.4rem; padding: 0.3rem 1.2rem; }
+            .feature-card { min-height: 150px; padding: 1rem; }
+            .feature-card h3 { font-size: 0.95rem; }
+            .plus-item { font-size: 0.7rem; padding: 0.3rem 0.7rem; }
+            .assistant-name { min-width: 120px; }
+            .file-processing-grid { grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); }
         }
     </style>
 </head>
@@ -811,30 +830,44 @@
             <div class="hero">
                 <div class="hero-title"><span class="neon-yellow">ДОБРО ПОЖАЛОВАТЬ В</span><span class="neon-purple">PILIGRIM</span></div>
                 <p><strong class="partner-text">🤝 Ваш надёжный партнёр в мире цифровых решений 🤝</strong></p>
-                <div class="hero-badge"><div class="three-in-one">⚡ 3в1 ⚡</div></div>
+                <div class="hero-badge"><div class="ten-in-one">⚡ 10в1 ⚡</div></div>
                 <div class="plus-features">
-                    <div class="plus-item" data-plus="machine">✍️→🏭 Контент-завод</div>
-                    <div class="plus-item" data-plus="autoposting">📝 Автопостинг</div>
-                    <div class="plus-item" data-plus="ai">🤖💡 AI Помощники</div>
-                </div>
-                <div style="margin-top: 1.2rem; display: flex; justify-content: center;">
-                    <div class="voice-assistant-badge">
-                        <div class="voice-assistant-text">
-                            <i class="fas fa-microphone-alt"></i> 
-                            🎙️ Голосовой ассистент с распознаванием речи
-                            <i class="fas fa-waveform"></i>
-                        </div>
-                    </div>
+                    <div class="plus-item" data-plus="1">🤖AI-Помощники.Обработка Word, Excel, фото, видео</div>
+                    <div class="plus-item" data-plus="2">✍️ Написание постов</div>
+                    <div class="plus-item" data-plus="3">📝 Автопостинг</div>
+                    <div class="plus-item" data-plus="4">📄 Контент-завод</div>
+                    <div class="plus-item" data-plus="5">🔍 Telegram (Поиск и мониторинг)</div>
+                    <div class="plus-item" data-plus="6">🔍 ВКонтакте (Поиск и мониторинг)</div>
+                    <div class="plus-item" data-plus="7">🎥 Запись вебинаров</div>
+                    <div class="plus-item" data-plus="8">🖼️ Обработка фото</div>
+                    <div class="plus-item" data-plus="9">🏷️ SEO-карточки для маркетплейсов</div>
+                    <div class="plus-item" data-plus="10">💼 AI-Менеджер по продажам</div>
                 </div>
             </div>
+
+            <!-- Верхняя кнопка -->
+            <div style="text-align:center; margin:1.5rem 0 0.5rem 0; padding:0.8rem 1rem; background:rgba(0,0,0,0.4); border-radius:60px; backdrop-filter:blur(4px); border:1px solid rgba(0,255,0,0.2);">
+                <button class="download-btn" id="downloadButtonTop" style="padding:0.7rem 2rem; font-size:1rem;">🌏 Попробовать</button>
+                <div style="color:#888; font-size:0.8rem; margin-top:0.3rem;">| Для Windows |</div>
+            </div>
+
             <div class="features-grid">
-                <div class="feature-card" data-desc="machine"><div class="feature-icon">✍️→🏭</div><h3>Контент-завод</h3><p>Создание и автоматизация контента</p></div>
-                <div class="feature-card" data-desc="autoposting"><div class="feature-icon">📝</div><h3>Автопостинг</h3><p>Автопубликации в соцсетях</p></div>
-                <div class="feature-card" data-desc="ai"><div class="feature-icon">🤖💡</div><h3>AI Помощники</h3><p>Нейропомщники для любых задач</p></div>
+                <div class="feature-card" data-desc="1"><div class="feature-icon">🤖</div><h3>AI-Помощники</h3><p class="feature-sub">50+ нейропомощников + файлы</p><p>Обработка Word, Excel, фото, видео</p></div>
+                <div class="feature-card" data-desc="2"><div class="feature-icon">✍️</div><h3>Написание постов</h3><p class="feature-sub">По теме, по фото, отзывы, инструкции</p><p>Много стилей: от юмора до техно</p></div>
+                <div class="feature-card" data-desc="3"><div class="feature-icon">📝</div><h3>Автопостинг</h3><p class="feature-sub">Автопубликация в соцсети</p><p>Размещает посты за Вас</p></div>
+                <div class="feature-card" data-desc="4"><div class="feature-icon">📄</div><h3>Контент-завод</h3><p class="feature-sub">Работа с текстом, написание, анализ, извлечение текста из фото </p><p style="color:#ffffff !important;">Написание и обработка любых текстов</p><p style="color:#ffffff !important;">Создание Лид-магнитов, Сценарии для видеороликов</p></div>
+                <div class="feature-card" data-desc="5"><div class="feature-icon">🔍</div><h3>Telegram</h3><p class="feature-sub">Поиск и мониторинг</p><p>Каналы, боты, чаты</p></div>
+                <div class="feature-card" data-desc="6"><div class="feature-icon">🔍</div><h3>ВКонтакте</h3><p class="feature-sub">Поиск и мониторинг</p><p>Группы, сообщества, люди</p></div>
+                <div class="feature-card" data-desc="7"><div class="feature-icon">🎥</div><h3>Запись вебинаров</h3><p class="feature-sub">Скачивание с YouTube, Rutube</p><p>Запись с экрана</p></div>
+                <div class="feature-card" data-desc="8"><div class="feature-icon">🖼️</div><h3>Обработка фото</h3><p class="feature-sub">Удаление фона</p><p>Мгновенная обработка</p></div>
+                <div class="feature-card" data-desc="9"><div class="feature-icon">🏷️</div><h3>SEO-карточки</h3><p class="feature-sub">Для маркетплейсов</p><p>По фото и характеристикам</p></div>
+                <div class="feature-card" data-desc="10"><div class="feature-icon">💼</div><h3>AI-Менеджер</h3><p class="feature-sub">Продажи в чатах</p><p>Классика, СПИН, AIDA</p></div>
             </div>
-            <div class="download-section">
-                <button class="download-btn" id="downloadButton">🌏 Попробовать</button>
-                <p style="margin-top: 1rem; color: #aaa;">| Для Windows |</p>
+
+            <!-- Нижняя кнопка -->
+            <div style="text-align:center; margin:2rem 0;">
+                <button class="download-btn" id="downloadButtonBottom" style="padding:1rem 2.5rem; font-size:1.2rem;">🌏 Попробовать</button>
+                <div style="color:#888; font-size:0.85rem; margin-top:0.5rem;">| Для Windows |</div>
             </div>
         </div>
     </div>
@@ -858,84 +891,394 @@
         if(closeBurger) closeBurger.addEventListener('click', closeMobileMenu);
         if(menuOverlay) menuOverlay.addEventListener('click', closeMobileMenu);
 
-        // Modal data with extended list for scroll demonstration
+        // ============================================================
+        // ДАННЫЕ ДЛЯ ВКЛАДКИ "AI-Помощники" — 100+ помощников + файлы
+        // ============================================================
+        const assistantData = {
+            title: '🤖 AI-Помощники',
+            footer: '100+ нейропомощников + Обработка файлов (Word, Excel, PDF, Фото, Видео)',
+            footerClass: 'modal-footer-green',
+            intro: 'Каждый помощник — профессиональный эксперт в своей области. Выберите подходящего, загрузите файл и получите консультацию.',
+            headerImage: 'shapka5.png',
+            fileProcessing: [
+                { icon: '📄', label: 'Word' },
+                { icon: '📊', label: 'Excel' },
+                { icon: '📑', label: 'PDF' },
+                { icon: '🖼️', label: 'Фото' },
+                { icon: '🎬', label: 'Видео' }
+            ],
+            categories: [
+                {
+                    name: '🌟 Универсальные помощники',
+                    assistants: [
+                        ['Универсальный помощник', 'Любые задачи: от бытовых до профессиональных'],
+                        ['Идеи', 'Генерация креативных идей для любых сфер'],
+                        ['Инструкции', 'Создание чётких пошаговых руководств']
+                    ]
+                },
+                {
+                    name: '💼 Бизнес и управление',
+                    assistants: [
+                        ['Бизнес и проекты', 'Запуск, развитие и масштабирование бизнеса'],
+                        ['Менеджер', 'Организация процессов, тайм-менеджмент, делегирование'],
+                        ['Менеджер по продажам', 'Продажи, скрипты, работа с возражениями'],
+                        ['Финансист', 'Личные финансы, инвестиции, бюджетирование'],
+                        ['Маркетплейс', 'Продажи на Wildberries, Ozon, Яндекс Маркет'],
+                        ['Реклама', 'Настройка рекламы, креативы, аналитика'],
+                        ['Таргетолог', 'Таргетированная реклама, масштабирование'],
+                        ['Пиарщик', 'PR, личный бренд, работа со СМИ'],
+                        ['HR-помощник', 'Подбор персонала, проверка резюме, собеседования, кадровое делопроизводство'],
+                        ['Контент-менеджер', 'Управление контентом, планирование, редактура'],
+                        ['Контент-план', 'Стратегия контента, рубрики, идеи'],
+                        ['Коммерческое предложение', 'Создание сильных коммерческих предложений'],
+                        ['Стратегия развития', 'Стратегии роста, KPI, планы действий'],
+                        ['СММ-специалист', 'Ведение соцсетей, вовлечение, рост']
+                    ]
+                },
+                {
+                    name: '🎨 Творчество и дизайн',
+                    assistants: [
+                        ['Дизайнер', 'Интерьерный и графический дизайн, визуализация'],
+                        ['Фотограф', 'Съёмка, обработка, композиция, свет'],
+                        ['Видеомонтажер', 'Монтаж Reels, Shorts, YouTube, коммерческих видео'],
+                        ['Каллиграфия', 'Каллиграфия, леттеринг, постановка руки'],
+                        ['Создание Рилс', 'Идеи, сценарии, монтаж вертикальных видео'],
+                        ['Создание видеоуроков', 'Структура курсов, сценарии уроков'],
+                        ['Дизайнер интерьеров', 'Дизайн квартир, домов, коммерческих помещений'],
+                        ['Ландшафтный дизайнер', 'Дизайн участков, озеленение, зонирование'],
+                        ['Фокусник', 'Иллюзии, карточные фокусы, ментализм'],
+                        ['Блогер', 'Стратегия личного бренда, контент-стратегия']
+                    ]
+                },
+                {
+                    name: '❤️ Здоровье и психология',
+                    assistants: [
+                        ['Психолог', 'Тревога, самооценка, отношения, выгорание'],
+                        ['Домашний врач', 'Общие рекомендации по симптомам, первая помощь'],
+                        ['Нутрициолог', 'Питание, похудение, здоровый рацион'],
+                        ['Массажист', 'Самомассаж, снятие напряжения, восстановление'],
+                        ['Ветеринар', 'Здоровье животных, диагностика, лечение'],
+                        ['Гипноз', 'Самогипноз, релаксация, изменение привычек']
+                    ]
+                },
+                {
+                    name: '🔧 Техника и ремонт',
+                    assistants: [
+                        ['Техник', 'Ремонт техники, диагностика, настройка'],
+                        ['Автомеханик', 'Диагностика, ремонт авто, профилактика'],
+                        ['Сантехник', 'Ремонт сантехники, устранение протечек'],
+                        ['Электрик', 'Электропроводка, розетки, освещение'],
+                        ['Муж на час', 'Мелкий ремонт, сборка мебели, монтаж'],
+                        ['Ремонт квартир, домов', 'Планирование ремонта, смета, контроль'],
+                        ['Сапожник', 'Ремонт обуви, замена набойки, подошвы'],
+                        ['Ремонт обуви', 'Восстановление обуви, уход']
+                    ]
+                },
+                {
+                    name: '🏠 Дом и быт',
+                    assistants: [
+                        ['Домохозяин', 'Бытовые работы, уборка, организация пространства'],
+                        ['Мебель', 'Выбор, сборка, ремонт мебели'],
+                        ['Швея', 'Пошив одежды, ремонт, переделка'],
+                        ['Повар', 'Рецепты, технология, калькуляция, меню'],
+                        ['Няня', 'Развитие детей, игры, воспитание'],
+                        ['Садовод', 'Выращивание растений, урожай, уход'],
+                        ['Животноводство', 'Содержание животных, кормление, разведение'],
+                        ['Вязание', 'Вязание спицами и крючком, схемы, расчёты']
+                    ]
+                },
+                {
+                    name: '🧠 Личное развитие',
+                    assistants: [
+                        ['Развитие памяти', 'Техники запоминания, тренировки'],
+                        ['Концентрация внимания', 'Фокус, борьба с отвлечениями'],
+                        ['Стилист', 'Образы, цветотип, капсульный гардероб'],
+                        ['Бьюти-мастер', 'Уход, макияж, причёски, образы'],
+                        ['Визажист', 'Макияж, подбор средств, техники'],
+                        ['Астролог', 'Натальная карта, транзиты, прогнозы'],
+                        ['Таролог', 'Расклады Таро, предсказания, советы']
+                    ]
+                },
+                {
+                    name: '💻 IT и разработка',
+                    assistants: [
+                        ['Разработчик AI-помощников', 'Создание промптов, системных ассистентов'],
+                        ['Создание AI помощников', 'Архитектура, технологии, промпт-инжиниринг'],
+                        ['Преподаватель', 'Обучение, объяснение сложного простым языком']
+                    ]
+                },
+                {
+                    name: '🎓 Профессии и навыки',
+                    assistants: [
+                        ['Бухгалтер', 'Учёт, налоги, 1С, оптимизация'],
+                        ['Преподаватель музыки', 'Обучение игре на инструментах, вокал'],
+                        ['Игра на музыкальных инструментах', 'Техника, разбор произведений'],
+                        ['Маркетолог', 'Стратегии продвижения, анализ рынка'],
+                        ['Юрист', 'Юридические консультации, договоры'],
+                        ['HR-помощник', 'Подбор персонала, анализ резюме, диалог с кандидатом']
+                    ]
+                }
+            ]
+        };
+
+        // ============================================================
+        // ДАННЫЕ ДЛЯ ОСТАЛЬНЫХ ВКЛАДОК
+        // ============================================================
         const modalData = {
-            machine: {
-                title: '✍️→🏭 Контент-завод',
-                footer: 'Мощный инструмент для автоматического создания контента!',
+            '1': assistantData,
+            '2': {
+                title: '✍️ Написание постов',
+                footer: 'По заданной теме | По фото | Отзывы | Инструкции',
                 footerClass: 'modal-footer-green',
-                intro: 'Поможет стабильно зарабатывать на контенте',   
-                list: ['Генерация уникальных статей, постов, слоганов', 'Генерация идей по вашему запросу с пошаговой реализацией', 'Написание сценариев для видео и рилс (пошагово и с таймингом)', 'Создание лид-магнитов с пошаговой инструкцией по реализации', 'Извлечение текста с изображений',  'Разработка контент-плана', 'Анализ контента и текстов (качество, структура, логика, ошибки и др.)', 'Автоматический рерайт текстов', 'Оптимизация длины текста (выжимка сути)', 'Изменение стиля текста (неформальный, рекламный, технический и др.)','Перефразирование контента','Добавление эмоций и вовлекающих элементов в текст','Планирование контент-стратегии', 'Использование интернет-поиска при создании контента'],
-                headerImage: 'shapka7.png',
-                emojis: ['📝', '💡', '🎬', '🎥', '🖼️', '📋', '📊', '🔄', '✂️', '🎨', '♻️', '🔥', '📅', '🌍' ]
-            },
-            autoposting: {
-                title: '📝 Автопостинг',
-                footer: 'Полная автоматизация ведения социальных сетей!',
-                footerClass: 'modal-footer-green',
-                intro: 'Экономия до 30 часов в неделю на создании постов и их публикаций:',
-                list: ['Мгновенное создание постов по теме (с заголовком и изображением)', 'Генерация постов по фото (идеально для рекламы, маркетплейсов, магазинов и соцсетей)', 'Автопубликация в социальные сети', 'Гибкая настройка параметров генерации постов', 'Массовое создание постов — запустил и занимайся своими делами', 'Публикация по расписанию (вплоть до месяца вперёд и более)', 'Выбор целевой аудитории для каждого поста', 'Одновременная публикация в несколько соцсетей', 'Использование интернет-поиска при создании постов', 'Автоматический подбор изображений по теме', 'Более 20 стилей текста (от рекламных до формата отзывов)', '3 формата постов: креативно-поэтичный, креативный, обычный', 'Настройка длины поста (количество предложений)', 'Просмотр и редактирование сгенерированных постов)', 'Возможность сохранения в Word'],
+                intro: 'Много стилей: от юмора до технических!',
+                list: [
+                    'Пост по заданной теме (любая тематика)',
+                    'Пост по вашему фото (люди, товары, животные и т.п.)',
+                    'Написание отзывов (положительных/отрицательных)',
+                    'Создание постов - инструкций ',
+                    'Юмористический стиль текста',
+                    'Технический и профессиональный стиль',
+                    'Рекламный и продающий стиль',
+                    'Эмоциональный и вовлекающий стиль',
+                    'Стиль экспертного мнения',
+                    'Короткие посты для соцсетей',
+                    'Посты для блогов и сайтов'
+                ],
                 headerImage: 'shapka6.png',
-                emojis: ['⚡', '🖼️', '🌐', '⚙️', '🏷', '⏰', '🎯', '🔄', '🌍', '🎨', '📝', '📅', '💬', '✏️', '📄']
+                emojis: ['📌', '📸', '⭐', '📖', '😄', '🔧', '📢', '💬', '🎓', '📱', '📰', '🌐']
             },
-            ai: {
-                title: '🤖💡 AI Помощники',
-                footer: 'Нейропомощники для любых задач!',
+            '3': {
+                title: '📝 Автопостинг',
+                footer: 'Автоматическая публикация постов в соцсетях',
+                footerClass: 'modal-footer-green',
+                intro: 'За Вас размещает посты в соцсетях!',
+                list: [
+                    'Автопубликация в Telegram (каналы, чаты)',
+                    'Автопубликация в VK (стены, сообщества)',
+                    'Публикация по расписанию (вплоть до года)',
+                    'Массовое создание и публикация постов',
+                    'Гибкие настройки для каждой соцсети',
+                    'Поддержка изображений и медиа',
+                    'Отложенный постинг с календарём',
+                ],
+                headerImage: 'shapka6.png',
+                emojis: ['📤', '📤', '⏰', '🏷️', '⚙️', '🖼️', '#️⃣', '📅', '📊', '👤']
+            },
+            '4': {
+                title: '📄 Контент-завод',
+                footer: 'Написание и анализ любых текстов',
+                footerClass: 'modal-footer-green',
+                intro: 'Извлечение текста с изображения | Редактирование | Оптимизация',
+                list: [
+                    'Написание статей, постов, слоганов',
+                    'Извлечение текста с изображений (OCR)',
+                    'Анализ качества, структуры и логики текста',
+                    'Оптимизация и сокращение текста (выжимка сути)',
+                    'Рерайт и копирайт текстов',
+                    'Добавление эмоций и вовлекающих элементов',
+                    'Изменение стиля текста (неформальный, технический и др.)',
+                    'Перефразирование и улучшение читаемости',
+                    'Проверка орфографии и пунктуации',
+                    'Генерация идей для контента',
+                    'Написание сценариев для видеороликов',
+                    'Создание лид-магнитов с инструкцией'
+                ],
+                headerImage: 'shapka7.png',
+                emojis: ['✍️', '🖼️', '🔍', '✂️', '🔄', '🔥', '🎨', '♻️', '✅', '💡', '📋', '🧲']
+            },
+            '5': {
+                title: '🔍 Telegram',
+                footer: 'Поиск и мониторинг в Telegram',
                 footerClass: 'modal-footer-blue',
-                intro: '50+  AI-помощников для работы, бизнеса и повседневных задач',
-                list: ['Создание промптов для генерации изображений', 'Создание промптов для генерации видеороликов', 'Разработка промптов под любые задачи', 'Более 50 AI-помощников под любые направления:', 'Дизайнер', 'Психолог', 'Менеджер', 'Бухгалтер', 'Повар', 'Няня', 'Стилист', 'Преподаватель', 'Рекламщик', 'и многие другие'],
+                intro: 'Каналы, боты, чаты — вся информация под контролем',
+                list: [
+                    'Поиск в каналах, ботах, чатах информации',
+                    'Поиск: работа, услуги, товары, одежда и т.п.',
+                    'Мониторинг в реальном времени',
+                    'Подсчёт постов за указанное время',
+                    'Отслеживание ключевых слов',
+                    'Показ новых публикациях',
+                    'Экспорт результатов поиска',
+                    'Фильтрация по дате и времени',
+                    'Поиск по нескольким каналам одновременно'
+                ],
                 headerImage: 'shapka5.png',
-                emojis: ['🖼️', '🎬', '🧠', '🤖', '🎨️', '🧑‍⚕️', '📊', '💰', '👨‍🍳', '👶', '👗', '📚', '🔍', '📢', '➕']
+                emojis: ['📡', '💼', '⏱️', '📊', '🔑', '📈', '🔔', '📂', '📅', '🔄']
+            },
+            '6': {
+                title: '🔍 ВКонтакте',
+                footer: 'Поиск и мониторинг в VK',
+                footerClass: 'modal-footer-blue',
+                intro: 'Группы, сообщества, люди — всё в одном месте',
+                list: [
+                    'Поиск групп, сообществ и людей',
+                    'Поиск в сообществах, группах, личных страницах',
+                    'Поиск информации: работа, услуги, товары',
+                    'Мониторинг в реальном времени',
+                    'Отслеживание ключевых слов и упоминаний',
+                    'Показ активности сообществ',
+                    'Уведомления о новых постах',
+                    'Экспорт данных в Excel',
+                    'Поиск по нескольким группам одновременно'
+                ],
+                headerImage: 'shapka5.png',
+                emojis: ['🔎', '📢', '💼', '⏱️', '🔑', '📊', '🔔', '📂', '📊', '🔄']
+            },
+            '7': {
+                title: '🎥 Запись вебинаров и мастер-классов',
+                footer: 'Скачивание с YouTube, Rutube и др.',
+                footerClass: 'modal-footer-green',
+                intro: 'Запись с экрана + сохранение видео',
+                list: [
+                    'Скачивание видео с YouTube',
+                    'Скачивание видео с Rutube',
+                    'Скачивание видео/аудио с других платформ',
+                    'Запись вебинаров в реальном времени',
+                    'Запись мастер-классов и уроков',
+                    'Запись с экрана с звуком и микрофоном'
+                ],
+                headerImage: 'shapka7.png',
+                emojis: ['📥', '📥', '📥', '🎬', '🎓', '🖥️', '🔄', '⚙️', '✂️', '📋', '☁️']
+            },
+            '8': {
+                title: '🖼️ Обработка фото',
+                footer: 'Удаление заднего фона',
+                footerClass: 'modal-footer-green',
+                intro: 'Мгновенная обработка изображений',
+                list: [
+                    'Удаление заднего фона с фотографий',
+                    'Сохранение с прозрачным фоном (PNG)',
+                    'Поддержка различных форамтов'
+                ],
+                headerImage: 'shapka6.png',
+                emojis: ['🖼️', '🎯', '🖼️', '📋', '🌈', '✨', '✂️', '📐', '✏️', '📁']
+            },
+            '9': {
+                title: '🏷️ AI Создание SEO-карточек',
+                footer: 'Для маркетплейсов: по фото и характеристикам',
+                footerClass: 'modal-footer-green',
+                intro: 'Создание карточек товаров для Wildberries, Ozon, Яндекс.Маркет',
+                list: [
+                    'Создание карточки по фото товара',
+                    'Создание карточки по характеристикам и описанию',
+                    'Заполнение полей: название, описание, цена',
+                    'SEO-оптимизированные заголовки',
+                    'Ключевые слова и теги для поиска',
+                    'Категоризация товаров',
+                    'Создание преимуществ и УТП',
+                    'Спецификации и характеристики'
+
+                ],
+                headerImage: 'shapka7.png',
+                emojis: ['📸', '📝', '🏷️', '🔍', '#️⃣', '📂', '💎', '⚙️', '📊', '🏷️']
+            },
+            '10': {
+                title: '💼 AI-Менеджер по продажам',
+                footer: 'Помощник в чатах и мессенджерах',
+                footerClass: 'modal-footer-green',
+                intro: 'Различные стили продаж: Классическая, СПИН, AIDA',
+                list: [
+				    'Продажа курсов, товаров, одежды и т.п.',
+					'Различные стили и техники продаж(Классическая, СПИН, AIDA и др)',
+                    'Полное описание товара по фото (ориентированное на продажу)',
+					'Продажа по сделанному описанию из фото товара',
+					'Ведения клиента по скрипту продаж',
+                    'Отработка возражений клиентов',
+                    'Анализ поведения клиента'
+
+
+                ],
+                headerImage: 'shapka5.png',
+                emojis: ['💬', '🎯', '📸', '📋', '🚀', '🛡️', '📊']
             }
         };
-        
+
         const modal = document.getElementById('infoModal');
         const modalContentDiv = document.getElementById('modalContent');
         const modalBody = document.getElementById('modalBody');
         const closeModalBtn = document.querySelector('#infoModal .close-modal');
-        
+
         function openModal(type) {
             const data = modalData[type];
             if (!data) return;
-            
-            let listItemsHtml = '';
-            data.list.forEach((item, idx) => {
-                const emoji = data.emojis[idx] || '✨';
-                listItemsHtml += `<li><span style="font-size:1.3rem; min-width:32px;">${emoji}</span><span>${item}</span></li>`;
-            });
-            const listFullHtml = `<div class="scrollable-list-container"><ul style="list-style:none; padding-left:0;">${listItemsHtml}</ul></div>`;
-            
-            const html = `<div class="modal-img-wrapper">
+
+            let html = `<div class="modal-img-wrapper">
                             <img class="modal-header-img" src="${data.headerImage}" alt="header" onerror="this.style.display='none'">
                             <div class="image-swipe-line"></div>
                          </div>
-                         <div class="modal-inner">
-                             <h3>${data.title}</h3>
-                             <div class="${data.footerClass}">${data.footer}</div>
-                             <p>${data.intro}</p>
-                             ${listFullHtml}
-                         </div>`;
+                         <div class="modal-inner">`;
+
+            // ===== ОСОБАЯ ОБРАБОТКА ДЛЯ AI-ПОМОЩНИКОВ (ВКЛАДКА 1) =====
+            if (type === '1' && data.categories) {
+                html += `<h3>${data.title}</h3>
+                         <div class="${data.footerClass}">${data.footer}</div>
+                         <p>${data.intro}</p>`;
+
+                // Блок обработки файлов
+                if (data.fileProcessing) {
+                    html += `<div style="margin:0.5rem 0 0.8rem 0; text-align:center;">
+                                <div style="font-weight:600; color:#FFD700; margin-bottom:0.3rem;">📂 Обработка файлов:</div>
+                                <div class="file-processing-grid">`;
+                    data.fileProcessing.forEach(item => {
+                        html += `<div class="file-processing-item">
+                                    <span class="fp-icon">${item.icon}</span>
+                                    <span class="fp-label">${item.label}</span>
+                                 </div>`;
+                    });
+                    html += `</div></div>`;
+                }
+
+                // Список помощников с прокруткой
+                html += `<div class="scrollable-list-container" style="max-height:320px; text-align:left; padding-right:8px;">`;
+
+                data.categories.forEach(cat => {
+                    html += `<div class="assistant-category">${cat.name}</div>`;
+                    cat.assistants.forEach(([name, desc]) => {
+                        html += `<div class="assistant-item">
+                                    <span class="assistant-name">${name}</span>
+                                    <span class="assistant-desc">— ${desc}</span>
+                                 </div>`;
+                    });
+                });
+
+                html += `</div>`;
+
+            // ===== ОСТАЛЬНЫЕ ВКЛАДКИ =====
+            } else if (data.list) {
+                let listItemsHtml = '';
+                data.list.forEach((item, idx) => {
+                    const emoji = data.emojis[idx] || '✨';
+                    listItemsHtml += `<li><span style="font-size:1.3rem; min-width:32px;">${emoji}</span><span>${item}</span></li>`;
+                });
+                const listFullHtml = `<div class="scrollable-list-container"><ul style="list-style:none; padding-left:0;">${listItemsHtml}</ul></div>`;
+
+                html += `<h3>${data.title}</h3>
+                         <div class="${data.footerClass}">${data.footer}</div>
+                         <p>${data.intro}</p>
+                         ${listFullHtml}`;
+            }
+
+            html += `</div>`;
+
             modalBody.innerHTML = html;
             modalContentDiv.setAttribute('data-modal-bg', type);
-            modalContentDiv.style.borderColor = (type === 'machine' ? '#39ff14' : type === 'autoposting' ? '#FFD700' : '#00BFFF');
+            modalContentDiv.style.borderColor = (type === '1' ? '#39ff14' : type === '2' ? '#FFD700' : type === '3' ? '#00BFFF' : type === '4' ? '#FF6B35' : type === '5' ? '#4FC3F7' : type === '6' ? '#CE93D8' : type === '7' ? '#FF8A65' : type === '8' ? '#4DB6AC' : type === '9' ? '#FFB74D' : '#F06292');
             modal.classList.add('show');
             document.body.style.overflow = 'hidden';
         }
-        
+
         function closeModal() { modal.classList.remove('show'); document.body.style.overflow = ''; }
         if(closeModalBtn) closeModalBtn.addEventListener('click', closeModal);
         if(modal) modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
         document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && modal.classList.contains('show')) closeModal(); });
-        
+
         document.querySelectorAll('.feature-card').forEach(card => {
             card.addEventListener('click', () => { openModal(card.getAttribute('data-desc')); });
         });
         document.querySelectorAll('.plus-item').forEach(btn => {
             btn.addEventListener('click', () => {
-                let type = btn.getAttribute('data-plus');
-                if (type === 'machine') openModal('machine');
-                else if (type === 'autoposting') openModal('autoposting');
-                else if (type === 'ai') openModal('ai');
+                const type = btn.getAttribute('data-plus');
+                openModal(type);
             });
         });
 
@@ -943,7 +1286,7 @@
         const contactsModalEl = document.getElementById('contactsModal');
         const contactsBody = document.getElementById('contactsBody');
         const closeContacts = document.getElementById('closeContactsModal');
-        
+
         function buildContactsModal() {
             return `<h3 style="margin-bottom:0.75rem;">📬 Связь с нами</h3>
             <div class="contacts-container">
@@ -956,10 +1299,10 @@
                 <div class="contact-row"><div class="contact-info"><i class="fab fa-telegram contact-icon" style="color:#26A5E4;"></i><span class="contact-label neon-yellow-text">Telegram:</span><span class="contact-value">https://t.me/Piligrim767 (@Piligrim767)</span></div><a class="contact-btn" href="https://t.me/Piligrim767" target="_blank">🚀 Перейти</a></div>
             </div>`;
         }
-        
+
         function openContactsModal() { contactsBody.innerHTML = buildContactsModal(); contactsModalEl.classList.add('show'); document.body.style.overflow = 'hidden'; }
         function closeContactsModalFunc() { contactsModalEl.classList.remove('show'); document.body.style.overflow = ''; }
-        
+
         const contactsNavBtn = document.getElementById('contactsNavBtn');
         const mobileContactsBtn = document.getElementById('mobileContactsBtn');
         if(contactsNavBtn) contactsNavBtn.addEventListener('click', (e) => { e.preventDefault(); openContactsModal(); });
@@ -973,11 +1316,36 @@
         const DOWNLOAD_URL = 'https://github.com/Piligrim757/PILIGRIM/releases/download/v1.0/Piligrim_Setup.exe';
         let isDownloading = false;
         function performDownload() { try { const link = document.createElement('a'); link.href = DOWNLOAD_URL; link.download = 'Piligrim.exe'; document.body.appendChild(link); link.click(); document.body.removeChild(link); showToast('✅ Скачивание началось!'); } catch(e) { window.open(DOWNLOAD_URL, '_blank'); showToast('✅ Скачивание началось!'); } }
-        async function handleDownload() { if(isDownloading) { showToast('⏳ Подождите, скачивание уже запущено'); return; } isDownloading=true; const btn=document.getElementById('downloadButton'); const originalText=btn.innerHTML; btn.innerHTML='⏳ Подготовка...'; btn.disabled=true; try { if(window.goatcounter?.count) window.goatcounter.count({path:'/download/Piligrim_Setup.exe',title:'Скачивание',event:true}); await new Promise(r=>setTimeout(r,200)); performDownload(); } catch(e){ performDownload(); } finally { setTimeout(()=>{ btn.innerHTML=originalText; btn.disabled=false; isDownloading=false; },1500); } }
-        const downloadButton = document.getElementById('downloadButton');
-        if(downloadButton) downloadButton.addEventListener('click', handleDownload);
-        
-        window.addEventListener('load', () => { if(window.goatcounter?.count) window.goatcounter.count({path:'/',title:'PILIGRIM - Главная',event:false}); });
+        async function handleDownload(btnElement) {
+            if(isDownloading) { showToast('⏳ Подождите, скачивание уже запущено'); return; }
+            isDownloading = true;
+            const originalText = btnElement.innerHTML;
+            btnElement.innerHTML = '⏳ Подготовка...';
+            btnElement.disabled = true;
+            try {
+                if(window.goatcounter?.count) window.goatcounter.count({path:'/download/Piligrim_Setup.exe',title:'Скачивание',event:true});
+                await new Promise(r => setTimeout(r, 200));
+                performDownload();
+            } catch(e) {
+                performDownload();
+            } finally {
+                setTimeout(() => {
+                    btnElement.innerHTML = originalText;
+                    btnElement.disabled = false;
+                    isDownloading = false;
+                }, 1500);
+            }
+        }
+
+        const downloadBtnTop = document.getElementById('downloadButtonTop');
+        const downloadBtnBottom = document.getElementById('downloadButtonBottom');
+
+        if(downloadBtnTop) downloadBtnTop.addEventListener('click', function() { handleDownload(this); });
+        if(downloadBtnBottom) downloadBtnBottom.addEventListener('click', function() { handleDownload(this); });
+
+        window.addEventListener('load', () => {
+            if(window.goatcounter?.count) window.goatcounter.count({path:'/',title:'PILIGRIM - Главная',event:false});
+        });
     </script>
 </body>
 </html>
