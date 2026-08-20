@@ -899,7 +899,7 @@
             footer: '100+ нейропомощников + Обработка файлов (Word, Excel, PDF, Фото, Видео)',
             footerClass: 'modal-footer-green',
             intro: 'Каждый помощник — профессиональный эксперт в своей области. Выберите подходящего, загрузите файл и получите консультацию.',
-            headerImage: 'shapka5.png',
+            // headerImage: 'shapka5.png', // Убрано для данной вкладки
             fileProcessing: [
                 { icon: '📄', label: 'Word' },
                 { icon: '📊', label: 'Excel' },
@@ -1178,11 +1178,11 @@
                 footerClass: 'modal-footer-green',
                 intro: 'Различные стили продаж: Классическая, СПИН, AIDA',
                 list: [
-				    'Продажа курсов, товаров, одежды и т.п.',
-					'Различные стили и техники продаж(Классическая, СПИН, AIDA и др)',
+                    'Продажа курсов, товаров, одежды и т.п.',
+                    'Различные стили и техники продаж(Классическая, СПИН, AIDA и др)',
                     'Полное описание товара по фото (ориентированное на продажу)',
-					'Продажа по сделанному описанию из фото товара',
-					'Ведения клиента по скрипту продаж',
+                    'Продажа по сделанному описанию из фото товара',
+                    'Ведения клиента по скрипту продаж',
                     'Отработка возражений клиентов',
                     'Анализ поведения клиента'
 
@@ -1202,11 +1202,17 @@
             const data = modalData[type];
             if (!data) return;
 
-            let html = `<div class="modal-img-wrapper">
+            let html = ``;
+
+            // Добавляем изображение только если оно есть в данных (кроме вкладки 1)
+            if (data.headerImage && type !== '1') {
+                html += `<div class="modal-img-wrapper">
                             <img class="modal-header-img" src="${data.headerImage}" alt="header" onerror="this.style.display='none'">
                             <div class="image-swipe-line"></div>
-                         </div>
-                         <div class="modal-inner">`;
+                         </div>`;
+            }
+
+            html += `<div class="modal-inner">`;
 
             // ===== ОСОБАЯ ОБРАБОТКА ДЛЯ AI-ПОМОЩНИКОВ (ВКЛАДКА 1) =====
             if (type === '1' && data.categories) {
